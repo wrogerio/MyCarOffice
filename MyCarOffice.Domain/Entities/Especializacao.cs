@@ -7,7 +7,7 @@
 
 
         //Relacionamentos
-        public int ProfissionalId { get; set; }
+        public Guid ProfissionalId { get; set; }
         public virtual Profissional? Profissional { get; set; }
     }
 }
