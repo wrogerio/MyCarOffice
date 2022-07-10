@@ -11,6 +11,24 @@ namespace MyCarOffice.Helpers.Constants
         // Shared Constants
         public const string SystemName = "MyCarOffice - Sua oficina inteligente.";
         public const string DatetimeDefault = "GETDATE()";
+        public const int EnderecoLogradouroMaxLength = 100;
+        public const int EnderecoNumeroMaxLength = 10;
+
+        // Configuração Cliente
+        public const int ClienteNomeMaxLength = 100;
+        public const int ClienteCPFMaxLength = 14;
+        public const int ClienteEmailMaxLength = 120;
+        public const int ClienteSexoMaxLength = 9;  
+        public const int ClienteTelefoneMaxLength = 14;
+        public const string ClienteNomeDisplayName = "Nome";
+        public const string ClienteCPFDisplayName = "CPF";
+        public const string ClienteEmailDisplayName = "Email";
+        public const string ClienteSexoDisplayName = "Sexo";
+        public const string ClienteTelefoneDisplayName = "Telefone";
+
+        // Configuração Especialização
+        public const int EspecializacaoNomeMaxLength = 100;
+        public const string EspecializacaoNomeDisplayName = "Nome";
 
         // Configuração Oficina
         public const int OficinaNomeFantasiaMaxLength = 100;
@@ -27,13 +45,26 @@ namespace MyCarOffice.Helpers.Constants
         public const string OficinaSiteDisplayName = "URL Site";
         
         // Configuração Profissional
-        public const int ProfissionalNomeFantasiaMaxLength = 150;
+        public const int ProfissionalNomeMaxLength = 150;
         public const int ProfissionalCpfMaxLength = 11;
-        public const string ProfissionalNomeFantasiaMaxDisplayName = "Nome Fantasia";
-        public const string ProfissionalCpfMaxDisplayName = "CPF";
-        
-        // Configuração Especializacao
-        public const int EspecializacaoNomeMaxLength = 100;
-        public const string EspecializacaoNomeDisplayName = "Especialização";
+        public const string ProfissionalNomeDisplayName = "Nome Fantasia";
+        public const string ProfissionalCPFDisplayName = "CPF";
+
+        // Configuração Serviço
+        public const int ServicoNomeMaxLength = 100;
+        public const string ServicoNomeDisplayName = "Nome";
+
+        // Configuração Veículo
+        public const int VeiculoMarcaMaxLength = 100;
+        public const int VeiculoModeloMaxLength = 100;
+        public const int VeiculoPlacaMaxLength = 7;
+        public const int VeiculoCorMaxLength = 100;
+        public const int VeiculoObservacaoMaxLength = 200;
+        public const string VeiculoMarcaDisplayName = "Marca";
+        public const string VeiculoModeloDisplayName = "Modelo";
+        public const string VeiculoPlacaDisplayName = "Placa";
+        public const string VeiculoCorDisplayName = "Cor";
+        public const string VeiculoObservacaoDisplayName = "Observação";
+
     }
 }

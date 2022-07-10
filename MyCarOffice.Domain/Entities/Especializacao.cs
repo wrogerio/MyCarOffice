@@ -2,12 +2,31 @@
 {
     public class Especializacao : EntityBase
     {
-        public string Nome { get; set; } = "";
-        public DateTime Since { get; set; } = DateTime.Now;
+        public string Nome { get; private set; } = "";
+        public DateTime Since { get; private set; } = DateTime.Now;
 
-
-        //Relacionamentos
+        // Relacionamentos
         public Guid ProfissionalId { get; set; }
         public virtual Profissional? Profissional { get; set; }
+
+        public Especializacao(string nome, DateTime since)
+        {
+            if (Validar())
+            {
+                Nome = nome;
+                Since = since;
+            }
+        }
+
+        private bool Validar()
+        {
+            // Nome
+            if (string.IsNullOrEmpty(Nome)) return false;
+
+            // Since
+            if (Since.Equals(null)) return false;
+
+            return true;
+        }
     }
 }
