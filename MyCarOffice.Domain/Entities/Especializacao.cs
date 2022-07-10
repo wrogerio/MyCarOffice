@@ -4,11 +4,9 @@ public class Especializacao : EntityBase
 {
     public Especializacao(string nome, DateTime since)
     {
-        if (Validar())
-        {
-            Nome = nome;
-            Since = since;
-        }
+        if (!Validar()) return;
+        Nome = nome;
+        Since = since;
     }
 
     public string Nome { get; } = "";

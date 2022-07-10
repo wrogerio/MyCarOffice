@@ -2,33 +2,30 @@
 
 public class Cliente : EntityBase
 {
-    public Cliente(string nome, string cpf, DateTime dataNasc, string email, string sexo, string logradouro,
-        string numero, string telefone)
+    public Cliente(string nome, string cpf, DateTime dataNasc, string sexo, string logradouro, string telefone)
     {
-        if (Validar())
-        {
-            Nome = nome;
-            Cpf = cpf;
-            DataNasc = dataNasc;
-            Email = email;
-            Sexo = sexo;
-            Logradouro = logradouro;
-            Numero = numero;
-            Telefone = telefone;
-        }
+        if (!Validar()) return;
+
+        Nome = nome;
+        Cpf = cpf;
+        DataNasc = dataNasc;
+        Sexo = sexo;
+        Logradouro = logradouro;
+        Telefone = telefone;
     }
 
     public string Nome { get; } = "";
     public string Cpf { get; } = "";
     public DateTime DataNasc { get; } = DateTime.Now;
     public string Email { get; } = "";
+    public string Telefone { get; } = "";
     public string Sexo { get; } = "";
     public string Logradouro { get; } = "";
     public string Numero { get; } = "";
     public string Complemento { get; set; } = "";
     public string Bairro { get; set; } = "";
     public string Cep { get; set; } = "";
-    public string Telefone { get; } = "";
+    
 
     // Relacionamentos
     public virtual IEnumerable<Veiculo>? Veiculos { get; set; }

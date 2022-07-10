@@ -8,61 +8,99 @@ namespace MyCarOffice.Helpers.Constants;
 
 public static class Constants
 {
-    // Shared Constants
+    #region Shared Constants
     public const string SystemName = "MyCarOffice - Sua oficina inteligente.";
     public const string DatetimeDefault = "GETDATE()";
     public const int EnderecoLogradouroMaxLength = 100;
     public const int EnderecoNumeroMaxLength = 10;
+    public const int EnderecoComplementoMaxLength = 100;
+    public const int EnderecoBairroMaxLength = 80;
+    public const int EnderecoCepMaxLength = 5;
+    public const int TelefoneMaxLength = 14;
+    // Error Required Messages
+    public const string EnderecoLogradouroErrorRequired = "O campo Logradouro é obrigatório!";
+    // Error Max Length Messages
+    public const string EnderecoLogradouroErrorMaxLength = "Permitido no máximo 100 caracteres!";
+    public const string EnderecoNumeroErrorMaxLength = "Permitido no máximo 10 caracteres!";
+    public const string EnderecoComplementoErrorMaxLength = "Permitido no máximo 100 caracteres!";
+    public const string EnderecoBairroErrorMaxLength = "Permitido no máximo 80 caracteres!";
+    public const string EnderecoCepErrorMaxLength = "Permitido no máximo 5 caracteres!";
+    public const string TelefoneErrorMaxLength = "Permitido no máximo 14 caracteres!";
+    #endregion
 
-    // Configuração Cliente
+    #region Configuração da entidade Cliente
+    // Max Length
     public const int ClienteNomeMaxLength = 100;
     public const int ClienteCpfMaxLength = 14;
-    public const int ClienteEmailMaxLength = 120;
-    public const int ClienteSexoMaxLength = 9;
-    public const int ClienteTelefoneMaxLength = 14;
-    public const string ClienteNomeDisplayName = "Nome";
-    public const string ClienteCpfDisplayName = "CPF";
-    public const string ClienteEmailDisplayName = "Email";
-    public const string ClienteSexoDisplayName = "Sexo";
-    public const string ClienteTelefoneDisplayName = "Telefone";
+    public const int ClienteEmailMaxLength = 150;
+    public const int ClienteSexoMaxLength = 1;
+    // Display
+    public const string ClienteNomeDisplay = "Nome";
+    public const string ClienteCpfDisplay = "CPF";
+    public const string ClienteDataNascDisplay = "Data Nascimento";
+    public const string ClienteEmailDisplay = "E-mail";
+    public const string ClienteSexoDisplay = "Sexo";
+    public const string ClienteTelefoneDisplay = "Telefone";
+    public const string ClienteLogradouroDisplay = "Logradouro";
+    public const string ClienteNumeroDisplay = "Número";
+    public const string ClienteComplementoDisplay = "Complemento";
+    public const string ClienteBairroDisplay = "Bairro";
+    public const string ClienteCepDisplay = "CEP";
+    // Error Required Messages
+    public const string ClienteNomeErrorRequired = "O campo Nome é obrigatório!";
+    public const string ClienteCpfErrorRequired = "O campo Cpf é obrigatório!";
+    public const string ClienteDataNascErrorRequired = "O campo Data Nascimento é obrigatório!";
+    public const string ClienteSexoErrorRequired = "O campo Sexo é obrigatório!";
+    public const string ClienteLogradouroErrorRequired = "O campo Logradouro é obrigatório!";
+    public const string ClienteTelefoneErrorRequired = "O campo Telefone é obrigatório!";
+    // Error Max Length Messages
+    public const string ClienteNomeErrorMaxLength = "Permitido no máximo 100 caracteres!";
+    public const string ClienteCpfErrorMaxLength = "Permitido no máximo 14 caracteres!";
+    public const string ClienteEmailErrorMaxLength = "Permitido no máximo 150 caracteres!";
+    public const string ClienteSexolErrorMaxLength = "Permitido no máximo 1 caracteres!";
+    #endregion
 
-    // Configuração Especialização
+    #region Configuração da entidade Especialização
     public const int EspecializacaoNomeMaxLength = 100;
-    public const string EspecializacaoNomeDisplayName = "Nome";
+    public const string EspecializacaoNomeDisplay = "Nome";
+    #endregion
 
-    // Configuração Oficina
+    #region Configuração da entidade Oficina
     public const int OficinaNomeFantasiaMaxLength = 100;
     public const int OficinaCnpjMaxLength = 14;
     public const int OficinaNomeResponsavelMaxLength = 150;
-    public const int OficinaTelefoneMaxLength = 14;
     public const int OficinaEmailMaxLength = 120;
     public const int OficinaSiteMaxLength = 100;
-    public const string OficinaNomeFantasiaDisplayName = "Nome Fantasia";
-    public const string OficinaCnpjDisplayName = "CNPJ";
-    public const string OficinaNomeResponsavelDisplayName = "Nome Responsável";
-    public const string OficinaTelefoneDisplayName = "Telefone";
-    public const string OficinaEmailDisplayName = "E-mail";
-    public const string OficinaSiteDisplayName = "URL Site";
+    public const string OficinaNomeFantasiaDisplay = "Nome Fantasia";
+    public const string OficinaCnpjDisplay = "CNPJ";
+    public const string OficinaNomeResponsavelDisplay = "Nome Responsável";
+    public const string OficinaTelefoneDisplay = "Telefone";
+    public const string OficinaEmailDisplay = "E-mail";
+    public const string OficinaSiteDisplay = "URL Site";
+    #endregion
 
-    // Configuração Profissional
+    #region Configuração da entidade Profissional
     public const int ProfissionalNomeMaxLength = 150;
     public const int ProfissionalCpfMaxLength = 11;
-    public const string ProfissionalNomeDisplayName = "Nome Fantasia";
-    public const string ProfissionalCpfDisplayName = "CPF";
+    public const string ProfissionalNomeDisplay = "Nome Fantasia";
+    public const string ProfissionalCpfDisplay = "CPF";
+    #endregion
 
-    // Configuração Serviço
+    #region Configuração da entidade Serviço
     public const int ServicoNomeMaxLength = 100;
-    public const string ServicoNomeDisplayName = "Nome";
+    public const string ServicoNomeDisplay = "Nome";
+    #endregion
 
-    // Configuração Veículo
+    #region Configuração da entidade Veiculo
     public const int VeiculoMarcaMaxLength = 100;
     public const int VeiculoModeloMaxLength = 100;
     public const int VeiculoPlacaMaxLength = 7;
     public const int VeiculoCorMaxLength = 100;
     public const int VeiculoObservacaoMaxLength = 200;
-    public const string VeiculoMarcaDisplayName = "Marca";
-    public const string VeiculoModeloDisplayName = "Modelo";
-    public const string VeiculoPlacaDisplayName = "Placa";
-    public const string VeiculoCorDisplayName = "Cor";
-    public const string VeiculoObservacaoDisplayName = "Observação";
+    public const string VeiculoMarcaDisplay = "Marca";
+    public const string VeiculoModeloDisplay = "Modelo";
+    public const string VeiculoPlacaDisplay = "Placa";
+    public const string VeiculoCorDisplay = "Cor";
+    public const string VeiculoObservacaoDisplay = "Observação";
+    #endregion
 }
