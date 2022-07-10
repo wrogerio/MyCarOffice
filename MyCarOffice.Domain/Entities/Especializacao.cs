@@ -1,32 +1,31 @@
-﻿namespace MyCarOffice.Domain.Entities
+﻿namespace MyCarOffice.Domain.Entities;
+
+public class Especializacao : EntityBase
 {
-    public class Especializacao : EntityBase
+    public Especializacao(string nome, DateTime since)
     {
-        public string Nome { get; private set; } = "";
-        public DateTime Since { get; private set; } = DateTime.Now;
-
-        // Relacionamentos
-        public Guid ProfissionalId { get; set; }
-        public virtual Profissional? Profissional { get; set; }
-
-        public Especializacao(string nome, DateTime since)
+        if (Validar())
         {
-            if (Validar())
-            {
-                Nome = nome;
-                Since = since;
-            }
+            Nome = nome;
+            Since = since;
         }
+    }
 
-        private bool Validar()
-        {
-            // Nome
-            if (string.IsNullOrEmpty(Nome)) return false;
+    public string Nome { get; } = "";
+    public DateTime Since { get; } = DateTime.Now;
 
-            // Since
-            if (Since.Equals(null)) return false;
+    // Relacionamentos
+    public Guid ProfissionalId { get; set; }
+    public virtual Profissional? Profissional { get; set; }
 
-            return true;
-        }
+    private bool Validar()
+    {
+        // Nome
+        if (string.IsNullOrEmpty(Nome)) return false;
+
+        // Since
+        if (Since.Equals(null)) return false;
+
+        return true;
     }
 }

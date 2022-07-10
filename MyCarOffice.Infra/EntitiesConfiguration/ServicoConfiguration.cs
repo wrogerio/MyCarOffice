@@ -3,32 +3,31 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MyCarOffice.Domain.Entities;
 using MyCarOffice.Helpers.Constants;
 
-namespace MyCarOffice.Infra.EntitiesConfiguration
+namespace MyCarOffice.Infra.EntitiesConfiguration;
+
+public class ServicoConfiguration : IEntityTypeConfiguration<Servico>
 {
-    public class ServicoConfiguration : IEntityTypeConfiguration<Servico>
+    public void Configure(EntityTypeBuilder<Servico> builder)
     {
-        public void Configure(EntityTypeBuilder<Servico> builder)
-        {
-            // Id
-            builder.HasKey(x => x.Id);
+        // Id
+        builder.HasKey(x => x.Id);
 
-            // Area
-            builder.Property(x => x.Area)
-                .IsRequired();
+        // Area
+        builder.Property(x => x.Area)
+            .IsRequired();
 
-            // Nome
-            builder.Property(x => x.Nome)
-                .IsRequired()
-                .HasMaxLength(Constants.ServicoNomeMaxLength);
+        // Nome
+        builder.Property(x => x.Nome)
+            .IsRequired()
+            .HasMaxLength(Constants.ServicoNomeMaxLength);
 
-            // Valor
-            builder.Property(x => x.Valor)
-                .IsRequired()
-                .HasPrecision(18, 2);
+        // Valor
+        builder.Property(x => x.Valor)
+            .IsRequired()
+            .HasPrecision(18, 2);
 
-            // Tempo médio
-            builder.Property(x => x.TempoMedio)
-                .IsRequired();
-        }
+        // Tempo médio
+        builder.Property(x => x.TempoMedio)
+            .IsRequired();
     }
 }

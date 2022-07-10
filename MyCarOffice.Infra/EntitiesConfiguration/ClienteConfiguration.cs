@@ -3,53 +3,58 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MyCarOffice.Domain.Entities;
 using MyCarOffice.Helpers.Constants;
 
-namespace MyCarOffice.Infra.EntitiesConfiguration
+namespace MyCarOffice.Infra.EntitiesConfiguration;
+
+public class ClienteConfiguration : IEntityTypeConfiguration<Cliente>
 {
-    public class ClienteConfiguration : IEntityTypeConfiguration<Cliente>
+    public void Configure(EntityTypeBuilder<Cliente> builder)
     {
-        public void Configure(EntityTypeBuilder<Cliente> builder)
-        {
-            // Id
-            builder.HasKey(x => x.Id);
+        // Id
+        builder.HasKey(x => x.Id);
 
-            // Nome
-            builder.Property(x => x.Nome)
-                .IsRequired()
-                .HasMaxLength(Constants.ClienteNomeMaxLength);
+        // Nome
+        builder.Property(x => x.Nome)
+            .IsRequired()
+            .HasMaxLength(Constants.ClienteNomeMaxLength);
 
-            // CPF
-            builder.Property(x => x.CPF)
-                .IsRequired()
-                .HasMaxLength(Constants.ClienteCPFMaxLength);
+        // CPF
+        builder.Property(x => x.Cpf)
+            .IsRequired()
+            .HasMaxLength(Constants.ClienteCpfMaxLength);
 
-            // DataNasc
-            builder.Property(x => x.DataNasc)
-                .IsRequired();
+        // DataNasc
+        builder.Property(x => x.DataNasc)
+            .IsRequired();
 
-            // Email
-            builder.Property(x => x.Email)
-                .IsRequired()
-                .HasMaxLength(Constants.ClienteEmailMaxLength);
+        // Email
+        builder.Property(x => x.Email)
+            .IsRequired()
+            .HasMaxLength(Constants.ClienteEmailMaxLength);
 
-            // Sexo
-            builder.Property(x => x.Sexo)
-                .IsRequired()
-                .HasMaxLength(Constants.ClienteSexoMaxLength);
+        // Sexo
+        builder.Property(x => x.Sexo)
+            .IsRequired()
+            .HasMaxLength(Constants.ClienteSexoMaxLength);
 
-            // Logradouro
-            builder.Property(x => x.Logradouro)
-                .IsRequired()
-                .HasMaxLength(Constants.EnderecoLogradouroMaxLength);
+        // Logradouro
+        builder.Property(x => x.Logradouro)
+            .IsRequired()
+            .HasMaxLength(Constants.EnderecoLogradouroMaxLength);
 
-            // Número
-            builder.Property(x => x.Numero)
-                .IsRequired()
-                .HasMaxLength(Constants.EnderecoNumeroMaxLength);
+        // Número
+        builder.Property(x => x.Numero)
+            .IsRequired()
+            .HasMaxLength(Constants.EnderecoNumeroMaxLength);
 
-            // Telefone
-            builder.Property(x => x.Telefone)
-                .IsRequired()
-                .HasMaxLength(Constants.ClienteTelefoneMaxLength);
-        }
+        // Telefone
+        builder.Property(x => x.Telefone)
+            .IsRequired()
+            .HasMaxLength(Constants.ClienteTelefoneMaxLength);
+
+        // Relacionamento
+        builder
+            .HasMany(x => x.Veiculos)
+            .WithOne(x => x.Cliente)
+            .HasForeignKey(x => x.ClienteId);
     }
 }
