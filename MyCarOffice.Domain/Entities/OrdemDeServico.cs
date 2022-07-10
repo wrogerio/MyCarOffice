@@ -9,27 +9,25 @@ public class OrdemDeServico : EntityBase
         AreaEnum servicoArea, string servicoNome, decimal servicoValor, string profissionalNome, string profissionalCPF,
         string oficinaNomeFantasia, string oficinaCNPJ, string oficinaFone, string oficinaNomeResponsavel)
     {
-        if (Validar())
-        {
-            DataHoraInicio = dataHoraInicio;
-            ClienteNome = clienteNome;
-            ClienteCPF = clienteCPF;
-            ClienteEmail = clienteEmail;
-            ClienteTelefone = clienteTelefone;
-            VeiculoMarca = veiculoMarca;
-            VeiculoModelo = veiculoModelo;
-            VeiculoPlaca = veiculoPlaca;
-            VeiculoAno = veiculoAno;
-            ServicoArea = servicoArea;
-            ServicoNome = servicoNome;
-            ServicoValor = servicoValor;
-            ProfissionalNome = profissionalNome;
-            ProfissionalCPF = profissionalCPF;
-            OficinaNomeFantasia = oficinaNomeFantasia;
-            OficinaCNPJ = oficinaCNPJ;
-            OficinaFone = oficinaFone;
-            OficinaNomeResponsavel = oficinaNomeResponsavel;
-        }
+        if (!Validar()) return;
+        DataHoraInicio = dataHoraInicio;
+        ClienteNome = clienteNome;
+        ClienteCPF = clienteCPF;
+        ClienteEmail = clienteEmail;
+        ClienteTelefone = clienteTelefone;
+        VeiculoMarca = veiculoMarca;
+        VeiculoModelo = veiculoModelo;
+        VeiculoPlaca = veiculoPlaca;
+        VeiculoAno = veiculoAno;
+        ServicoArea = servicoArea;
+        ServicoNome = servicoNome;
+        ServicoValor = servicoValor;
+        ProfissionalNome = profissionalNome;
+        ProfissionalCPF = profissionalCPF;
+        OficinaNomeFantasia = oficinaNomeFantasia;
+        OficinaCNPJ = oficinaCNPJ;
+        OficinaFone = oficinaFone;
+        OficinaNomeResponsavel = oficinaNomeResponsavel;
     }
 
     public DateTime DataHoraInicio { get; } = DateTime.Now;

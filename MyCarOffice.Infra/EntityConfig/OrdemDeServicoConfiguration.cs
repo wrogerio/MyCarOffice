@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MyCarOffice.Domain.Entities;
 using MyCarOffice.Helpers.Constants;
 
-namespace MyCarOffice.Infra.EntitiesConfiguration;
+namespace MyCarOffice.Infra.EntityConfig;
 
 public class OrdemDeServicoConfiguration : IEntityTypeConfiguration<OrdemDeServico>
 {
@@ -34,7 +34,7 @@ public class OrdemDeServicoConfiguration : IEntityTypeConfiguration<OrdemDeServi
         // Cliente Telefone
         builder.Property(x => x.ClienteTelefone)
             .IsRequired()
-            .HasMaxLength(Constants.ClienteTelefoneMaxLength);
+            .HasMaxLength(Constants.TelefoneMaxLength);
 
         // Veiculo Marca
         builder.Property(x => x.VeiculoMarca)
@@ -92,7 +92,7 @@ public class OrdemDeServicoConfiguration : IEntityTypeConfiguration<OrdemDeServi
         // Oficina Telefone
         builder.Property(x => x.OficinaFone)
             .IsRequired()
-            .HasMaxLength(Constants.OficinaTelefoneMaxLength);
+            .HasMaxLength(Constants.TelefoneMaxLength);
 
         // Oficina Nome Responsável
         builder.Property(x => x.OficinaNomeResponsavel)

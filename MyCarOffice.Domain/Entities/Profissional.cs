@@ -6,13 +6,11 @@ public class Profissional : EntityBase
 {
     public Profissional(string nome, string cPF, DateTime dataNasc, AreaEnum area)
     {
-        if (Validar())
-        {
-            Nome = nome;
-            CPF = cPF;
-            DataNasc = dataNasc;
-            Area = area;
-        }
+        if (!Validar()) return;
+        Nome = nome;
+        CPF = cPF;
+        DataNasc = dataNasc;
+        Area = area;
     }
 
     public string Nome { get; } = "";

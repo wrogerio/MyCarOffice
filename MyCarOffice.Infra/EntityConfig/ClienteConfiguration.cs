@@ -49,7 +49,7 @@ public class ClienteConfiguration : IEntityTypeConfiguration<Cliente>
         // Telefone
         builder.Property(x => x.Telefone)
             .IsRequired()
-            .HasMaxLength(Constants.ClienteTelefoneMaxLength);
+            .HasMaxLength(Constants.TelefoneMaxLength);
 
         // Relacionamento
         builder

@@ -6,13 +6,11 @@ public class Servico : EntityBase
 {
     public Servico(AreaEnum area, string nome, decimal valor, DateTime tempoMedio)
     {
-        if (Validar())
-        {
-            Area = area;
-            Nome = nome;
-            Valor = valor;
-            TempoMedio = tempoMedio;
-        }
+        if (!Validar()) return;
+        Area = area;
+        Nome = nome;
+        Valor = valor;
+        TempoMedio = tempoMedio;
     }
 
     public AreaEnum Area { get; } = AreaEnum.Mecanica;

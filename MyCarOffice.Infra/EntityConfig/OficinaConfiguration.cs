@@ -30,7 +30,7 @@ public class OficinaConfiguration : IEntityTypeConfiguration<Oficina>
         // Telefone
         builder.Property(x => x.Telefone)
             .IsRequired()
-            .HasMaxLength(Constants.OficinaTelefoneMaxLength);
+            .HasMaxLength(Constants.TelefoneMaxLength);
 
         // Logradouro
         builder.Property(x => x.Logradouro)

@@ -5,15 +5,13 @@ public class Oficina : EntityBase
     public Oficina(string nomeFantasia, string cnpj, string nomeResponsavel, string telefone, string logradouro,
         string numero)
     {
-        if (Validar())
-        {
-            NomeFantasia = nomeFantasia;
-            Cnpj = cnpj;
-            NomeResponsavel = nomeResponsavel;
-            Telefone = telefone;
-            Logradouro = logradouro;
-            Numero = numero;
-        }
+        if (!Validar()) return;
+        NomeFantasia = nomeFantasia;
+        Cnpj = cnpj;
+        NomeResponsavel = nomeResponsavel;
+        Telefone = telefone;
+        Logradouro = logradouro;
+        Numero = numero;
     }
 
     public string NomeFantasia { get; } = "";
