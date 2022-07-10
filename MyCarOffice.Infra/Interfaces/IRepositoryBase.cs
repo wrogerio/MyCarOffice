@@ -1,11 +1,10 @@
-﻿namespace MyCarOffice.Infra.Interfaces
+﻿namespace MyCarOffice.Infra.Interfaces;
+
+public interface IRepositoryBase<Entity> where Entity : class
 {
-    public interface IRepositoryBase<Entity> where Entity : class
-    {
-        Task<IEnumerable<Entity>> GetAllAsync();
-        Task<Entity> GetByIdAsync(Guid id);
-        void Create(Entity entity);
-        void Update(Entity entity);
-        void Delete(Entity entity);
-    }
+    Task<IEnumerable<Entity>> GetAllAsync();
+    Task<Entity> GetByIdAsync(Guid id);
+    Task CreateAsync(Entity entity);
+    Task UpdateAsync(Entity entity);
+    Task DeleteAsync(Entity entity);
 }

@@ -2,12 +2,11 @@
 using MyCarOffice.Infra.Context;
 using MyCarOffice.Infra.Interfaces;
 
-namespace MyCarOffice.Infra.Repositories
+namespace MyCarOffice.Infra.Repositories;
+
+public class OrdemDeServicoRepository : RepositoryBase<OrdemDeServico>, IOrdemDeServicoRepository
 {
-    public class OrdemDeServicoRepository : RepositoryBase<OrdemDeServico>, IOrdemDeServicoRepository
+    public OrdemDeServicoRepository(MyCarOfficeContext context) : base(context)
     {
-        public OrdemDeServicoRepository(MyCarOfficeContext context) : base(context)
-        {
-        }
     }
 }

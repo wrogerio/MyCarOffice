@@ -1,44 +1,43 @@
-﻿namespace MyCarOffice.Domain.Entities
+﻿namespace MyCarOffice.Domain.Entities;
+
+public class Veiculo : EntityBase
 {
-    public class Veiculo : EntityBase
+    public Veiculo(string marca, string modelo, string placa, int ano)
     {
-        public string Marca { get; private set; } = "";
-        public string Modelo { get; private set; } = "";
-        public string Placa { get; private set; } = "";
-        public int Ano { get; private set; }
-        public string Cor { get; set; } = "";
-        public string Observacao { get; set; } = "";
-
-        //Relacionamentos
-        public Guid ClienteId { get; set; }
-        public virtual Cliente? Cliente { get; set; }
-
-        public Veiculo(string marca, string modelo, string placa, int ano)
+        if (Validar())
         {
-            if (Validar())
-            {
-                Marca = marca;
-                Modelo = modelo;
-                Placa = placa;
-                Ano = ano;
-            }
+            Marca = marca;
+            Modelo = modelo;
+            Placa = placa;
+            Ano = ano;
         }
+    }
 
-        private bool Validar()
-        {
-            // Marca
-            if (string.IsNullOrEmpty(Marca)) return false;
+    public string Marca { get; } = "";
+    public string Modelo { get; } = "";
+    public string Placa { get; } = "";
+    public int Ano { get; }
+    public string Cor { get; set; } = "";
+    public string Observacao { get; set; } = "";
 
-            // Modelo
-            if (string.IsNullOrEmpty(Modelo)) return false;
+    //Relacionamentos
+    public Guid ClienteId { get; set; }
+    public virtual Cliente? Cliente { get; set; }
 
-            // Placa
-            if (string.IsNullOrEmpty(Placa)) return false;
+    private bool Validar()
+    {
+        // Marca
+        if (string.IsNullOrEmpty(Marca)) return false;
 
-            // Ano
-            if (Ano <= 0) return false;
+        // Modelo
+        if (string.IsNullOrEmpty(Modelo)) return false;
 
-            return true;
-        }
+        // Placa
+        if (string.IsNullOrEmpty(Placa)) return false;
+
+        // Ano
+        if (Ano <= 0) return false;
+
+        return true;
     }
 }

@@ -2,12 +2,11 @@
 using MyCarOffice.Infra.Context;
 using MyCarOffice.Infra.Interfaces;
 
-namespace MyCarOffice.Infra.Repositories
+namespace MyCarOffice.Infra.Repositories;
+
+public class ClienteRepository : RepositoryBase<Cliente>, IClienteRepository
 {
-    public class ClienteRepository : RepositoryBase<Cliente>, IClienteRepository
+    public ClienteRepository(MyCarOfficeContext context) : base(context)
     {
-        public ClienteRepository(MyCarOfficeContext context) : base(context)
-        {
-        }
     }
 }

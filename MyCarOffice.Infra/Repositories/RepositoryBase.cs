@@ -2,41 +2,40 @@
 using MyCarOffice.Infra.Context;
 using MyCarOffice.Infra.Interfaces;
 
-namespace MyCarOffice.Infra.Repositories
+namespace MyCarOffice.Infra.Repositories;
+
+public class RepositoryBase<Entity> : IRepositoryBase<Entity> where Entity : class
 {
-    public class RepositoryBase<Entity> : IRepositoryBase<Entity> where Entity : class
+    // Context Injection
+    private readonly MyCarOfficeContext _context;
+
+    public RepositoryBase(MyCarOfficeContext context)
     {
-        // Context Injection
-        private readonly MyCarOfficeContext _context;
+        _context = context;
+    }
 
-        public RepositoryBase(MyCarOfficeContext context)
-        {
-            _context = context;
-        }
+    public async Task<IEnumerable<Entity>> GetAllAsync()
+    {
+        return await _context.Set<Entity>().ToListAsync();
+    }
 
-        public async Task<IEnumerable<Entity>> GetAllAsync()
-        {
-            return await _context.Set<Entity>().ToListAsync();
-        }
+    public async Task<Entity> GetByIdAsync(Guid id)
+    {
+        return await _context.Set<Entity>().FindAsync(id);
+    }
 
-        public async Task<Entity> GetByIdAsync(Guid id)
-        {
-            return await _context.Set<Entity>().FindAsync(id);
-        }
+    public async Task CreateAsync(Entity entity)
+    {
+        await _context.Set<Entity>().AddAsync(entity);
+    }
 
-        public void Create(Entity entity)
-        {
-            _context.Set<Entity>().Add(entity);
-        }
+    public async Task UpdateAsync(Entity entity)
+    {
+        _context.Entry(entity).State = EntityState.Modified;
+    }
 
-        public void Update(Entity entity)
-        {
-            _context.Entry(entity).State = EntityState.Modified;
-        }
-
-        public void Delete(Entity entity)
-        {
-            _context.Remove(entity);
-        }
+    public async Task DeleteAsync(Entity entity)
+    {
+        _context.Entry(entity).State = EntityState.Deleted;
     }
 }

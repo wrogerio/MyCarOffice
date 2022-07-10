@@ -1,9 +1,7 @@
 ﻿using MyCarOffice.Domain.Entities;
 
-namespace MyCarOffice.Infra.Interfaces
-{
-    public interface IVeiculoRepository : IRepositoryBase<Veiculo>
-    {
+namespace MyCarOffice.Infra.Interfaces;
 
-    }
+public interface IVeiculoRepository : IRepositoryBase<Veiculo>
+{
 }
