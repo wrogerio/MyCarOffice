@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MyCarOffice.Domain.Entities;
 using MyCarOffice.Helpers.Constants;
 
-namespace MyCarOffice.Infra.EntitiesConfiguration;
+namespace MyCarOffice.Infra.EntityConfig;
 
 public class VeiculoConfiguration : IEntityTypeConfiguration<Veiculo>
 {
@@ -30,5 +30,8 @@ public class VeiculoConfiguration : IEntityTypeConfiguration<Veiculo>
         // Ano
         builder.Property(x => x.Ano)
             .IsRequired();
+        
+        // CreatedAt
+        builder.Property(x => x.CreatedAt).HasDefaultValueSql(Constants.DatetimeDefault);
     }
 }

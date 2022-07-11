@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MyCarOffice.Domain.Entities;
 using MyCarOffice.Helpers.Constants;
 
-namespace MyCarOffice.Infra.EntitiesConfiguration;
+namespace MyCarOffice.Infra.EntityConfig;
 
 public class ClienteConfiguration : IEntityTypeConfiguration<Cliente>
 {
@@ -50,6 +50,9 @@ public class ClienteConfiguration : IEntityTypeConfiguration<Cliente>
         builder.Property(x => x.Telefone)
             .IsRequired()
             .HasMaxLength(Constants.ClienteTelefoneMaxLength);
+
+        // CreatedAt
+        builder.Property(x => x.CreatedAt).HasDefaultValueSql(Constants.DatetimeDefault);
 
         // Relacionamento
         builder

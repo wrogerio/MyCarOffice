@@ -4,7 +4,7 @@ namespace MyCarOffice.Domain.Entities;
 
 public class Servico : EntityBase
 {
-    public Servico(AreaEnum area, string nome, decimal valor, DateTime tempoMedio)
+    public Servico(AreaEnum area, string nome, double valor, double tempoMedio)
     {
         if (!Validar()) return;
         Area = area;
@@ -13,10 +13,10 @@ public class Servico : EntityBase
         TempoMedio = tempoMedio;
     }
 
-    public AreaEnum Area { get; set; } = AreaEnum.Mecanica;
     public string Nome { get; set; } = "";
-    public decimal Valor { get; set; }
-    public DateTime TempoMedio { get; set; } = DateTime.Now;
+    public AreaEnum Area { get; set; } = AreaEnum.Mecanica;
+    public double Valor { get; set; } = 0d;
+    public double TempoMedio { get; set; } = 0d;
 
     private bool Validar()
     {
