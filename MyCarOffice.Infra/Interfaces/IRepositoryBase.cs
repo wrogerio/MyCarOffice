@@ -6,5 +6,5 @@ public interface IRepositoryBase<Entity> where Entity : class
     Task<Entity> GetByIdAsync(Guid id);
     Task CreateAsync(Entity entity);
     Task UpdateAsync(Entity entity);
-    Task DeleteAsync(Entity entity);
+    Task RemoveAsync(Entity entity);
 }
