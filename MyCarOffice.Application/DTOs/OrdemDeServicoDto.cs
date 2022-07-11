@@ -17,15 +17,44 @@ public class OrdemDeServicoDto
     [Display(Description = Constants.OrdemDeServicoClienteNomeDisplay)]
     public string ClienteNome { get; set; } = "";
     
+    [Required(ErrorMessage = Constants.OrdemDeServicoClienteDataNascErrorRequired)]
+    [Display(Description = Constants.OrdemDeServicoClienteDataNascDisplay)]
+    public DateTime ClienteDataNasc { get; set; }
+    
     [Required(ErrorMessage = Constants.OrdemDeServicoClienteCpfErrorRequired)]
     [MaxLength(Constants.ClienteCpfMaxLength, ErrorMessage = Constants.ClienteCpfErrorMaxLength)]
     [Display(Description = Constants.OrdemDeServicoClienteCpfDisplay)]
     public string ClienteCpf { get; set; } = "";
+
+    [Required(ErrorMessage = Constants.OrdemDeServicoClienteSexoErrorRequired)]
+    [MaxLength(Constants.ClienteSexoMaxLength, ErrorMessage = Constants.ClienteSexoErrorMaxLength)]
+    [Display(Description = Constants.OrdemDeServicoClienteSexoDisplay)]
+    public string ClienteSexo { get; set; } = "";
     
-    [Required(ErrorMessage = Constants.OrdemDeServicoClienteEmailErrorRequired)]
     [MaxLength(Constants.ClienteEmailMaxLength, ErrorMessage = Constants.ClienteEmailErrorMaxLength)]
     [Display(Description = Constants.OrdemDeServicoClienteEmailDisplay)]
     public string ClienteEmail { get; set; } = "";
+    
+    [Required(ErrorMessage = Constants.OrdemDeServicoClienteLogradouroErrorRequired)]
+    [MaxLength(Constants.ClienteLogradouroMaxLength, ErrorMessage = Constants.ClienteLogradouroErrorMaxLength)]
+    [Display(Description = Constants.OrdemDeServicoClienteLogradouroDisplay)]
+    public string ClienteLogradouro { get; set; } = "";
+    
+    [MaxLength(Constants.ClienteNumeroMaxLength, ErrorMessage = Constants.ClienteNumeroErrorMaxLength)]
+    [Display(Description = Constants.OrdemDeServicoClienteNumeroDisplay)]
+    public string ClienteNumero { get; set; } = "";
+    
+    [MaxLength(Constants.ClienteComplementoMaxLength, ErrorMessage = Constants.ClienteComplementoErrorMaxLength)]
+    [Display(Description = Constants.OrdemDeServicoClienteComplementoDisplay)]
+    public string ClienteComplemento { get; set; } = "";
+    
+    [MaxLength(Constants.ClienteBairroMaxLength, ErrorMessage = Constants.ClienteBairroErrorMaxLength)]
+    [Display(Description = Constants.OrdemDeServicoClienteBairroDisplay)]
+    public string ClienteBairro { get; set; } = "";
+    
+    [MaxLength(Constants.ClienteCepMaxLength, ErrorMessage = Constants.ClienteCepErrorMaxLength)]
+    [Display(Description = Constants.OrdemDeServicoClienteCepDisplay)]
+    public string ClienteCep { get; set; } = "";
     
     [Required(ErrorMessage = Constants.OrdemDeServicoClienteTelefoneErrorRequired)]
     [MaxLength(Constants.ClienteTelefoneMaxLength, ErrorMessage = Constants.ClienteTelefoneErrorMaxLength)]
@@ -54,6 +83,10 @@ public class OrdemDeServicoDto
     [MaxLength(Constants.VeiculoCorMaxLength, ErrorMessage = Constants.VeiculoCorErrorMaxLength)]
     [Display(Description = Constants.OrdemDeServicoVeiculoCorDisplay)]
     public string VeiculoCor { get; set; } = "";
+
+    [MaxLength(Constants.VeiculoCorMaxLength, ErrorMessage = Constants.VeiculoObservacaoErrorMaxLength)]
+    [Display(Description = Constants.OrdemDeServicoVeiculoObservacaoDisplay)]
+    public string VeiculoObservacao { get; set; } = "";
     
     [Required(ErrorMessage = Constants.OrdemDeServicoServicoAreaErrorRequired)]
     [Display(Description = Constants.OrdemDeServicoServicoAreaDisplay)]
@@ -68,6 +101,10 @@ public class OrdemDeServicoDto
     [Display(Description = Constants.OrdemDeServicoServicoValorDisplay)]
     public double ServicoValor { get; set; }
     
+    [Required(ErrorMessage = Constants.OrdemDeServicoServicoTempoMedioErrorRequired)]
+    [Display(Description = Constants.OrdemDeServicoServicoTempoMedioDisplay)]
+    public double ServicoTempoMedio { get; set; }
+    
     [Required(ErrorMessage = Constants.OrdemDeServicoProfissionalNomeErrorRequired)]
     [MaxLength(Constants.ProfissionalNomeMaxLength, ErrorMessage = Constants.ProfissionalNomeErrorMaxLength)]
     [Display(Description = Constants.OrdemDeServicoProfissionalNomeDisplay)]
@@ -77,6 +114,14 @@ public class OrdemDeServicoDto
     [MaxLength(Constants.ProfissionalCpfMaxLength, ErrorMessage = Constants.ProfissionalCpfErrorMaxLength)]
     [Display(Description = Constants.OrdemDeServicoProfissionalCpfDisplay)]
     public string ProfissionalCpf { get; set; } = "";
+    
+    [Required(ErrorMessage = Constants.OrdemDeServicoProfissionalDataNascErrorRequired)]
+    [Display(Description = Constants.OrdemDeServicoProfissionalDataNascDisplay)]
+    public DateTime ProfissionalDataNasc { get; set; }
+    
+    [Required(ErrorMessage = Constants.OrdemDeServicoProfissionalAreaErrorRequired)]
+    [Display(Description = Constants.OrdemDeServicoProfissionalAreaDisplay)]
+    public int ProfissionalArea { get; set; }
     
     [Required(ErrorMessage = Constants.OrdemDeServicoOficinaNomeFantasiaErrorRequired)]
     [MaxLength(Constants.OficinaNomeFantasiaMaxLength, ErrorMessage = Constants.OficinaNomeFantasiaErrorMaxLength)]
@@ -93,7 +138,6 @@ public class OrdemDeServicoDto
     [Display(Description = Constants.OrdemDeServicoOficinaTelefoneDisplay)]
     public string OficinaTelefone { get; set; } = "";
     
-    [Required(ErrorMessage = Constants.OrdemDeServicoOficinaEmailErrorRequired)]
     [MaxLength(Constants.OficinaEmailMaxLength, ErrorMessage = Constants.OficinaEmailErrorMaxLength)]
     [Display(Description = Constants.OrdemDeServicoOficinaEmailDisplay)]
     public string OficinaEmail { get; set; } = "";
@@ -102,6 +146,31 @@ public class OrdemDeServicoDto
     [MaxLength(Constants.OficinaNomeResponsavelMaxLength, ErrorMessage = Constants.OficinaNomeResponsavelErrorMaxLength)]
     [Display(Description = Constants.OrdemDeServicoOficinaNomeResponsavelDisplay)]
     public string OficinaNomeResponsavel { get; set; } = "";
+
+    [MaxLength(Constants.OficinaSiteMaxLength, ErrorMessage = Constants.OficinaSiteErrorMaxLength)]
+    [Display(Description = Constants.OrdemDeServicoOficinaSiteDisplay)]
+    public string OficinaSite { get; set; } = "";
+    
+    [Required(ErrorMessage = Constants.OrdemDeServicoOficinaLogradouroErrorRequired)]
+    [MaxLength(Constants.OficinaLogradouroMaxLength, ErrorMessage = Constants.OficinaLogradouroErrorMaxLength)]
+    [Display(Description = Constants.OrdemDeServicoOficinaLogradouroDisplay)]
+    public string OficinaLogradouro { get; set; } = "";
+    
+    [MaxLength(Constants.OficinaNumeroMaxLength, ErrorMessage = Constants.OficinaNumeroErrorMaxLength)]
+    [Display(Description = Constants.OrdemDeServicoOficinaNumeroDisplay)]
+    public string OficinaNumero { get; set; } = "";
+    
+    [MaxLength(Constants.OficinaComplementoMaxLength, ErrorMessage = Constants.OficinaComplementoErrorMaxLength)]
+    [Display(Description = Constants.OrdemDeServicoOficinaComplementoDisplay)]
+    public string OficinaComplemento { get; set; } = "";
+    
+    [MaxLength(Constants.OficinaBairroMaxLength, ErrorMessage = Constants.OficinaBairroErrorMaxLength)]
+    [Display(Description = Constants.OrdemDeServicoOficinaBairroDisplay)]
+    public string OficinaBairro { get; set; } = "";
+    
+    [MaxLength(Constants.OficinaCepMaxLength, ErrorMessage = Constants.OficinaCepErrorMaxLength)]
+    [Display(Description = Constants.OrdemDeServicoOficinaCepDisplay)]
+    public string OficinaCep { get; set; } = "";
     
     [Display(Description = Constants.OrdemDeServicoDataHoraEncerramentoDisplay)]
     public DateTime? DataHoraEncerramento { get; set; }

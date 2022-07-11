@@ -49,7 +49,7 @@ public static class Constants
     public const string ClienteCpfErrorMaxLength = "Permitido no máximo 14 caracteres!";
     public const string ClienteEmailErrorMaxLength = "Permitido no máximo 150 caracteres!";
     public const string ClienteTelefoneErrorMaxLength = "Permitido no máximo 14 caracteres!";
-    public const string ClienteSexolErrorMaxLength = "Permitido no máximo 1 caracter!";
+    public const string ClienteSexoErrorMaxLength = "Permitido no máximo 1 caracter!";
     public const string ClienteLogradouroErrorMaxLength = "Permitido no máximo 100 caracteres!";
     public const string ClienteNumeroErrorMaxLength = "Permitido no máximo 10 caracteres!";
     public const string ClienteComplementoErrorMaxLength = "Permitido no máximo 100 caracteres!";

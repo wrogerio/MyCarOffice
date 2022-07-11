@@ -5,26 +5,17 @@ namespace MyCarOffice.Domain.Entities;
 public class OrdemDeServico : EntityBase
 {
     public OrdemDeServico(string oficinaNomeFantasia, string oficinaCnpj, string oficinaNomeResponsavel,
-        string oficinaTelefone, string oficinaEmail, string oficinaSite, string oficinaLogradouro, string oficinaNumero,
-        string oficinaComplemento, string oficinaBairro, string oficinaCep, string profissionalNome,
-        string profissionalCpf, DateTime profissionalDataNasc, int profissionalArea, string clienteNome,
-        string clienteCpf, DateTime clienteDataNasc, string clienteEmail, string clienteTelefone, string clienteSexo,
-        string clienteLogradouro, string clienteNumero, string clienteComplemento, string clienteBairro,
-        string clienteCep, string veiculoMarca, string veiculoModelo, string veiculoPlaca, int veiculoAno,
-        string veiculoCor, string veiculoObservacao, int servicoArea, string servicoNome, double servicoValor,
-        double servicoTempoMedio, bool concluida)
+        string oficinaTelefone, string oficinaLogradouro, string profissionalNome, string profissionalCpf, 
+        DateTime profissionalDataNasc, int profissionalArea, string clienteNome, string clienteCpf, 
+        DateTime clienteDataNasc, string clienteTelefone, string clienteSexo, string clienteLogradouro, 
+        string veiculoMarca, string veiculoModelo, string veiculoPlaca, int veiculoAno, int servicoArea, 
+        string servicoNome, double servicoValor, double servicoTempoMedio)
     {
         OficinaNomeFantasia = oficinaNomeFantasia;
         OficinaCnpj = oficinaCnpj;
         OficinaNomeResponsavel = oficinaNomeResponsavel;
         OficinaTelefone = oficinaTelefone;
-        OficinaEmail = oficinaEmail;
-        OficinaSite = oficinaSite;
         OficinaLogradouro = oficinaLogradouro;
-        OficinaNumero = oficinaNumero;
-        OficinaComplemento = oficinaComplemento;
-        OficinaBairro = oficinaBairro;
-        OficinaCep = oficinaCep;
         ProfissionalNome = profissionalNome;
         ProfissionalCpf = profissionalCpf;
         ProfissionalDataNasc = profissionalDataNasc;
@@ -32,25 +23,17 @@ public class OrdemDeServico : EntityBase
         ClienteNome = clienteNome;
         ClienteCpf = clienteCpf;
         ClienteDataNasc = clienteDataNasc;
-        ClienteEmail = clienteEmail;
         ClienteTelefone = clienteTelefone;
         ClienteSexo = clienteSexo;
         ClienteLogradouro = clienteLogradouro;
-        ClienteNumero = clienteNumero;
-        ClienteComplemento = clienteComplemento;
-        ClienteBairro = clienteBairro;
-        ClienteCep = clienteCep;
         VeiculoMarca = veiculoMarca;
         VeiculoModelo = veiculoModelo;
         VeiculoPlaca = veiculoPlaca;
         VeiculoAno = veiculoAno;
-        VeiculoCor = veiculoCor;
-        VeiculoObservacao = veiculoObservacao;
         ServicoArea = servicoArea;
         ServicoNome = servicoNome;
         ServicoValor = servicoValor;
         ServicoTempoMedio = servicoTempoMedio;
-        Concluida = concluida;
     }
 
     public string OficinaNomeFantasia { get; set; }
