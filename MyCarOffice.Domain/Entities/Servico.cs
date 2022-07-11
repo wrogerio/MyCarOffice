@@ -13,10 +13,10 @@ public class Servico : EntityBase
         TempoMedio = tempoMedio;
     }
 
-    public AreaEnum Area { get; } = AreaEnum.Mecanica;
-    public string Nome { get; } = "";
-    public decimal Valor { get; }
-    public DateTime TempoMedio { get; } = DateTime.Now;
+    public AreaEnum Area { get; set; } = AreaEnum.Mecanica;
+    public string Nome { get; set; } = "";
+    public decimal Valor { get; set; }
+    public DateTime TempoMedio { get; set; } = DateTime.Now;
 
     private bool Validar()
     {

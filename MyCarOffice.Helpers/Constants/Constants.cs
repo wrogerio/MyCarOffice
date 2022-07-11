@@ -65,6 +65,7 @@ public static class Constants
 
     // Display
     public const string EspecializacaoNomeDisplay = "Nome";
+    public const string EspecializacaoSinceDisplay = "Desde";
 
     // Error Required Messages
     public const string EspecializacaoNomeErrorRequired = "O campo Nome é obrigatório!";
@@ -114,6 +115,7 @@ public static class Constants
     public const string OficinaNomeFantasiaErrorMaxLength = "Permitido no máximo 100 caracteres!";
     public const string OficinaCnpjErrorMaxLength = "Permitido no máximo 14 caracteres!";
     public const string OficinaNomeResponsavelErrorMaxLength = "Permitido no máximo 150 caracteres!";
+    public const string OficinaTelefoneErrorMaxLength = "Permitido no máximo 14 caracteres!";
     public const string OficinaEmailErrorMaxLength = "Permitido no máximo 120 caracteres!";
     public const string OficinaSiteErrorMaxLength = "Permitido no máximo 100 caracteres!";
     public const string OficinaLogradouroErrorMaxLength = "Permitido no máximo 100 caracteres!";
@@ -138,7 +140,7 @@ public static class Constants
 
     // Error Required Messages
     public const string ProfissionalNomeErrorRequired = "O campo Nome é obrigatório!";
-    public const string ProfissionalCpfeErrorRequired = "O campo Cpf é obrigatório!";
+    public const string ProfissionalCpfErrorRequired = "O campo Cpf é obrigatório!";
     public const string ProfissionalDataNascErrorRequired = "O campo Data Nascimento é obrigatório!";
     public const string ProfissionalAreaErrorRequired = "O campo Área é obrigatório!";
 

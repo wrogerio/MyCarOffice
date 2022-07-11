@@ -11,10 +11,10 @@ public class Veiculo : EntityBase
         Ano = ano;
     }
 
-    public string Marca { get; } = "";
-    public string Modelo { get; } = "";
-    public string Placa { get; } = "";
-    public int Ano { get; }
+    public string Marca { get; set; } = "";
+    public string Modelo { get; set; } = "";
+    public string Placa { get; set; } = "";
+    public int Ano { get; set; }
     public string Cor { get; set; } = "";
     public string Observacao { get; set; } = "";
 

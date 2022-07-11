@@ -9,8 +9,8 @@ public class Especializacao : EntityBase
         Since = since;
     }
 
-    public string Nome { get; } = "";
-    public DateTime Since { get; } = DateTime.Now;
+    public string Nome { get; set; } = "";
+    public DateTime Since { get; set; } = DateTime.Now;
 
     // Relacionamentos
     public Guid ProfissionalId { get; set; }
