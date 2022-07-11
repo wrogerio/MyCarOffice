@@ -30,28 +30,28 @@ public class OrdemDeServico : EntityBase
         OficinaNomeResponsavel = oficinaNomeResponsavel;
     }
 
-    public DateTime DataHoraInicio { get; } = DateTime.Now;
-    public string ClienteNome { get; } = "";
-    public string ClienteCpf { get; } = "";
-    public string ClienteEmail { get; } = "";
-    public string ClienteTelefone { get; } = "";
-    public string VeiculoMarca { get; } = "";
-    public string VeiculoModelo { get; } = "";
-    public string VeiculoPlaca { get; } = "";
-    public int VeiculoAno { get; }
+    public DateTime DataHoraInicio { get; set; } = DateTime.Now;
+    public string ClienteNome { get; set; } = "";
+    public string ClienteCpf { get; set; } = "";
+    public string ClienteEmail { get; set; } = "";
+    public string ClienteTelefone { get; set; } = "";
+    public string VeiculoMarca { get; set; } = "";
+    public string VeiculoModelo { get; set; } = "";
+    public string VeiculoPlaca { get; set; } = "";
+    public int VeiculoAno { get; set; }
     public string VeiculoCor { get; set; } = "";
-    public AreaEnum ServicoArea { get; } = AreaEnum.Mecanica;
-    public string ServicoNome { get; } = "";
-    public decimal ServicoValor { get; }
+    public AreaEnum ServicoArea { get; set; } = AreaEnum.Mecanica;
+    public string ServicoNome { get; set; } = "";
+    public decimal ServicoValor { get; set; }
     public DateTime? DataHoraEncerramento { get; set; }
     public DateTime? TempoTotal { get; set; }
-    public string ProfissionalNome { get; } = "";
-    public string ProfissionalCpf { get; } = "";
-    public string OficinaNomeFantasia { get; } = "";
-    public string OficinaCnpj { get; } = "";
-    public string OficinaTelefone { get; } = "";
+    public string ProfissionalNome { get; set; } = "";
+    public string ProfissionalCpf { get; set; } = "";
+    public string OficinaNomeFantasia { get; set; } = "";
+    public string OficinaCnpj { get; set; } = "";
+    public string OficinaTelefone { get; set; } = "";
     public string OficinaEmail { get; set; } = "";
-    public string OficinaNomeResponsavel { get; } = "";
+    public string OficinaNomeResponsavel { get; set; } = "";
 
     private bool Validar()
     {

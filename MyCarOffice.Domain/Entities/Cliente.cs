@@ -5,7 +5,6 @@ public class Cliente : EntityBase
     public Cliente(string nome, string cpf, DateTime dataNasc, string sexo, string logradouro, string telefone)
     {
         if (!Validar()) return;
-
         Nome = nome;
         Cpf = cpf;
         DataNasc = dataNasc;
@@ -14,14 +13,14 @@ public class Cliente : EntityBase
         Telefone = telefone;
     }
 
-    public string Nome { get; } = "";
-    public string Cpf { get; } = "";
-    public DateTime DataNasc { get; } = DateTime.Now;
-    public string Email { get; } = "";
-    public string Telefone { get; } = "";
-    public string Sexo { get; } = "";
-    public string Logradouro { get; } = "";
-    public string Numero { get; } = "";
+    public string Nome { get; set; } = "";
+    public string Cpf { get; set; } = "";
+    public DateTime DataNasc { get; set; } = DateTime.Now;
+    public string Email { get; set; } = "";
+    public string Telefone { get; set; } = "";
+    public string Sexo { get; set; } = "";
+    public string Logradouro { get; set; } = "";
+    public string Numero { get; set; } = "";
     public string Complemento { get; set; } = "";
     public string Bairro { get; set; } = "";
     public string Cep { get; set; } = "";

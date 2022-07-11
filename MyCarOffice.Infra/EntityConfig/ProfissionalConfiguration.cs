@@ -18,7 +18,7 @@ public class ProfissionalConfiguration : IEntityTypeConfiguration<Profissional>
             .HasMaxLength(Constants.ProfissionalNomeMaxLength);
 
         // CPF
-        builder.Property(x => x.CPF)
+        builder.Property(x => x.Cpf)
             .IsRequired()
             .HasMaxLength(Constants.ProfissionalCpfMaxLength);
 
