@@ -27,7 +27,7 @@ public class ClienteDto
     public string Email { get; set; } = "";
 
     [Required(ErrorMessage = Constants.ClienteSexoErrorRequired)]
-    [MaxLength(Constants.ClienteSexoMaxLength, ErrorMessage = Constants.ClienteSexolErrorMaxLength)]
+    [MaxLength(Constants.ClienteSexoMaxLength, ErrorMessage = Constants.ClienteSexoErrorMaxLength)]
     [Display(Description = Constants.ClienteSexoDisplay)]
     public string Sexo { get; set; } = "";
 
