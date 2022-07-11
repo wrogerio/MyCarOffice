@@ -1,8 +1,7 @@
-﻿namespace MyCarOffice.Uow
+﻿namespace MyCarOffice.Uow;
+
+public interface IUow
 {
-    public interface IUow
-    {
-        public Task Commit();
-        public Task RollBack();
-    }
+    public Task Commit();
+    public Task RollBack();
 }

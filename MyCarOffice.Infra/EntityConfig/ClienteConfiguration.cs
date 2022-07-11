@@ -39,17 +39,17 @@ public class ClienteConfiguration : IEntityTypeConfiguration<Cliente>
         // Logradouro
         builder.Property(x => x.Logradouro)
             .IsRequired()
-            .HasMaxLength(Constants.EnderecoLogradouroMaxLength);
+            .HasMaxLength(Constants.ClienteLogradouroMaxLength);
 
         // Número
         builder.Property(x => x.Numero)
             .IsRequired()
-            .HasMaxLength(Constants.EnderecoNumeroMaxLength);
+            .HasMaxLength(Constants.ClienteNumeroMaxLength);
 
         // Telefone
         builder.Property(x => x.Telefone)
             .IsRequired()
-            .HasMaxLength(Constants.TelefoneMaxLength);
+            .HasMaxLength(Constants.ClienteTelefoneMaxLength);
 
         // Relacionamento
         builder

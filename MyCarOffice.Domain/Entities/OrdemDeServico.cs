@@ -4,15 +4,15 @@ namespace MyCarOffice.Domain.Entities;
 
 public class OrdemDeServico : EntityBase
 {
-    public OrdemDeServico(DateTime dataHoraInicio, string clienteNome, string clienteCPF, string clienteEmail,
+    public OrdemDeServico(DateTime dataHoraInicio, string clienteNome, string clienteCpf, string clienteEmail,
         string clienteTelefone, string veiculoMarca, string veiculoModelo, string veiculoPlaca, int veiculoAno,
-        AreaEnum servicoArea, string servicoNome, decimal servicoValor, string profissionalNome, string profissionalCPF,
-        string oficinaNomeFantasia, string oficinaCNPJ, string oficinaFone, string oficinaNomeResponsavel)
+        AreaEnum servicoArea, string servicoNome, decimal servicoValor, string profissionalNome, string profissionalCpf,
+        string oficinaNomeFantasia, string oficinaCnpj, string oficinaTelefone, string oficinaNomeResponsavel)
     {
         if (!Validar()) return;
         DataHoraInicio = dataHoraInicio;
         ClienteNome = clienteNome;
-        ClienteCPF = clienteCPF;
+        ClienteCpf = clienteCpf;
         ClienteEmail = clienteEmail;
         ClienteTelefone = clienteTelefone;
         VeiculoMarca = veiculoMarca;
@@ -23,16 +23,16 @@ public class OrdemDeServico : EntityBase
         ServicoNome = servicoNome;
         ServicoValor = servicoValor;
         ProfissionalNome = profissionalNome;
-        ProfissionalCPF = profissionalCPF;
+        ProfissionalCpf = profissionalCpf;
         OficinaNomeFantasia = oficinaNomeFantasia;
-        OficinaCNPJ = oficinaCNPJ;
-        OficinaFone = oficinaFone;
+        OficinaCnpj = oficinaCnpj;
+        OficinaTelefone = oficinaTelefone;
         OficinaNomeResponsavel = oficinaNomeResponsavel;
     }
 
     public DateTime DataHoraInicio { get; } = DateTime.Now;
     public string ClienteNome { get; } = "";
-    public string ClienteCPF { get; } = "";
+    public string ClienteCpf { get; } = "";
     public string ClienteEmail { get; } = "";
     public string ClienteTelefone { get; } = "";
     public string VeiculoMarca { get; } = "";
@@ -46,10 +46,10 @@ public class OrdemDeServico : EntityBase
     public DateTime? DataHoraEncerramento { get; set; }
     public DateTime? TempoTotal { get; set; }
     public string ProfissionalNome { get; } = "";
-    public string ProfissionalCPF { get; } = "";
+    public string ProfissionalCpf { get; } = "";
     public string OficinaNomeFantasia { get; } = "";
-    public string OficinaCNPJ { get; } = "";
-    public string OficinaFone { get; } = "";
+    public string OficinaCnpj { get; } = "";
+    public string OficinaTelefone { get; } = "";
     public string OficinaEmail { get; set; } = "";
     public string OficinaNomeResponsavel { get; } = "";
 
@@ -62,7 +62,7 @@ public class OrdemDeServico : EntityBase
         if (string.IsNullOrEmpty(ClienteNome)) return false;
 
         // Cliente CPF
-        if (string.IsNullOrEmpty(ClienteCPF)) return false;
+        if (string.IsNullOrEmpty(ClienteCpf)) return false;
 
         // Cliente Email
         if (string.IsNullOrEmpty(ClienteEmail)) return false;
@@ -95,16 +95,16 @@ public class OrdemDeServico : EntityBase
         if (string.IsNullOrEmpty(ProfissionalNome)) return false;
 
         // Profissional CPF
-        if (string.IsNullOrEmpty(ProfissionalCPF)) return false;
+        if (string.IsNullOrEmpty(ProfissionalCpf)) return false;
 
         // Oficina Nome Fantasia
         if (string.IsNullOrEmpty(OficinaNomeFantasia)) return false;
 
         // Oficina CNPJ
-        if (string.IsNullOrEmpty(OficinaCNPJ)) return false;
+        if (string.IsNullOrEmpty(OficinaCnpj)) return false;
 
         // Oficina Fone
-        if (string.IsNullOrEmpty(OficinaFone)) return false;
+        if (string.IsNullOrEmpty(OficinaTelefone)) return false;
 
         // Oficina Nome Responsável
         if (string.IsNullOrEmpty(OficinaNomeResponsavel)) return false;

@@ -2,8 +2,7 @@
 
 public class Oficina : EntityBase
 {
-    public Oficina(string nomeFantasia, string cnpj, string nomeResponsavel, string telefone, string logradouro,
-        string numero)
+    public Oficina(string nomeFantasia, string cnpj, string nomeResponsavel, string telefone, string logradouro)
     {
         if (!Validar()) return;
         NomeFantasia = nomeFantasia;
@@ -11,7 +10,6 @@ public class Oficina : EntityBase
         NomeResponsavel = nomeResponsavel;
         Telefone = telefone;
         Logradouro = logradouro;
-        Numero = numero;
     }
 
     public string NomeFantasia { get; } = "";
