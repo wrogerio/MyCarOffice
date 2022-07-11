@@ -25,7 +25,7 @@ public class Cliente : EntityBase
     public string Complemento { get; set; } = "";
     public string Bairro { get; set; } = "";
     public string Cep { get; set; } = "";
-    
+
 
     // Relacionamentos
     public virtual IEnumerable<Veiculo>? Veiculos { get; set; }

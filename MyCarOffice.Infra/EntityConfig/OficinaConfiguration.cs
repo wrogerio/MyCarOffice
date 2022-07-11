@@ -30,16 +30,16 @@ public class OficinaConfiguration : IEntityTypeConfiguration<Oficina>
         // Telefone
         builder.Property(x => x.Telefone)
             .IsRequired()
-            .HasMaxLength(Constants.TelefoneMaxLength);
+            .HasMaxLength(Constants.OficinaTelefoneMaxLength);
 
         // Logradouro
         builder.Property(x => x.Logradouro)
             .IsRequired()
-            .HasMaxLength(Constants.EnderecoLogradouroMaxLength);
+            .HasMaxLength(Constants.OficinaLogradouroMaxLength);
 
         // Número
         builder.Property(x => x.Numero)
             .IsRequired()
-            .HasMaxLength(Constants.EnderecoNumeroMaxLength);
+            .HasMaxLength(Constants.OficinaNumeroMaxLength);
     }
 }

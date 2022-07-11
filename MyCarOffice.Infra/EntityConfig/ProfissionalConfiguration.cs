@@ -29,7 +29,7 @@ public class ProfissionalConfiguration : IEntityTypeConfiguration<Profissional>
         // Área
         builder.Property(x => x.Area)
             .IsRequired();
-        
+
         // Relacionamentos
         builder
             .HasMany(x => x.Especializacoes)
