@@ -2,12 +2,11 @@
 using MyCarOffice.Domain.Entities;
 using MyCarOffice.Infra.Interfaces;
 
-namespace MyCarOffice.Application.Services
+namespace MyCarOffice.Application.Services;
+
+public class ClienteService : ServiceBase<Cliente>, IClienteService
 {
-    public class ClienteService : ServiceBase<Cliente>, IClienteService
+    public ClienteService(IClienteRepository repository) : base(repository)
     {
-        public ClienteService(IClienteRepository repository) : base(repository)
-        {
-        }
     }
 }

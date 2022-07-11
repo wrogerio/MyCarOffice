@@ -12,16 +12,16 @@ public class ProfissionalDto
     [MaxLength(Constants.ProfissionalNomeMaxLength, ErrorMessage = Constants.ProfissionalNomeErrorMaxLength)]
     [Display(Description = Constants.ProfissionalNomeDisplay)]
     public string Nome { get; set; } = "";
-    
+
     [Required(ErrorMessage = Constants.ProfissionalCpfErrorRequired)]
     [MaxLength(Constants.ProfissionalCpfMaxLength, ErrorMessage = Constants.ProfissionalCpfErrorMaxLength)]
     [Display(Description = Constants.ProfissionalCpfDisplay)]
     public string Cpf { get; set; } = "";
-    
+
     [Required(ErrorMessage = Constants.ProfissionalDataNascErrorRequired)]
     [Display(Description = Constants.ProfissionalDataNascDisplay)]
     public DateTime DataNasc { get; set; } = DateTime.Now;
-    
+
     [Required(ErrorMessage = Constants.ProfissionalAreaErrorRequired)]
     [Display(Description = Constants.ProfissionalAreaDisplay)]
     public AreaEnum Area { get; set; } = AreaEnum.Mecanica;

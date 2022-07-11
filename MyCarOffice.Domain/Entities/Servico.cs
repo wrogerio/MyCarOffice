@@ -15,8 +15,8 @@ public class Servico : EntityBase
 
     public string Nome { get; set; } = "";
     public AreaEnum Area { get; set; } = AreaEnum.Mecanica;
-    public double Valor { get; set; } = 0d;
-    public double TempoMedio { get; set; } = 0d;
+    public double Valor { get; set; }
+    public double TempoMedio { get; set; }
 
     private bool Validar()
     {

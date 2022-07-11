@@ -29,7 +29,7 @@ public class ServicoConfiguration : IEntityTypeConfiguration<Servico>
         // Tempo médio
         builder.Property(x => x.TempoMedio)
             .IsRequired();
-        
+
         // CreatedAt
         builder.Property(x => x.CreatedAt).HasDefaultValueSql(Constants.DatetimeDefault);
     }

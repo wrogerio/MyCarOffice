@@ -210,7 +210,10 @@ public static class Constants
     public const string OrdemDeServicoDataHoraInicioErrorRequired = "O campo Início é obrigatório!";
     public const string OrdemDeServicoOficinaNomeFantasiaErrorRequired = "O campo Oficina Nome Fantasia é obrigatório!";
     public const string OrdemDeServicoOficinaCnpjErrorRequired = "O campo Oficina Cnpj é obrigatório!";
-    public const string OrdemDeServicoOficinaNomeResponsavelErrorRequired = "O campo Oficina Nome Responsavel é obrigatório!";
+
+    public const string OrdemDeServicoOficinaNomeResponsavelErrorRequired =
+        "O campo Oficina Nome Responsavel é obrigatório!";
+
     public const string OrdemDeServicoOficinaTelefoneErrorRequired = "O campo Oficina Telefone é obrigatório!";
     public const string OrdemDeServicoOficinaEmailErrorRequired = "O campo Oficina Email é obrigatório!";
     public const string OrdemDeServicoOficinaSiteErrorRequired = "O campo Oficina Site é obrigatório!";
@@ -221,7 +224,10 @@ public static class Constants
     public const string OrdemDeServicoOficinaCepErrorRequired = "O campo Oficina Cep é obrigatório!";
     public const string OrdemDeServicoProfissionalNomeErrorRequired = "O campo Profissional Nome é obrigatório!";
     public const string OrdemDeServicoProfissionalCpfErrorRequired = "O campo Profissional Cpf é obrigatório!";
-    public const string OrdemDeServicoProfissionalDataNascErrorRequired = "O campo Profissional Data Nascimento é obrigatório!";
+
+    public const string OrdemDeServicoProfissionalDataNascErrorRequired =
+        "O campo Profissional Data Nascimento é obrigatório!";
+
     public const string OrdemDeServicoProfissionalAreaErrorRequired = "O campo Profissional Área é obrigatório!";
     public const string OrdemDeServicoClienteNomeErrorRequired = "O campo Cliente Nome é obrigatório!";
     public const string OrdemDeServicoClienteCpfErrorRequired = "O campo Cliente Cpf é obrigatório!";
