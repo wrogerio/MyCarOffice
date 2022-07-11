@@ -30,7 +30,7 @@ public class VeiculoConfiguration : IEntityTypeConfiguration<Veiculo>
         // Ano
         builder.Property(x => x.Ano)
             .IsRequired();
-        
+
         // CreatedAt
         builder.Property(x => x.CreatedAt).HasDefaultValueSql(Constants.DatetimeDefault);
     }

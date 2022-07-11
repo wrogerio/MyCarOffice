@@ -20,7 +20,7 @@ public class EspecializacaoConfiguration : IEntityTypeConfiguration<Especializac
         // Since
         builder.Property(x => x.Since)
             .IsRequired();
-        
+
         // CreatedAt
         builder.Property(x => x.CreatedAt).HasDefaultValueSql(Constants.DatetimeDefault);
     }

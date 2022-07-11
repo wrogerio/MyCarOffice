@@ -151,7 +151,7 @@ public class OrdemDeServicoConfiguration : IEntityTypeConfiguration<OrdemDeServi
         builder.Property(x => x.Concluida)
             .IsRequired()
             .HasDefaultValue(false);
-        
+
         // CreatedAt
         builder.Property(x => x.CreatedAt).HasDefaultValueSql(Constants.DatetimeDefault);
     }

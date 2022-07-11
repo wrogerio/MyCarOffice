@@ -2,12 +2,11 @@
 using MyCarOffice.Domain.Entities;
 using MyCarOffice.Infra.Interfaces;
 
-namespace MyCarOffice.Application.Services
+namespace MyCarOffice.Application.Services;
+
+public class OrdemDeServicoService : ServiceBase<OrdemDeServico>, IOrdemDeServicoService
 {
-    public class OrdemDeServicoService : ServiceBase<OrdemDeServico>, IOrdemDeServicoService
+    public OrdemDeServicoService(IOrdemDeServicoRepository repository) : base(repository)
     {
-        public OrdemDeServicoService(IOrdemDeServicoRepository repository) : base(repository)
-        {
-        }
     }
 }

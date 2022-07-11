@@ -41,7 +41,7 @@ public class OficinaConfiguration : IEntityTypeConfiguration<Oficina>
         builder.Property(x => x.Numero)
             .IsRequired()
             .HasMaxLength(Constants.OficinaNumeroMaxLength);
-        
+
         // CreatedAt
         builder.Property(x => x.CreatedAt).HasDefaultValueSql(Constants.DatetimeDefault);
     }

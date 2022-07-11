@@ -7,8 +7,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\MyCarOffice.Domain\MyCarOffice.Domain.csproj" />
-        <ProjectReference Include="..\MyCarOffice.Infra\MyCarOffice.Infra.csproj" />
+        <ProjectReference Include="..\MyCarOffice.Domain\MyCarOffice.Domain.csproj"/>
+        <ProjectReference Include="..\MyCarOffice.Infra\MyCarOffice.Infra.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AutoMapper" Version="11.0.1"/>
     </ItemGroup>
 
 </Project>

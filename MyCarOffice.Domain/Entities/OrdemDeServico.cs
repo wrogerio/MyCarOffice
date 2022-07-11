@@ -1,14 +1,12 @@
-﻿using MyCarOffice.Domain.Enums;
-
-namespace MyCarOffice.Domain.Entities;
+﻿namespace MyCarOffice.Domain.Entities;
 
 public class OrdemDeServico : EntityBase
 {
     public OrdemDeServico(string oficinaNomeFantasia, string oficinaCnpj, string oficinaNomeResponsavel,
-        string oficinaTelefone, string oficinaLogradouro, string profissionalNome, string profissionalCpf, 
-        DateTime profissionalDataNasc, int profissionalArea, string clienteNome, string clienteCpf, 
-        DateTime clienteDataNasc, string clienteTelefone, string clienteSexo, string clienteLogradouro, 
-        string veiculoMarca, string veiculoModelo, string veiculoPlaca, int veiculoAno, int servicoArea, 
+        string oficinaTelefone, string oficinaLogradouro, string profissionalNome, string profissionalCpf,
+        DateTime profissionalDataNasc, int profissionalArea, string clienteNome, string clienteCpf,
+        DateTime clienteDataNasc, string clienteTelefone, string clienteSexo, string clienteLogradouro,
+        string veiculoMarca, string veiculoModelo, string veiculoPlaca, int veiculoAno, int servicoArea,
         string servicoNome, double servicoValor, double servicoTempoMedio)
     {
         OficinaNomeFantasia = oficinaNomeFantasia;

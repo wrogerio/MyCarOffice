@@ -2,12 +2,11 @@
 using MyCarOffice.Domain.Entities;
 using MyCarOffice.Infra.Interfaces;
 
-namespace MyCarOffice.Application.Services
+namespace MyCarOffice.Application.Services;
+
+public class EspecializacaoService : ServiceBase<Especializacao>, IEspecializacaoService
 {
-    public class EspecializacaoService : ServiceBase<Especializacao>, IEspecializacaoService
+    public EspecializacaoService(IEspecializacaoRepository repository) : base(repository)
     {
-        public EspecializacaoService(IEspecializacaoRepository repository) : base(repository)
-        {
-        }
     }
 }

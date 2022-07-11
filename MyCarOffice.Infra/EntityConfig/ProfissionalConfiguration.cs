@@ -35,7 +35,7 @@ public class ProfissionalConfiguration : IEntityTypeConfiguration<Profissional>
             .HasMany(x => x.Especializacoes)
             .WithOne(x => x.Profissional)
             .HasForeignKey(x => x.ProfissionalId);
-        
+
         // CreatedAt
         builder.Property(x => x.CreatedAt).HasDefaultValueSql(Constants.DatetimeDefault);
     }
