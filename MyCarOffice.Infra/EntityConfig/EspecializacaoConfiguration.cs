@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MyCarOffice.Domain.Entities;
 using MyCarOffice.Helpers.Constants;
 
-namespace MyCarOffice.Infra.EntitiesConfiguration;
+namespace MyCarOffice.Infra.EntityConfig;
 
 public class EspecializacaoConfiguration : IEntityTypeConfiguration<Especializacao>
 {
@@ -20,5 +20,8 @@ public class EspecializacaoConfiguration : IEntityTypeConfiguration<Especializac
         // Since
         builder.Property(x => x.Since)
             .IsRequired();
+        
+        // CreatedAt
+        builder.Property(x => x.CreatedAt).HasDefaultValueSql(Constants.DatetimeDefault);
     }
 }

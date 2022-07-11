@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MyCarOffice.Domain.Entities;
 using MyCarOffice.Helpers.Constants;
 
-namespace MyCarOffice.Infra.EntitiesConfiguration;
+namespace MyCarOffice.Infra.EntityConfig;
 
 public class ProfissionalConfiguration : IEntityTypeConfiguration<Profissional>
 {
@@ -35,5 +35,8 @@ public class ProfissionalConfiguration : IEntityTypeConfiguration<Profissional>
             .HasMany(x => x.Especializacoes)
             .WithOne(x => x.Profissional)
             .HasForeignKey(x => x.ProfissionalId);
+        
+        // CreatedAt
+        builder.Property(x => x.CreatedAt).HasDefaultValueSql(Constants.DatetimeDefault);
     }
 }

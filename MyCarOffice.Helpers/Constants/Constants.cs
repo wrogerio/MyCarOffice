@@ -133,7 +133,7 @@ public static class Constants
     public const int ProfissionalCpfMaxLength = 11;
 
     // Display
-    public const string ProfissionalNomeDisplay = "Nome Fantasia";
+    public const string ProfissionalNomeDisplay = "Nome";
     public const string ProfissionalCpfDisplay = "CPF";
     public const string ProfissionalDataNascDisplay = "Data Nascimento";
     public const string ProfissionalAreaDisplay = "Área";
@@ -201,6 +201,93 @@ public static class Constants
     public const string VeiculoPlacaErrorMaxLength = "Permitido no máximo 7 caracteres!";
     public const string VeiculoCorErrorMaxLength = "Permitido no máximo 100 caracteres!";
     public const string VeiculoObservacaoErrorMaxLength = "Permitido no máximo 200 caracteres!";
+
+    #endregion
+
+    #region Configuração da entidade Ordem De Servico
+
+    // Error Required Messages
+    public const string OrdemDeServicoDataHoraInicioErrorRequired = "O campo Início é obrigatório!";
+    public const string OrdemDeServicoOficinaNomeFantasiaErrorRequired = "O campo Oficina Nome Fantasia é obrigatório!";
+    public const string OrdemDeServicoOficinaCnpjErrorRequired = "O campo Oficina Cnpj é obrigatório!";
+    public const string OrdemDeServicoOficinaNomeResponsavelErrorRequired = "O campo Oficina Nome Responsavel é obrigatório!";
+    public const string OrdemDeServicoOficinaTelefoneErrorRequired = "O campo Oficina Telefone é obrigatório!";
+    public const string OrdemDeServicoOficinaEmailErrorRequired = "O campo Oficina Email é obrigatório!";
+    public const string OrdemDeServicoOficinaSiteErrorRequired = "O campo Oficina Site é obrigatório!";
+    public const string OrdemDeServicoOficinaLogradouroErrorRequired = "O campo Oficina Logradouro é obrigatório!";
+    public const string OrdemDeServicoOficinaNumeroErrorRequired = "O campo Oficina Numero é obrigatório!";
+    public const string OrdemDeServicoOficinaComplementoErrorRequired = "O campo Oficina Complemento é obrigatório!";
+    public const string OrdemDeServicoOficinaBairroErrorRequired = "O campo Oficina Bairro é obrigatório!";
+    public const string OrdemDeServicoOficinaCepErrorRequired = "O campo Oficina Cep é obrigatório!";
+    public const string OrdemDeServicoProfissionalNomeErrorRequired = "O campo Profissional Nome é obrigatório!";
+    public const string OrdemDeServicoProfissionalCpfErrorRequired = "O campo Profissional Cpf é obrigatório!";
+    public const string OrdemDeServicoProfissionalDataNascErrorRequired = "O campo Profissional Data Nascimento é obrigatório!";
+    public const string OrdemDeServicoProfissionalAreaErrorRequired = "O campo Profissional Área é obrigatório!";
+    public const string OrdemDeServicoClienteNomeErrorRequired = "O campo Cliente Nome é obrigatório!";
+    public const string OrdemDeServicoClienteCpfErrorRequired = "O campo Cliente Cpf é obrigatório!";
+    public const string OrdemDeServicoClienteDataNascErrorRequired = "O campo Cliente Data Nascimento é obrigatório!";
+    public const string OrdemDeServicoClienteEmailErrorRequired = "O campo Cliente Email é obrigatório!";
+    public const string OrdemDeServicoClienteTelefoneErrorRequired = "O campo Cliente Telefone é obrigatório!";
+    public const string OrdemDeServicoClienteSexoErrorRequired = "O campo Cliente Sexo é obrigatório!";
+    public const string OrdemDeServicoClienteLogradouroErrorRequired = "O campo Cliente Logradouro é obrigatório!";
+    public const string OrdemDeServicoClienteNumeroErrorRequired = "O campo Cliente Número é obrigatório!";
+    public const string OrdemDeServicoClienteComplementoErrorRequired = "O campo Cliente Complemento é obrigatório!";
+    public const string OrdemDeServicoClienteBairroErrorRequired = "O campo Cliente Bairro é obrigatório!";
+    public const string OrdemDeServicoClienteCepErrorRequired = "O campo Cliente Cep é obrigatório!";
+    public const string OrdemDeServicoVeiculoMarcaErrorRequired = "O campo Veiculo Marca é obrigatório!";
+    public const string OrdemDeServicoVeiculoModeloErrorRequired = "O campo Veiculo Modelo é obrigatório!";
+    public const string OrdemDeServicoVeiculoPlacaErrorRequired = "O campo Veiculo Placa é obrigatório!";
+    public const string OrdemDeServicoVeiculoAnoErrorRequired = "O campo Veiculo Ano é obrigatório!";
+    public const string OrdemDeServicoServicoAreaErrorRequired = "O campo Serviço Área é obrigatório!";
+    public const string OrdemDeServicoServicoNomeErrorRequired = "O campo Serviço Nome é obrigatório!";
+    public const string OrdemDeServicoServicoValorErrorRequired = "O campo Serviço Valor é obrigatório!";
+    public const string OrdemDeServicoServicoTempoMedioErrorRequired = "O Serviço Tempo Médio Marca é obrigatório!";
+
+    // Display
+    public const string OrdemDeServicoDataHoraInicioDisplay = "Início";
+    public const string OrdemDeServicoDataHoraEncerramentoDisplay = "Encerramento";
+    public const string OrdemDeServicoTempoTotalDisplay = "Tempo Total";
+    public const string OrdemDeServicoOficinaNomeFantasiaDisplay = "Oficina Nome Fantasia";
+    public const string OrdemDeServicoOficinaCnpjDisplay = "Oficina CNPJ";
+    public const string OrdemDeServicoOficinaNomeResponsavelDisplay = "Oficina Nome Responsável";
+    public const string OrdemDeServicoOficinaTelefoneDisplay = "Oficina Telefone";
+    public const string OrdemDeServicoOficinaEmailDisplay = "Oficina E-mail";
+    public const string OrdemDeServicoOficinaSiteDisplay = "Oficina URL Site";
+    public const string OrdemDeServicoOficinaLogradouroDisplay = "Oficina Logradouro";
+    public const string OrdemDeServicoOficinaNumeroDisplay = "Oficina Número";
+    public const string OrdemDeServicoOficinaComplementoDisplay = "Oficina Complemento";
+    public const string OrdemDeServicoOficinaBairroDisplay = "Oficina Bairro";
+    public const string OrdemDeServicoOficinaCepDisplay = "Oficina CEP";
+    public const string OrdemDeServicoProfissionalNomeDisplay = "Profissional Nome";
+    public const string OrdemDeServicoProfissionalCpfDisplay = "Profissional CPF";
+    public const string OrdemDeServicoProfissionalDataNascDisplay = "Profissional Data Nascimento";
+    public const string OrdemDeServicoProfissionalAreaDisplay = "Profissional Área";
+    public const string OrdemDeServicoClienteNomeDisplay = "Cliente Nome";
+    public const string OrdemDeServicoClienteCpfDisplay = "Cliente CPF";
+    public const string OrdemDeServicoClienteDataNascDisplay = "Cliente Data Nascimento";
+    public const string OrdemDeServicoClienteEmailDisplay = "Cliente E-mail";
+    public const string OrdemDeServicoClienteTelefoneDisplay = "Cliente E-mail";
+    public const string OrdemDeServicoClienteSexoDisplay = "Cliente Sexo";
+    public const string OrdemDeServicoClienteLogradouroDisplay = "Cliente Logradouro";
+    public const string OrdemDeServicoClienteNumeroDisplay = "Cliente Número";
+    public const string OrdemDeServicoClienteComplementoDisplay = "Cliente Complemento";
+    public const string OrdemDeServicoClienteBairroDisplay = "Cliente Bairro";
+    public const string OrdemDeServicoClienteCepDisplay = "Cliente CEP";
+    public const string OrdemDeServicoVeiculoMarcaDisplay = "Veiculo Marca";
+    public const string OrdemDeServicoVeiculoModeloDisplay = "Veiculo Modelo";
+    public const string OrdemDeServicoVeiculoPlacaDisplay = "Veiculo Placa";
+    public const string OrdemDeServicoVeiculoAnoDisplay = "Veiculo Ano";
+    public const string OrdemDeServicoVeiculoCorDisplay = "Veiculo Cor";
+    public const string OrdemDeServicoVeiculoObservacaoDisplay = "Veiculo Observação";
+    public const string OrdemDeServicoServicoAreaDisplay = "Serviço Área";
+    public const string OrdemDeServicoServicoNomeDisplay = "Serviço Nome";
+    public const string OrdemDeServicoServicoValorDisplay = "Serviço Valor";
+    public const string OrdemDeServicoServicoTempoMedioDisplay = "Serviço Tempo Médio";
+
+    // Error Required Messages
+
+
+    // Error Max Length Messages
 
     #endregion
 }

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MyCarOffice.Domain.Entities;
 using MyCarOffice.Helpers.Constants;
 
-namespace MyCarOffice.Infra.EntitiesConfiguration;
+namespace MyCarOffice.Infra.EntityConfig;
 
 public class OficinaConfiguration : IEntityTypeConfiguration<Oficina>
 {
@@ -41,5 +41,8 @@ public class OficinaConfiguration : IEntityTypeConfiguration<Oficina>
         builder.Property(x => x.Numero)
             .IsRequired()
             .HasMaxLength(Constants.OficinaNumeroMaxLength);
+        
+        // CreatedAt
+        builder.Property(x => x.CreatedAt).HasDefaultValueSql(Constants.DatetimeDefault);
     }
 }

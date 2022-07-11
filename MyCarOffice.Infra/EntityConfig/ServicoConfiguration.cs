@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MyCarOffice.Domain.Entities;
 using MyCarOffice.Helpers.Constants;
 
-namespace MyCarOffice.Infra.EntitiesConfiguration;
+namespace MyCarOffice.Infra.EntityConfig;
 
 public class ServicoConfiguration : IEntityTypeConfiguration<Servico>
 {
@@ -29,5 +29,8 @@ public class ServicoConfiguration : IEntityTypeConfiguration<Servico>
         // Tempo médio
         builder.Property(x => x.TempoMedio)
             .IsRequired();
+        
+        // CreatedAt
+        builder.Property(x => x.CreatedAt).HasDefaultValueSql(Constants.DatetimeDefault);
     }
 }
