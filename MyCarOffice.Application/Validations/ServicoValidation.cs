@@ -20,6 +20,5 @@ public class ServicoValidation : AbstractValidator<ServicoDto>
 
         RuleFor(x => x.TempoMedio)
             .NotEmpty().WithMessage(Constants.ServicoTempoMedioErrorRequired);
-
     }
 }

@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using MyCarOffice.Application.DTOs;
 using MyCarOffice.Application.Interfaces;
-using MyCarOffice.Application.Mapping;
 using MyCarOffice.Domain.Entities;
 using MyCarOffice.Infra.Interfaces;
 
@@ -9,8 +8,8 @@ namespace MyCarOffice.Application.Services;
 
 public class ClienteService : IClienteService
 {
-    private readonly IClienteRepository _repository;
     private readonly IMapper _mapper;
+    private readonly IClienteRepository _repository;
 
     public ClienteService(IClienteRepository repository, IMapper mapper)
     {

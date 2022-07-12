@@ -37,7 +37,8 @@ public class OrdemDeServicoValidation : AbstractValidator<OrdemDeServicoDto>
             .MaximumLength(Constants.ClienteNumeroMaxLength).WithMessage(Constants.ClienteNumeroErrorMaxLength);
 
         RuleFor(x => x.ClienteComplemento)
-            .MaximumLength(Constants.ClienteComplementoMaxLength).WithMessage(Constants.ClienteComplementoErrorMaxLength);
+            .MaximumLength(Constants.ClienteComplementoMaxLength)
+            .WithMessage(Constants.ClienteComplementoErrorMaxLength);
 
         RuleFor(x => x.ClienteBairro)
             .MaximumLength(Constants.ClienteBairroMaxLength).WithMessage(Constants.ClienteBairroErrorMaxLength);
@@ -63,7 +64,7 @@ public class OrdemDeServicoValidation : AbstractValidator<OrdemDeServicoDto>
 
         RuleFor(x => x.VeiculoAno)
             .NotEmpty().WithMessage(Constants.VeiculoAnoErrorRequired);
-        
+
         RuleFor(x => x.VeiculoCor)
             .MaximumLength(Constants.VeiculoCorMaxLength).WithMessage(Constants.VeiculoCorErrorMaxLength);
 
@@ -100,7 +101,8 @@ public class OrdemDeServicoValidation : AbstractValidator<OrdemDeServicoDto>
 
         RuleFor(x => x.OficinaNomeFantasia)
             .NotEmpty().WithMessage(Constants.OficinaNomeFantasiaErrorRequired)
-            .MaximumLength(Constants.OficinaNomeFantasiaMaxLength).WithMessage(Constants.OficinaNomeFantasiaErrorMaxLength);
+            .MaximumLength(Constants.OficinaNomeFantasiaMaxLength)
+            .WithMessage(Constants.OficinaNomeFantasiaErrorMaxLength);
 
         RuleFor(x => x.OficinaCnpj)
             .NotEmpty().WithMessage(Constants.OficinaCnpjErrorRequired)
@@ -115,7 +117,8 @@ public class OrdemDeServicoValidation : AbstractValidator<OrdemDeServicoDto>
 
         RuleFor(x => x.OficinaNomeResponsavel)
             .NotEmpty().WithMessage(Constants.OficinaNomeResponsavelErrorRequired)
-            .MaximumLength(Constants.OficinaNomeResponsavelMaxLength).WithMessage(Constants.OficinaNomeResponsavelErrorMaxLength);
+            .MaximumLength(Constants.OficinaNomeResponsavelMaxLength)
+            .WithMessage(Constants.OficinaNomeResponsavelErrorMaxLength);
 
         RuleFor(x => x.OficinaSite)
             .MaximumLength(Constants.OficinaSiteMaxLength).WithMessage(Constants.OficinaSiteErrorMaxLength);
@@ -128,7 +131,8 @@ public class OrdemDeServicoValidation : AbstractValidator<OrdemDeServicoDto>
             .MaximumLength(Constants.OficinaNumeroMaxLength).WithMessage(Constants.OficinaNumeroErrorMaxLength);
 
         RuleFor(x => x.OficinaComplemento)
-            .MaximumLength(Constants.OficinaComplementoMaxLength).WithMessage(Constants.OficinaComplementoErrorMaxLength);
+            .MaximumLength(Constants.OficinaComplementoMaxLength)
+            .WithMessage(Constants.OficinaComplementoErrorMaxLength);
 
         RuleFor(x => x.OficinaBairro)
             .MaximumLength(Constants.OficinaBairroMaxLength).WithMessage(Constants.OficinaBairroErrorMaxLength);
