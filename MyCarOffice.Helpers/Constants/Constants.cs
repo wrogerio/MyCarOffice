@@ -40,6 +40,7 @@ public static class Constants
     public const string ClienteNomeErrorRequired = "O campo Nome é obrigatório!";
     public const string ClienteCpfErrorRequired = "O campo Cpf é obrigatório!";
     public const string ClienteDataNascErrorRequired = "O campo Data Nascimento é obrigatório!";
+    public const string ClienteDataNascErrorAdult = "A Data Nascimento precisar ter mais de 18 anos!";
     public const string ClienteSexoErrorRequired = "O campo Sexo é obrigatório!";
     public const string ClienteLogradouroErrorRequired = "O campo Logradouro é obrigatório!";
     public const string ClienteTelefoneErrorRequired = "O campo Telefone é obrigatório!";
@@ -70,6 +71,7 @@ public static class Constants
     // Error Required Messages
     public const string EspecializacaoNomeErrorRequired = "O campo Nome é obrigatório!";
     public const string EspecializacaoSinceErrorRequired = "O campo Since é obrigatório!";
+    public const string EspecializacaoSinceErrorExperience = "A especialização deve ter mais de um ano!";
 
     // Error Max Length Messages
     public const string EspecializacaoNomeErrorMaxLength = "Permitido no máximo 100 caracteres!";
