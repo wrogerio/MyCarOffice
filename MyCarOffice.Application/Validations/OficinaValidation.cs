@@ -27,7 +27,7 @@ public class OficinaValidation : AbstractValidator<OficinaDto>
             .NotEmpty().WithMessage(Constants.OficinaTelefoneErrorRequired)
             .MaximumLength(Constants.OficinaTelefoneMaxLength)
             .WithMessage(Constants.OficinaTelefoneErrorMaxLength);
-        
+
         RuleFor(x => x.Email)
             .MaximumLength(Constants.OficinaEmailMaxLength)
             .WithMessage(Constants.OficinaEmailErrorMaxLength);
@@ -36,19 +36,19 @@ public class OficinaValidation : AbstractValidator<OficinaDto>
             .NotEmpty().WithMessage(Constants.OficinaLogradouroErrorRequired)
             .MaximumLength(Constants.OficinaLogradouroMaxLength)
             .WithMessage(Constants.OficinaLogradouroErrorMaxLength);
-        
+
         RuleFor(x => x.Numero)
             .MaximumLength(Constants.OficinaNumeroMaxLength)
             .WithMessage(Constants.OficinaNumeroErrorMaxLength);
-        
+
         RuleFor(x => x.Complemento)
             .MaximumLength(Constants.OficinaComplementoMaxLength)
             .WithMessage(Constants.OficinaComplementoErrorMaxLength);
-        
+
         RuleFor(x => x.Bairro)
             .MaximumLength(Constants.OficinaBairroMaxLength)
             .WithMessage(Constants.OficinaBairroErrorMaxLength);
-        
+
         RuleFor(x => x.Cep)
             .MaximumLength(Constants.OficinaCepMaxLength)
             .WithMessage(Constants.OficinaCepErrorMaxLength);
