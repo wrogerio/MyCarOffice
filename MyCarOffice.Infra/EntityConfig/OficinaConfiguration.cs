@@ -29,12 +29,10 @@ public class OficinaConfiguration : IEntityTypeConfiguration<Oficina>
         
         // Email
         builder.Property(x => x.Email)
-            .IsRequired()
             .HasMaxLength(Constants.OficinaEmailMaxLength);
         
         // Site
         builder.Property(x => x.Site)
-            .IsRequired()
             .HasMaxLength(Constants.OficinaSiteMaxLength);
 
         // Telefone
@@ -49,22 +47,18 @@ public class OficinaConfiguration : IEntityTypeConfiguration<Oficina>
 
         // Número
         builder.Property(x => x.Numero)
-            .IsRequired()
             .HasMaxLength(Constants.OficinaNumeroMaxLength);
         
         // Complemento
         builder.Property(x => x.Complemento)
-            .IsRequired()
             .HasMaxLength(Constants.OficinaComplementoMaxLength);
         
         // Bairro
         builder.Property(x => x.Bairro)
-            .IsRequired()
             .HasMaxLength(Constants.OficinaBairroMaxLength);
         
         // Cep
         builder.Property(x => x.Cep)
-            .IsRequired()
             .HasMaxLength(Constants.OficinaCepMaxLength);
 
         // CreatedAt

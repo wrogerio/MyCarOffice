@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using MyCarOffice.Domain.Enums;
 using MyCarOffice.Helpers.Constants;
+using MyCarOffice.Helpers.Methods;
 
 namespace MyCarOffice.Application.DTOs;
 
@@ -178,4 +179,6 @@ public class OrdemDeServicoDto
 
     [Display(Description = Constants.OrdemDeServicoTempoTotalDisplay)]
     public DateTime? TempoTotal { get; set; }
+    
+    public bool ValidarEntidade(OrdemDeServicoDto dto) => MyOfficeMethods.ValidRequireds<OrdemDeServicoDto>(dto);
 }

@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using MyCarOffice.Domain.Enums;
 using MyCarOffice.Helpers.Constants;
+using MyCarOffice.Helpers.Methods;
 
 namespace MyCarOffice.Application.DTOs;
 
@@ -24,4 +25,6 @@ public class ServicoDto
     [Required(ErrorMessage = Constants.ServicoTempoMedioErrorRequired)]
     [Display(Description = Constants.ServicoTempoMedioDisplay)]
     public DateTime TempoMedio { get; set; } = DateTime.Now;
+    
+    public bool ValidarEntidade(ServicoDto dto) => MyOfficeMethods.ValidRequireds<ServicoDto>(dto);
 }

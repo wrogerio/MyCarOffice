@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using MyCarOffice.Domain.Entities;
 using MyCarOffice.Helpers.Constants;
+using MyCarOffice.Helpers.Methods;
 
 namespace MyCarOffice.Application.DTOs;
 
@@ -19,4 +20,6 @@ public class EspecializacaoDto
 
     public Guid ProfissionalId { get; set; }
     public virtual Profissional? Profissional { get; set; }
+    
+    public bool ValidarEntidade(EspecializacaoDto dto) => MyOfficeMethods.ValidRequireds<EspecializacaoDto>(dto);
 }
