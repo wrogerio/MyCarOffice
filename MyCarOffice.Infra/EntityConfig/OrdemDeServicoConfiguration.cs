@@ -28,11 +28,9 @@ public class OrdemDeServicoConfiguration : IEntityTypeConfiguration<OrdemDeServi
             .HasMaxLength(Constants.OficinaTelefoneMaxLength);
 
         builder.Property(x => x.OficinaEmail)
-            .IsRequired()
             .HasMaxLength(Constants.OficinaEmailMaxLength);
 
         builder.Property(x => x.OficinaSite)
-            .IsRequired()
             .HasMaxLength(Constants.OficinaSiteMaxLength);
 
         builder.Property(x => x.OficinaLogradouro)
@@ -40,19 +38,15 @@ public class OrdemDeServicoConfiguration : IEntityTypeConfiguration<OrdemDeServi
             .HasMaxLength(Constants.OficinaLogradouroMaxLength);
 
         builder.Property(x => x.OficinaNumero)
-            .IsRequired()
             .HasMaxLength(Constants.OficinaNumeroMaxLength);
 
         builder.Property(x => x.OficinaComplemento)
-            .IsRequired()
             .HasMaxLength(Constants.OficinaComplementoMaxLength);
 
         builder.Property(x => x.OficinaBairro)
-            .IsRequired()
             .HasMaxLength(Constants.OficinaBairroMaxLength);
 
         builder.Property(x => x.OficinaCep)
-            .IsRequired()
             .HasMaxLength(Constants.OficinaCepMaxLength);
 
         builder.Property(x => x.ProfissionalNome)
@@ -81,7 +75,6 @@ public class OrdemDeServicoConfiguration : IEntityTypeConfiguration<OrdemDeServi
             .IsRequired();
 
         builder.Property(x => x.ClienteEmail)
-            .IsRequired()
             .HasMaxLength(Constants.ClienteEmailMaxLength);
 
         builder.Property(x => x.ClienteTelefone)
@@ -97,19 +90,15 @@ public class OrdemDeServicoConfiguration : IEntityTypeConfiguration<OrdemDeServi
             .HasMaxLength(Constants.ClienteLogradouroMaxLength);
 
         builder.Property(x => x.ClienteNumero)
-            .IsRequired()
             .HasMaxLength(Constants.ClienteNumeroMaxLength);
 
         builder.Property(x => x.ClienteComplemento)
-            .IsRequired()
             .HasMaxLength(Constants.ClienteComplementoMaxLength);
 
         builder.Property(x => x.ClienteBairro)
-            .IsRequired()
             .HasMaxLength(Constants.ClienteBairroMaxLength);
 
         builder.Property(x => x.ClienteCep)
-            .IsRequired()
             .HasMaxLength(Constants.ClienteCepMaxLength);
 
         builder.Property(x => x.VeiculoMarca)
@@ -128,11 +117,9 @@ public class OrdemDeServicoConfiguration : IEntityTypeConfiguration<OrdemDeServi
             .IsRequired();
 
         builder.Property(x => x.VeiculoCor)
-            .IsRequired()
             .HasMaxLength(Constants.VeiculoCorMaxLength);
 
         builder.Property(x => x.VeiculoObservacao)
-            .IsRequired()
             .HasMaxLength(Constants.VeiculoObservacaoMaxLength);
 
         builder.Property(x => x.ServicoArea)
@@ -149,7 +136,6 @@ public class OrdemDeServicoConfiguration : IEntityTypeConfiguration<OrdemDeServi
             .IsRequired();
 
         builder.Property(x => x.Concluida)
-            .IsRequired()
             .HasDefaultValue(false);
 
         // CreatedAt

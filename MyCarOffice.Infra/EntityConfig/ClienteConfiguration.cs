@@ -28,7 +28,6 @@ public class ClienteConfiguration : IEntityTypeConfiguration<Cliente>
 
         // Email
         builder.Property(x => x.Email)
-            .IsRequired()
             .HasMaxLength(Constants.ClienteEmailMaxLength);
 
         // Sexo
@@ -43,13 +42,24 @@ public class ClienteConfiguration : IEntityTypeConfiguration<Cliente>
 
         // Número
         builder.Property(x => x.Numero)
-            .IsRequired()
             .HasMaxLength(Constants.ClienteNumeroMaxLength);
 
         // Telefone
         builder.Property(x => x.Telefone)
             .IsRequired()
             .HasMaxLength(Constants.ClienteTelefoneMaxLength);
+        
+        // Complemento
+        builder.Property(x => x.Complemento)
+            .HasMaxLength(Constants.ClienteComplementoMaxLength);
+        
+        // Bairro
+        builder.Property(x => x.Bairro)
+            .HasMaxLength(Constants.ClienteBairroMaxLength);
+        
+        // Cep
+        builder.Property(x => x.Cep)
+            .HasMaxLength(Constants.ClienteCepMaxLength);
 
         // CreatedAt
         builder.Property(x => x.CreatedAt).HasDefaultValueSql(Constants.DatetimeDefault);

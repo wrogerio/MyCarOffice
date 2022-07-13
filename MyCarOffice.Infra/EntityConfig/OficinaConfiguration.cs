@@ -26,6 +26,14 @@ public class OficinaConfiguration : IEntityTypeConfiguration<Oficina>
         builder.Property(x => x.NomeResponsavel)
             .IsRequired()
             .HasMaxLength(Constants.OficinaNomeResponsavelMaxLength);
+        
+        // Email
+        builder.Property(x => x.Email)
+            .HasMaxLength(Constants.OficinaEmailMaxLength);
+        
+        // Site
+        builder.Property(x => x.Site)
+            .HasMaxLength(Constants.OficinaSiteMaxLength);
 
         // Telefone
         builder.Property(x => x.Telefone)
@@ -39,8 +47,19 @@ public class OficinaConfiguration : IEntityTypeConfiguration<Oficina>
 
         // Número
         builder.Property(x => x.Numero)
-            .IsRequired()
             .HasMaxLength(Constants.OficinaNumeroMaxLength);
+        
+        // Complemento
+        builder.Property(x => x.Complemento)
+            .HasMaxLength(Constants.OficinaComplementoMaxLength);
+        
+        // Bairro
+        builder.Property(x => x.Bairro)
+            .HasMaxLength(Constants.OficinaBairroMaxLength);
+        
+        // Cep
+        builder.Property(x => x.Cep)
+            .HasMaxLength(Constants.OficinaCepMaxLength);
 
         // CreatedAt
         builder.Property(x => x.CreatedAt).HasDefaultValueSql(Constants.DatetimeDefault);

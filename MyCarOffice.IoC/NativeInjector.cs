@@ -8,6 +8,7 @@ using MyCarOffice.Application.Validations;
 using MyCarOffice.Infra.Context;
 using MyCarOffice.Infra.Interfaces;
 using MyCarOffice.Infra.Repositories;
+using MyCarOffice.Uow;
 
 namespace MyCarOffice.IoC;
 
@@ -41,6 +42,9 @@ public static class NativeInjector
         _service.AddScoped<IValidator<ProfissionalDto>, ProfissionalValidation>();
         _service.AddScoped<IValidator<ServicoDto>, ServicoValidation>();
         _service.AddScoped<IValidator<VeiculoDto>, VeiculoValidation>();
+        
+        // Unit of Work
+        _service.AddScoped<IUow, Uow.Uow>();
 
         // AutoMapper
         _service.AddAutoMapper(typeof(MappingProfile));

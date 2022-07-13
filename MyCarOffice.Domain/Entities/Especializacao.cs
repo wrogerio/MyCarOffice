@@ -4,7 +4,7 @@ public class Especializacao : EntityBase
 {
     public Especializacao(string nome, DateTime since)
     {
-        if (!Validar()) return;
+        if (!ValidarEntidade()) return;
         Nome = nome;
         Since = since;
     }
@@ -16,7 +16,7 @@ public class Especializacao : EntityBase
     public Guid ProfissionalId { get; set; }
     public virtual Profissional? Profissional { get; set; }
 
-    private bool Validar()
+    private bool ValidarEntidade()
     {
         // Nome
         if (string.IsNullOrEmpty(Nome)) return false;

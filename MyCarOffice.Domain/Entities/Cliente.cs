@@ -4,7 +4,7 @@ public class Cliente : EntityBase
 {
     public Cliente(string nome, string cpf, DateTime dataNasc, string sexo, string logradouro, string telefone)
     {
-        if (!Validar()) return;
+        if (!ValidarEntidade()) return;
         Nome = nome;
         Cpf = cpf;
         DataNasc = dataNasc;
@@ -16,20 +16,20 @@ public class Cliente : EntityBase
     public string Nome { get; set; } = "";
     public string Cpf { get; set; } = "";
     public DateTime DataNasc { get; set; } = DateTime.Now;
-    public string Email { get; set; } = "";
+    public string? Email { get; set; } = "";
     public string Telefone { get; set; } = "";
     public string Sexo { get; set; } = "";
     public string Logradouro { get; set; } = "";
-    public string Numero { get; set; } = "";
-    public string Complemento { get; set; } = "";
-    public string Bairro { get; set; } = "";
-    public string Cep { get; set; } = "";
+    public string? Numero { get; set; } = "";
+    public string? Complemento { get; set; } = "";
+    public string? Bairro { get; set; } = "";
+    public string? Cep { get; set; } = "";
 
 
     // Relacionamentos
     public virtual IEnumerable<Veiculo>? Veiculos { get; set; }
 
-    private bool Validar()
+    private bool ValidarEntidade()
     {
         // Nome 
         if (string.IsNullOrEmpty(Nome)) return false;

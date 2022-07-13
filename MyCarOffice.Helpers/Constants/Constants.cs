@@ -21,7 +21,7 @@ public static class Constants
     public const int ClienteNumeroMaxLength = 10;
     public const int ClienteComplementoMaxLength = 100;
     public const int ClienteBairroMaxLength = 80;
-    public const int ClienteCepMaxLength = 5;
+    public const int ClienteCepMaxLength = 8;
 
     // Display
     public const string ClienteNomeDisplay = "Nome";
@@ -91,7 +91,7 @@ public static class Constants
     public const int OficinaNumeroMaxLength = 10;
     public const int OficinaComplementoMaxLength = 100;
     public const int OficinaBairroMaxLength = 80;
-    public const int OficinaCepMaxLength = 5;
+    public const int OficinaCepMaxLength = 8;
 
     // Display
     public const string OficinaNomeFantasiaDisplay = "Nome Fantasia";

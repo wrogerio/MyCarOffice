@@ -6,7 +6,7 @@ public class Servico : EntityBase
 {
     public Servico(AreaEnum area, string nome, double valor, double tempoMedio)
     {
-        if (!Validar()) return;
+        if (!ValidarEntidade()) return;
         Area = area;
         Nome = nome;
         Valor = valor;
@@ -18,7 +18,7 @@ public class Servico : EntityBase
     public double Valor { get; set; }
     public double TempoMedio { get; set; }
 
-    private bool Validar()
+    private bool ValidarEntidade()
     {
         // Área
         if (Area <= 0) return false;

@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using MyCarOffice.Domain.Entities;
 using MyCarOffice.Helpers.Constants;
+using MyCarOffice.Helpers.Methods;
 
 namespace MyCarOffice.Application.DTOs;
 
@@ -38,4 +39,6 @@ public class VeiculoDto
     //Relacionamentos
     public Guid ClienteId { get; set; }
     public virtual Cliente? Cliente { get; set; }
+    
+    public bool ValidarEntidade(VeiculoDto dto) => MyOfficeMethods.ValidRequireds<VeiculoDto>(dto);
 }

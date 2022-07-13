@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using MyCarOffice.Helpers.Constants;
+using MyCarOffice.Helpers.Methods;
 
 namespace MyCarOffice.Application.DTOs;
 
@@ -56,4 +57,6 @@ public class OficinaDto
     [MaxLength(Constants.OficinaCepMaxLength, ErrorMessage = Constants.OficinaCepErrorMaxLength)]
     [Display(Description = Constants.OficinaCepDisplay)]
     public string Cep { get; set; } = "";
+
+    public bool ValidarEntidade(OficinaDto dto) => MyOfficeMethods.ValidRequireds<OficinaDto>(dto);
 }
