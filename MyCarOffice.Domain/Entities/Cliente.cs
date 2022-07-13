@@ -4,7 +4,7 @@ public class Cliente : EntityBase
 {
     public Cliente(string nome, string cpf, DateTime dataNasc, string sexo, string logradouro, string telefone)
     {
-        if (!Validar()) return;
+        if (!ValidarEntidade()) return;
         Nome = nome;
         Cpf = cpf;
         DataNasc = dataNasc;
@@ -29,7 +29,7 @@ public class Cliente : EntityBase
     // Relacionamentos
     public virtual IEnumerable<Veiculo>? Veiculos { get; set; }
 
-    private bool Validar()
+    private bool ValidarEntidade()
     {
         // Nome 
         if (string.IsNullOrEmpty(Nome)) return false;

@@ -30,6 +30,16 @@ public class VeiculoConfiguration : IEntityTypeConfiguration<Veiculo>
         // Ano
         builder.Property(x => x.Ano)
             .IsRequired();
+        
+        // Cor
+        builder.Property(x => x.Cor)
+            .IsRequired()
+            .HasMaxLength(Constants.VeiculoCorMaxLength);
+        
+        // Observacao
+        builder.Property(x => x.Observacao)
+            .IsRequired()
+            .HasMaxLength(Constants.VeiculoObservacaoMaxLength);
 
         // CreatedAt
         builder.Property(x => x.CreatedAt).HasDefaultValueSql(Constants.DatetimeDefault);

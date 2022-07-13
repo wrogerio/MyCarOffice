@@ -6,7 +6,7 @@ public class Profissional : EntityBase
 {
     public Profissional(string nome, string cpf, DateTime dataNasc, AreaEnum area)
     {
-        if (!Validar()) return;
+        if (!ValidarEntidade()) return;
         Nome = nome;
         Cpf = cpf;
         DataNasc = dataNasc;
@@ -22,7 +22,7 @@ public class Profissional : EntityBase
     public virtual IEnumerable<Especializacao>? Especializacoes { get; set; }
 
 
-    private bool Validar()
+    private bool ValidarEntidade()
     {
         // Nome
         if (string.IsNullOrEmpty(Nome)) return false;

@@ -50,6 +50,21 @@ public class ClienteConfiguration : IEntityTypeConfiguration<Cliente>
         builder.Property(x => x.Telefone)
             .IsRequired()
             .HasMaxLength(Constants.ClienteTelefoneMaxLength);
+        
+        // Complemento
+        builder.Property(x => x.Complemento)
+            .IsRequired()
+            .HasMaxLength(Constants.ClienteComplementoMaxLength);
+        
+        // Bairro
+        builder.Property(x => x.Bairro)
+            .IsRequired()
+            .HasMaxLength(Constants.ClienteBairroMaxLength);
+        
+        // Cep
+        builder.Property(x => x.Cep)
+            .IsRequired()
+            .HasMaxLength(Constants.ClienteCepMaxLength);
 
         // CreatedAt
         builder.Property(x => x.CreatedAt).HasDefaultValueSql(Constants.DatetimeDefault);

@@ -9,6 +9,7 @@ public class OrdemDeServico : EntityBase
         string veiculoMarca, string veiculoModelo, string veiculoPlaca, int veiculoAno, int servicoArea,
         string servicoNome, double servicoValor, double servicoTempoMedio)
     {
+        if (!ValidarEntidade()) return;
         OficinaNomeFantasia = oficinaNomeFantasia;
         OficinaCnpj = oficinaCnpj;
         OficinaNomeResponsavel = oficinaNomeResponsavel;
@@ -72,7 +73,7 @@ public class OrdemDeServico : EntityBase
     public double ServicoTempoMedio { get; set; }
     public bool Concluida { get; set; }
 
-    private bool Validar()
+    private bool ValidarEntidade()
     {
         if (string.IsNullOrEmpty(OficinaNomeFantasia)) return false;
 

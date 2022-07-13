@@ -4,7 +4,7 @@ public class Oficina : EntityBase
 {
     public Oficina(string nomeFantasia, string cnpj, string nomeResponsavel, string telefone, string logradouro)
     {
-        if (!Validar()) return;
+        if (!ValidarEntidade()) return;
         NomeFantasia = nomeFantasia;
         Cnpj = cnpj;
         NomeResponsavel = nomeResponsavel;
@@ -24,7 +24,7 @@ public class Oficina : EntityBase
     public string Bairro { get; set; } = "";
     public string Cep { get; set; } = "";
 
-    private bool Validar()
+    private bool ValidarEntidade()
     {
         // Nome Fantasia
         if (string.IsNullOrEmpty(NomeFantasia)) return false;

@@ -4,7 +4,7 @@ public class Veiculo : EntityBase
 {
     public Veiculo(string marca, string modelo, string placa, int ano)
     {
-        if (!Validar()) return;
+        if (!ValidarEntidade()) return;
         Marca = marca;
         Modelo = modelo;
         Placa = placa;
@@ -22,7 +22,7 @@ public class Veiculo : EntityBase
     public Guid ClienteId { get; set; }
     public virtual Cliente? Cliente { get; set; }
 
-    private bool Validar()
+    private bool ValidarEntidade()
     {
         // Marca
         if (string.IsNullOrEmpty(Marca)) return false;
