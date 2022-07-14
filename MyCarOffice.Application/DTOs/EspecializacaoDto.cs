@@ -20,6 +20,4 @@ public class EspecializacaoDto
 
     public Guid ProfissionalId { get; set; }
     public virtual Profissional? Profissional { get; set; }
-    
-    public bool ValidarEntidade(EspecializacaoDto dto) => MyOfficeMethods.ValidRequireds<EspecializacaoDto>(dto);
 }

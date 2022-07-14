@@ -26,6 +26,4 @@ public class ProfissionalDto
     [Required(ErrorMessage = Constants.ProfissionalAreaErrorRequired)]
     [Display(Description = Constants.ProfissionalAreaDisplay)]
     public AreaEnum Area { get; set; } = AreaEnum.Mecanica;
-    
-    public bool ValidarEntidade(ProfissionalDto dto) => MyOfficeMethods.ValidRequireds<ProfissionalDto>(dto);
 }

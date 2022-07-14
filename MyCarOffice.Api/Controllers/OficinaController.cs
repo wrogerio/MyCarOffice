@@ -9,6 +9,8 @@ using MyCarOffice.Api.Model;
 using MyCarOffice.Application.DTOs;
 using MyCarOffice.Application.Interfaces;
 using MyCarOffice.Domain.Entities;
+using MyCarOffice.Helpers.Constants;
+using MyCarOffice.Helpers.Methods;
 using MyCarOffice.Uow;
 
 namespace MyCarOffice.Api.Controllers
@@ -53,7 +55,7 @@ namespace MyCarOffice.Api.Controllers
             var responseModel = new ResponseModel();
             
             // valid requireds
-            if (!oficinaDto.ValidarEntidade(oficinaDto)) return BadRequest(responseModel);
+            if (MyOfficeMethods.ValidarRequeridos<OficinaDto>(oficinaDto)) return BadRequest(Constants.ErrorRequired);
             
             // create localy
             await _oficina.CreateAsync(oficinaDto);
@@ -65,6 +67,79 @@ namespace MyCarOffice.Api.Controllers
                 // return response to caller
                 responseModel.IsError = false;
                 responseModel.Message = "Oficina created successfully!";
+                responseModel.Data = oficinaDto;
+                return Ok(responseModel);
+            }
+            catch (Exception ex)
+            {
+                // rolback actions
+                await _uow.RollBack();
+                
+                // return response to caller
+                responseModel.IsError = true;
+                responseModel.Message = ex.Message;
+                return BadRequest(responseModel);
+            }
+        }
+
+        [HttpPut]
+        [Route("{id}")]
+        public async Task<IActionResult> Put(Guid id, OficinaDto oficinaDto)
+        {
+            var responseModel = new ResponseModel();
+            
+            // valid requireds
+            if (!MyOfficeMethods.ValidarRequeridos<OficinaDto>(oficinaDto)) return BadRequest(Constants.ErrorRequired);
+
+            oficinaDto.Id = id;
+            
+            // create localy
+            await _oficina.UpdateAsync(oficinaDto);
+            try
+            {
+                // try to commit
+                await _uow.Commit();
+                
+                // return response to caller
+                responseModel.IsError = false;
+                responseModel.Message = "Oficina updated successfully!";
+                responseModel.Data = oficinaDto;
+                return Ok(responseModel);
+            }
+            catch (Exception ex)
+            {
+                // rolback actions
+                await _uow.RollBack();
+                
+                // return response to caller
+                responseModel.IsError = true;
+                responseModel.Message = ex.Message;
+                return BadRequest(responseModel);
+            }
+        }
+        
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var responseModel = new ResponseModel();
+
+            var oficina = await _oficina.GetByIdAsync(id);
+            var oficinaDto = _mapper.Map<OficinaDto>(oficina);
+            
+            // valid requireds
+            if (MyOfficeMethods.ValidarRequeridos<OficinaDto>(oficinaDto)) return BadRequest(Constants.ErrorRequired);
+            
+            // create localy
+            await _oficina.RemoveAsync(oficinaDto);
+            try
+            {
+                // try to commit
+                await _uow.Commit();
+                
+                // return response to caller
+                responseModel.IsError = false;
+                responseModel.Message = "Oficina removed successfully!";
                 return Ok(responseModel);
             }
             catch (Exception ex)

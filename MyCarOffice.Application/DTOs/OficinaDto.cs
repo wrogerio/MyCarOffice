@@ -57,6 +57,4 @@ public class OficinaDto
     [MaxLength(Constants.OficinaCepMaxLength, ErrorMessage = Constants.OficinaCepErrorMaxLength)]
     [Display(Description = Constants.OficinaCepDisplay)]
     public string Cep { get; set; } = "";
-
-    public bool ValidarEntidade(OficinaDto dto) => MyOfficeMethods.ValidRequireds<OficinaDto>(dto);
 }
