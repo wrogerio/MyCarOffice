@@ -59,6 +59,4 @@ public class ClienteDto
     public string Telefone { get; set; } = "";
 
     public virtual IEnumerable<Veiculo>? Veiculos { get; set; }
-    
-    public bool ValidarEntidade(ClienteDto dto) => MyOfficeMethods.ValidRequireds<ClienteDto>(dto);
 }

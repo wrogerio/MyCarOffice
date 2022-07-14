@@ -39,6 +39,4 @@ public class VeiculoDto
     //Relacionamentos
     public Guid ClienteId { get; set; }
     public virtual Cliente? Cliente { get; set; }
-    
-    public bool ValidarEntidade(VeiculoDto dto) => MyOfficeMethods.ValidRequireds<VeiculoDto>(dto);
 }

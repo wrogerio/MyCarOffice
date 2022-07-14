@@ -179,6 +179,4 @@ public class OrdemDeServicoDto
 
     [Display(Description = Constants.OrdemDeServicoTempoTotalDisplay)]
     public DateTime? TempoTotal { get; set; }
-    
-    public bool ValidarEntidade(OrdemDeServicoDto dto) => MyOfficeMethods.ValidRequireds<OrdemDeServicoDto>(dto);
 }

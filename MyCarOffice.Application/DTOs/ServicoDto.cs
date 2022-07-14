@@ -25,6 +25,4 @@ public class ServicoDto
     [Required(ErrorMessage = Constants.ServicoTempoMedioErrorRequired)]
     [Display(Description = Constants.ServicoTempoMedioDisplay)]
     public DateTime TempoMedio { get; set; } = DateTime.Now;
-    
-    public bool ValidarEntidade(ServicoDto dto) => MyOfficeMethods.ValidRequireds<ServicoDto>(dto);
 }

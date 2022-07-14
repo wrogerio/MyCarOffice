@@ -31,11 +31,13 @@ public class RepositoryBase<Entity> : IRepositoryBase<Entity> where Entity : cla
 
     public async Task UpdateAsync(Entity entity)
     {
+        _context.ChangeTracker.Clear();
         _context.Entry(entity).State = EntityState.Modified;
     }
 
     public async Task RemoveAsync(Entity entity)
     {
-        _context.Entry(entity).State = EntityState.Deleted;
+        _context.ChangeTracker.Clear();
+        _context.Remove(entity);
     }
 }

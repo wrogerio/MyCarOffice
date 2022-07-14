@@ -5,6 +5,7 @@ public static class Constants
     #region Shared Constants
 
     public const string SystemName = "MyCarOffice - Sua oficina inteligente.";
+    public const string ErrorRequired = "Erro: Todas as propriedades requeridas devem ser preenchidas.";
     public const string DatetimeDefault = "GETDATE()";
 
     #endregion
