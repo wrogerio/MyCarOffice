@@ -55,7 +55,7 @@ namespace MyCarOffice.Api.Controllers
             var responseModel = new ResponseModel();
             
             // valid requireds
-            if (MyOfficeMethods.ValidarRequeridos<OficinaDto>(oficinaDto)) return BadRequest(Constants.ErrorRequired);
+            if (!MyOfficeMethods.ValidarRequeridos<OficinaDto>(oficinaDto)) return BadRequest(Constants.ErrorRequired);
             
             // create localy
             await _oficina.CreateAsync(oficinaDto);
@@ -128,7 +128,7 @@ namespace MyCarOffice.Api.Controllers
             var oficinaDto = _mapper.Map<OficinaDto>(oficina);
             
             // valid requireds
-            if (MyOfficeMethods.ValidarRequeridos<OficinaDto>(oficinaDto)) return BadRequest(Constants.ErrorRequired);
+            if (!MyOfficeMethods.ValidarRequeridos<OficinaDto>(oficinaDto)) return BadRequest(Constants.ErrorRequired);
             
             // create localy
             await _oficina.RemoveAsync(oficinaDto);
