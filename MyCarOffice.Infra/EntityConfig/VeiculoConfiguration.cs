@@ -30,11 +30,11 @@ public class VeiculoConfiguration : IEntityTypeConfiguration<Veiculo>
         // Ano
         builder.Property(x => x.Ano)
             .IsRequired();
-        
+
         // Cor
         builder.Property(x => x.Cor)
             .HasMaxLength(Constants.VeiculoCorMaxLength);
-        
+
         // Observacao
         builder.Property(x => x.Observacao)
             .HasMaxLength(Constants.VeiculoObservacaoMaxLength);

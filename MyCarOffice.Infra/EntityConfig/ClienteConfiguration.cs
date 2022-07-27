@@ -48,15 +48,15 @@ public class ClienteConfiguration : IEntityTypeConfiguration<Cliente>
         builder.Property(x => x.Telefone)
             .IsRequired()
             .HasMaxLength(Constants.ClienteTelefoneMaxLength);
-        
+
         // Complemento
         builder.Property(x => x.Complemento)
             .HasMaxLength(Constants.ClienteComplementoMaxLength);
-        
+
         // Bairro
         builder.Property(x => x.Bairro)
             .HasMaxLength(Constants.ClienteBairroMaxLength);
-        
+
         // Cep
         builder.Property(x => x.Cep)
             .HasMaxLength(Constants.ClienteCepMaxLength);
