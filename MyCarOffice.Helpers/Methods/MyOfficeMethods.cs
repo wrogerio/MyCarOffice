@@ -6,9 +6,9 @@ namespace MyCarOffice.Helpers.Methods;
 public static class MyOfficeMethods
 {
     /// <summary>
-    /// O método ValidRequireds, utiliza a recursividade para percorrer um dto recebido e listar todas as propriedades requeridas.
-    /// Com a lista de propriedades requeridas, varre o objeto recebido, analisando se todoas as propriedades requeridas possuem
-    /// valor, validando assim, seu estado
+    ///     O método ValidRequireds, utiliza a recursividade para percorrer um dto recebido e listar todas as propriedades requeridas.
+    ///     Com a lista de propriedades requeridas, varre o objeto recebido, analisando se todoas as propriedades requeridas possuem
+    ///     valor, validando assim, seu estado
     /// </summary>
     public static bool ValidarRequeridos<TEntityDto>(TEntityDto dtoRecebido)
     {
@@ -22,7 +22,7 @@ public static class MyOfficeMethods
         // Monta uma lista com todas as propriedades existentes no Dto
         var type = dtoRecebido?.GetType();
         var properties = type?.GetProperties().ToList();
-        
+
         // Faz um loop em cada propriedade do objetoDto
         if (properties != null)
             foreach (var property in properties)

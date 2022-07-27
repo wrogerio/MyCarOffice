@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 using MyCarOffice.Api.Model;
 using MyCarOffice.Application.DTOs;
 using MyCarOffice.Application.Interfaces;
-using MyCarOffice.Domain.Entities;
 using MyCarOffice.Helpers.Constants;
 using MyCarOffice.Helpers.Methods;
 using MyCarOffice.Uow;
@@ -17,47 +16,47 @@ namespace MyCarOffice.Api.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
-    public class OficinaController : ControllerBase
+    public class ClienteController : ControllerBase
     {
-        private readonly IOficinaService _oficinaService;
+        private readonly IClienteService _clienteService;
         private readonly IUow _uow;
         private readonly IMapper _mapper;
 
-        public OficinaController(IOficinaService oficina, IUow uow, IMapper mapper)
+        public ClienteController(IClienteService clienteService, IUow uow, IMapper mapper)
         {
-            _oficinaService = oficina ?? throw new ArgumentNullException(nameof(oficina));
-            _uow = uow ?? throw new ArgumentNullException(nameof(uow));
-            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            _clienteService = clienteService;
+            _uow = uow;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var oficinas = await _oficinaService.GetAllAsync();
-            var oficinasDto = _mapper.Map<IEnumerable<OficinaDto>>(oficinas);
+            var clientes = await _clienteService.GetAllAsync();
+            var clienteDto = _mapper.Map<IEnumerable<ClienteDto>>(clientes);
 
-            return Ok(oficinasDto);
+            return Ok(clienteDto);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(Guid id)
         {
-            var oficina = await _oficinaService.GetByIdAsync(id);
-            var oficinaDto = _mapper.Map<OficinaDto>(oficina);
+            var cliente = await _clienteService.GetByIdAsync(id);
+            var clienteDto = _mapper.Map<ClienteDto>(cliente);
 
-            return Ok(oficinaDto);
+            return Ok(clienteDto);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] OficinaDto oficinaDto)
+        public async Task<IActionResult> Post([FromBody] ClienteDto clienteDto)
         {
             var responseModel = new ResponseModel();
             
             // valid requireds
-            if (!MyOfficeMethods.ValidarRequeridos<OficinaDto>(oficinaDto)) return BadRequest(Constants.ErrorRequired);
+            if (!MyOfficeMethods.ValidarRequeridos<ClienteDto>(clienteDto)) return BadRequest(Constants.ErrorRequired);
             
             // create localy
-            await _oficinaService.CreateAsync(oficinaDto);
+            await _clienteService.CreateAsync(clienteDto);
             try
             {
                 // try to commit
@@ -65,8 +64,8 @@ namespace MyCarOffice.Api.Controllers
                 
                 // return response to caller
                 responseModel.IsError = false;
-                responseModel.Message = "Oficina created successfully!";
-                responseModel.Data = oficinaDto;
+                responseModel.Message = "Cliente created successfully!";
+                responseModel.Data = clienteDto;
                 return Ok(responseModel);
             }
             catch (Exception ex)
@@ -82,17 +81,17 @@ namespace MyCarOffice.Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(Guid id, [FromBody] OficinaDto oficinaDto)
+        public async Task<IActionResult> Put(Guid id, [FromBody] ClienteDto clienteDto)
         {
             var responseModel = new ResponseModel();
             
             // valid requireds
-            if (!MyOfficeMethods.ValidarRequeridos<OficinaDto>(oficinaDto)) return BadRequest(Constants.ErrorRequired);
+            if (!MyOfficeMethods.ValidarRequeridos<ClienteDto>(clienteDto)) return BadRequest(Constants.ErrorRequired);
 
-            oficinaDto.Id = id;
+            clienteDto.Id = id;
             
             // create localy
-            await _oficinaService.UpdateAsync(oficinaDto);
+            await _clienteService.UpdateAsync(clienteDto);
             try
             {
                 // try to commit
@@ -100,8 +99,8 @@ namespace MyCarOffice.Api.Controllers
                 
                 // return response to caller
                 responseModel.IsError = false;
-                responseModel.Message = "Oficina updated successfully!";
-                responseModel.Data = oficinaDto;
+                responseModel.Message = "Cliente updated successfully!";
+                responseModel.Data = clienteDto;
                 return Ok(responseModel);
             }
             catch (Exception ex)
@@ -115,20 +114,20 @@ namespace MyCarOffice.Api.Controllers
                 return BadRequest(responseModel);
             }
         }
-        
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
             var responseModel = new ResponseModel();
 
-            var oficina = await _oficinaService.GetByIdAsync(id);
-            var oficinaDto = _mapper.Map<OficinaDto>(oficina);
+            var cliente = await _clienteService.GetByIdAsync(id);
+            var clienteDto = _mapper.Map<ClienteDto>(cliente);
             
             // valid requireds
-            if (!MyOfficeMethods.ValidarRequeridos<OficinaDto>(oficinaDto)) return BadRequest(Constants.ErrorRequired);
+            if (!MyOfficeMethods.ValidarRequeridos<ClienteDto>(clienteDto)) return BadRequest(Constants.ErrorRequired);
             
             // create localy
-            await _oficinaService.RemoveAsync(oficinaDto);
+            await _clienteService.RemoveAsync(clienteDto);
             try
             {
                 // try to commit
@@ -136,7 +135,7 @@ namespace MyCarOffice.Api.Controllers
                 
                 // return response to caller
                 responseModel.IsError = false;
-                responseModel.Message = "Oficina removed successfully!";
+                responseModel.Message = "Cliente removed successfully!";
                 return Ok(responseModel);
             }
             catch (Exception ex)

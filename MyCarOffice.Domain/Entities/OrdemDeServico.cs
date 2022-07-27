@@ -1,4 +1,6 @@
-﻿namespace MyCarOffice.Domain.Entities;
+﻿using MyCarOffice.Domain.Enums;
+
+namespace MyCarOffice.Domain.Entities;
 
 public class OrdemDeServico : EntityBase
 {
@@ -6,7 +8,7 @@ public class OrdemDeServico : EntityBase
         string oficinaTelefone, string oficinaLogradouro, string profissionalNome, string profissionalCpf,
         DateTime profissionalDataNasc, int profissionalArea, string clienteNome, string clienteCpf,
         DateTime clienteDataNasc, string clienteTelefone, string clienteSexo, string clienteLogradouro,
-        string veiculoMarca, string veiculoModelo, string veiculoPlaca, int veiculoAno, int servicoArea,
+        string veiculoMarca, string veiculoModelo, string veiculoPlaca, int veiculoAno, AreaEnum servicoArea,
         string servicoNome, double servicoValor, double servicoTempoMedio)
     {
         if (!ValidarEntidade()) return;
@@ -67,7 +69,7 @@ public class OrdemDeServico : EntityBase
     public int VeiculoAno { get; set; }
     public string? VeiculoCor { get; set; } = "";
     public string? VeiculoObservacao { get; set; } = "";
-    public int ServicoArea { get; set; }
+    public AreaEnum ServicoArea { get; set; }
     public string? ServicoNome { get; set; }
     public double ServicoValor { get; set; }
     public double ServicoTempoMedio { get; set; }
