@@ -40,6 +40,10 @@ public class OficinaService : IOficinaService
     public async Task UpdateAsync(OficinaDto oficinaDto)
     {
         var oficina = _mapper.Map<Oficina>(oficinaDto);
+        // var oficina = new Oficina(oficinaDto.NomeFantasia, oficinaDto.Cnpj, oficinaDto.NomeResponsavel, oficinaDto.Telefone, oficinaDto.Logradouro)
+        // {
+        //     Bairro = oficinaDto.Bairro
+        // };
         await _repository.UpdateAsync(oficina);
     }
 

@@ -10,10 +10,14 @@ public class MappingProfile : Profile
     {
         CreateMap<ClienteDto, Cliente>().ReverseMap();
         CreateMap<EspecializacaoDto, Especializacao>().ReverseMap();
-        CreateMap<OficinaDto, Oficina>().ReverseMap();
         CreateMap<OrdemDeServicoDto, OrdemDeServico>().ReverseMap();
         CreateMap<ProfissionalDto, Profissional>().ReverseMap();
         CreateMap<ServicoDto, Servico>().ReverseMap();
         CreateMap<VeiculoDto, Veiculo>().ReverseMap();
+
+        
+        
+        CreateMap<Oficina, OficinaDto>().ReverseMap()
+            .ConstructUsing(dto => new Oficina(dto.NomeFantasia, dto.Cnpj, dto.NomeResponsavel, dto.Telefone, dto.Logradouro));
     }
 }
