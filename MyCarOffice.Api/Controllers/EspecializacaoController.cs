@@ -52,7 +52,7 @@ namespace MyCarOffice.Api.Controllers
             if (!MyOfficeMethods.ValidarRequeridos<EspecializacaoDto>(especializacaoDto)) return BadRequest(Constants.ErrorRequired);
 
             // create localy
-            await _especializacaoService.CreateAsync(especializacaoDto);
+            especializacaoDto = await _especializacaoService.CreateAsync(especializacaoDto);
 
             try
             {
@@ -90,7 +90,7 @@ namespace MyCarOffice.Api.Controllers
             especializacaoDto.Id = id;
 
             // create localy
-            await _especializacaoService.UpdateAsync(especializacaoDto);
+            especializacaoDto = await _especializacaoService.UpdateAsync(especializacaoDto);
             try
             {
                 // try to commit

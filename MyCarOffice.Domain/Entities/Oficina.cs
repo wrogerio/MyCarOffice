@@ -12,6 +12,11 @@ public class Oficina : EntityBase
         Logradouro = logradouro;
     }
 
+    public Oficina()
+    {
+        
+    }
+
     public string NomeFantasia { get; set; } = "";
     public string Cnpj { get; set; } = "";
     public string NomeResponsavel { get; set; } = "";

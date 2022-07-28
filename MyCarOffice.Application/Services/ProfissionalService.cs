@@ -20,27 +20,27 @@ public class ProfissionalService : IProfissionalService
     public async Task<IEnumerable<ProfissionalDto>> GetAllAsync()
     {
         var profissionais = await _repository.GetAllAsync();
-        var profissionaisDto = _mapper.Map<IEnumerable<ProfissionalDto>>(profissionais);
-        return profissionaisDto;
+        return _mapper.Map<IEnumerable<ProfissionalDto>>(profissionais);
     }
 
     public async Task<ProfissionalDto> GetByIdAsync(Guid id)
     {
         var profissional = await _repository.GetByIdAsync(id);
-        var profissionalDto = _mapper.Map<ProfissionalDto>(profissional);
-        return profissionalDto;
+        return _mapper.Map<ProfissionalDto>(profissional);
     }
 
-    public async Task CreateAsync(ProfissionalDto profissionalDto)
+    public async Task<ProfissionalDto> CreateAsync(ProfissionalDto profissionalDto)
     {
         var profissional = _mapper.Map<Profissional>(profissionalDto);
         await _repository.CreateAsync(profissional);
+        return _mapper.Map<ProfissionalDto>(profissional);
     }
 
-    public async Task UpdateAsync(ProfissionalDto profissionalDto)
+    public async Task<ProfissionalDto> UpdateAsync(ProfissionalDto profissionalDto)
     {
         var profissional = _mapper.Map<Profissional>(profissionalDto);
         await _repository.UpdateAsync(profissional);
+        return _mapper.Map<ProfissionalDto>(profissional);
     }
 
     public async Task RemoveAsync(ProfissionalDto profissionalDto)

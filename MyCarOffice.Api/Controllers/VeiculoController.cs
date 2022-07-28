@@ -52,7 +52,7 @@ public class VeiculoController: ControllerBase
         if (!MyOfficeMethods.ValidarRequeridos<VeiculoDto>(veiculoDto)) return BadRequest(Constants.ErrorRequired);
             
         // create localy
-        await _veiculoService.CreateAsync(veiculoDto);
+        veiculoDto = await _veiculoService.CreateAsync(veiculoDto);
         try
         {
             // try to commit
@@ -87,7 +87,7 @@ public class VeiculoController: ControllerBase
         veiculoDto.Id = id;
             
         // create localy
-        await _veiculoService.UpdateAsync(veiculoDto);
+        veiculoDto = await _veiculoService.UpdateAsync(veiculoDto);
         try
         {
             // try to commit

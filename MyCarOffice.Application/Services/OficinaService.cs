@@ -20,24 +20,23 @@ public class OficinaService : IOficinaService
     public async Task<IEnumerable<OficinaDto>> GetAllAsync()
     {
         var oficinas = await _repository.GetAllAsync();
-        var oficinasDto = _mapper.Map<IEnumerable<OficinaDto>>(oficinas);
-        return oficinasDto;
+        return _mapper.Map<IEnumerable<OficinaDto>>(oficinas);
     }
 
     public async Task<OficinaDto> GetByIdAsync(Guid id)
     {
         var oficina = await _repository.GetByIdAsync(id);
-        var oficinaDto = _mapper.Map<OficinaDto>(oficina);
-        return oficinaDto;
+        return _mapper.Map<OficinaDto>(oficina);
     }
 
-    public async Task CreateAsync(OficinaDto oficinaDto)
+    public async Task<OficinaDto> CreateAsync(OficinaDto oficinaDto)
     {
         var oficina = _mapper.Map<Oficina>(oficinaDto);
         await _repository.CreateAsync(oficina);
+        return _mapper.Map<OficinaDto>(oficina);
     }
 
-    public async Task UpdateAsync(OficinaDto oficinaDto)
+    public async Task<OficinaDto> UpdateAsync(OficinaDto oficinaDto)
     {
         var oficina = _mapper.Map<Oficina>(oficinaDto);
         // var oficina = new Oficina(oficinaDto.NomeFantasia, oficinaDto.Cnpj, oficinaDto.NomeResponsavel, oficinaDto.Telefone, oficinaDto.Logradouro)
@@ -45,6 +44,7 @@ public class OficinaService : IOficinaService
         //     Bairro = oficinaDto.Bairro
         // };
         await _repository.UpdateAsync(oficina);
+        return _mapper.Map<OficinaDto>(oficina);
     }
 
     public async Task RemoveAsync(OficinaDto oficinaDto)

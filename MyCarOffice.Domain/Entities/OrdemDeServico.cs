@@ -37,6 +37,11 @@ public class OrdemDeServico : EntityBase
         ServicoTempoMedio = servicoTempoMedio;
     }
 
+    public OrdemDeServico()
+    {
+        
+    }
+
     public string? OficinaNomeFantasia { get; set; }
     public string? OficinaCnpj { get; set; }
     public string? OficinaNomeResponsavel { get; set; }

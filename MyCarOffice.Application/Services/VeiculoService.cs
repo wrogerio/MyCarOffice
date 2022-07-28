@@ -20,27 +20,27 @@ public class VeiculoService : IVeiculoService
     public async Task<IEnumerable<VeiculoDto>> GetAllAsync()
     {
         var veiculos = await _repository.GetAllAsync();
-        var veiculosDto = _mapper.Map<IEnumerable<VeiculoDto>>(veiculos);
-        return veiculosDto;
+        return _mapper.Map<IEnumerable<VeiculoDto>>(veiculos);
     }
 
     public async Task<VeiculoDto> GetByIdAsync(Guid id)
     {
         var veiculo = await _repository.GetByIdAsync(id);
-        var veiculoDto = _mapper.Map<VeiculoDto>(veiculo);
-        return veiculoDto;
+        return _mapper.Map<VeiculoDto>(veiculo);
     }
 
-    public async Task CreateAsync(VeiculoDto veiculoDto)
+    public async Task<VeiculoDto> CreateAsync(VeiculoDto veiculoDto)
     {
         var veiculo = _mapper.Map<Veiculo>(veiculoDto);
         await _repository.CreateAsync(veiculo);
+        return _mapper.Map<VeiculoDto>(veiculo);
     }
 
-    public async Task UpdateAsync(VeiculoDto veiculoDto)
+    public async Task<VeiculoDto> UpdateAsync(VeiculoDto veiculoDto)
     {
         var veiculo = _mapper.Map<Veiculo>(veiculoDto);
         await _repository.UpdateAsync(veiculo);
+        return _mapper.Map<VeiculoDto>(veiculo);
     }
 
     public async Task RemoveAsync(VeiculoDto veiculoDto)

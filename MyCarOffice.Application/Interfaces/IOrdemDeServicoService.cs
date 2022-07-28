@@ -6,7 +6,7 @@ public interface IOrdemDeServicoService
 {
     Task<IEnumerable<OrdemDeServicoDto>> GetAllAsync();
     Task<OrdemDeServicoDto> GetByIdAsync(Guid id);
-    Task CreateAsync(OrdemDeServicoDto ordemDeServicoDto);
-    Task UpdateAsync(OrdemDeServicoDto ordemDeServicoDto);
+    Task<OrdemDeServicoDto> CreateAsync(OrdemDeServicoDto ordemDeServicoDto);
+    Task<OrdemDeServicoDto> UpdateAsync(OrdemDeServicoDto ordemDeServicoDto);
     Task RemoveAsync(OrdemDeServicoDto ordemDeServicoDto);
 }

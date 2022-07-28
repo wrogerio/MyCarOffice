@@ -20,27 +20,27 @@ public class ClienteService : IClienteService
     public async Task<IEnumerable<ClienteDto>> GetAllAsync()
     {
         var clientes = await _repository.GetAllAsync();
-        var clientesDto = _mapper.Map<IEnumerable<ClienteDto>>(clientes);
-        return clientesDto;
+        return _mapper.Map<IEnumerable<ClienteDto>>(clientes);
     }
 
     public async Task<ClienteDto> GetByIdAsync(Guid id)
     {
         var cliente = await _repository.GetByIdAsync(id);
-        var clienteDto = _mapper.Map<ClienteDto>(cliente);
-        return clienteDto;
+        return _mapper.Map<ClienteDto>(cliente);
     }
 
-    public async Task CreateAsync(ClienteDto clienteDto)
+    public async Task<ClienteDto> CreateAsync(ClienteDto clienteDto)
     {
         var cliente = _mapper.Map<Cliente>(clienteDto);
         await _repository.CreateAsync(cliente);
+        return _mapper.Map<ClienteDto>(cliente);
     }
 
-    public async Task UpdateAsync(ClienteDto clienteDto)
+    public async Task<ClienteDto> UpdateAsync(ClienteDto clienteDto)
     {
         var cliente = _mapper.Map<Cliente>(clienteDto);
         await _repository.UpdateAsync(cliente);
+        return _mapper.Map<ClienteDto>(cliente);
     }
 
     public async Task RemoveAsync(ClienteDto clienteDto)

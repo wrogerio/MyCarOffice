@@ -57,7 +57,7 @@ namespace MyCarOffice.Api.Controllers
             if (!MyOfficeMethods.ValidarRequeridos<OficinaDto>(oficinaDto)) return BadRequest(Constants.ErrorRequired);
             
             // create localy
-            await _oficinaService.CreateAsync(oficinaDto);
+            oficinaDto = await _oficinaService.CreateAsync(oficinaDto);
             try
             {
                 // try to commit
@@ -92,7 +92,7 @@ namespace MyCarOffice.Api.Controllers
             oficinaDto.Id = id;
             
             // create localy
-            await _oficinaService.UpdateAsync(oficinaDto);
+            oficinaDto = await _oficinaService.UpdateAsync(oficinaDto);
             try
             {
                 // try to commit

@@ -9,6 +9,11 @@ public class Especializacao : EntityBase
         Since = since;
     }
 
+    public Especializacao()
+    {
+        
+    }
+
     public string Nome { get; set; } = "";
     public DateTime Since { get; set; } = DateTime.Now;
 

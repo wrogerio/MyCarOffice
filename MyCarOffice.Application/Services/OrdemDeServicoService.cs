@@ -20,27 +20,27 @@ public class OrdemDeServicoService : IOrdemDeServicoService
     public async Task<IEnumerable<OrdemDeServicoDto>> GetAllAsync()
     {
         var ordensDeServicos = await _repository.GetAllAsync();
-        var ordensDeServicosDto = _mapper.Map<IEnumerable<OrdemDeServicoDto>>(ordensDeServicos);
-        return ordensDeServicosDto;
+        return _mapper.Map<IEnumerable<OrdemDeServicoDto>>(ordensDeServicos);
     }
 
     public async Task<OrdemDeServicoDto> GetByIdAsync(Guid id)
     {
         var ordemDeServico = await _repository.GetByIdAsync(id);
-        var ordemDeServicoDto = _mapper.Map<OrdemDeServicoDto>(ordemDeServico);
-        return ordemDeServicoDto;
+        return _mapper.Map<OrdemDeServicoDto>(ordemDeServico);
     }
 
-    public async Task CreateAsync(OrdemDeServicoDto ordemDeServicoDto)
+    public async Task<OrdemDeServicoDto> CreateAsync(OrdemDeServicoDto ordemDeServicoDto)
     {
         var ordemDeServico = _mapper.Map<OrdemDeServico>(ordemDeServicoDto);
         await _repository.CreateAsync(ordemDeServico);
+        return _mapper.Map<OrdemDeServicoDto>(ordemDeServico);
     }
 
-    public async Task UpdateAsync(OrdemDeServicoDto ordemDeServicoDto)
+    public async Task<OrdemDeServicoDto> UpdateAsync(OrdemDeServicoDto ordemDeServicoDto)
     {
         var ordemDeServico = _mapper.Map<OrdemDeServico>(ordemDeServicoDto);
         await _repository.UpdateAsync(ordemDeServico);
+        return _mapper.Map<OrdemDeServicoDto>(ordemDeServico);
     }
 
     public async Task RemoveAsync(OrdemDeServicoDto ordemDeServicoDto)

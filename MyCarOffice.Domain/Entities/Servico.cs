@@ -13,6 +13,11 @@ public class Servico : EntityBase
         TempoMedio = tempoMedio;
     }
 
+    public Servico()
+    {
+        
+    }
+
     public string Nome { get; set; } = "";
     public AreaEnum Area { get; set; } = AreaEnum.Mecanica;
     public double Valor { get; set; }

@@ -13,6 +13,10 @@ public class Profissional : EntityBase
         Area = area;
     }
 
+    public Profissional()
+    {
+    }
+
     public string Nome { get; set; } = "";
     public string Cpf { get; set; } = "";
     public DateTime DataNasc { get; set; } = DateTime.Now;

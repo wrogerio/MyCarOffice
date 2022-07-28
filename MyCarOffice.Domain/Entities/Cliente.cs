@@ -13,6 +13,11 @@ public class Cliente : EntityBase
         Telefone = telefone;
     }
 
+    public Cliente()
+    {
+        
+    }
+
     public string Nome { get; set; } = "";
     public string Cpf { get; set; } = "";
     public DateTime DataNasc { get; set; } = DateTime.Now;

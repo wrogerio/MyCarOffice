@@ -6,7 +6,7 @@ public interface IVeiculoService
 {
     Task<IEnumerable<VeiculoDto>> GetAllAsync();
     Task<VeiculoDto> GetByIdAsync(Guid id);
-    Task CreateAsync(VeiculoDto veiculoDto);
-    Task UpdateAsync(VeiculoDto veiculoDto);
+    Task<VeiculoDto> CreateAsync(VeiculoDto veiculoDto);
+    Task<VeiculoDto> UpdateAsync(VeiculoDto veiculoDto);
     Task RemoveAsync(VeiculoDto veiculoDto);
 }
