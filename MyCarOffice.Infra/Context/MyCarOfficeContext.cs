@@ -19,8 +19,8 @@ public class MyCarOfficeContext : DbContext
     {
         base.OnConfiguring(optionsBuilder);
         optionsBuilder.UseLazyLoadingProxies();
-        optionsBuilder.UseSqlServer(@"Server =.\SQLEXPRESS; Database = MyCarOffice; Trusted_Connection = True; TrustServerCertificate = true");
-        //optionsBuilder.UseSqlServer(@"Server =.; Database = MyCarOffice; Trusted_Connection = True; TrustServerCertificate = true");
+        //optionsBuilder.UseSqlServer(@"Server =.\SQLEXPRESS; Database = MyCarOffice; Trusted_Connection = True; TrustServerCertificate = true");
+        optionsBuilder.UseSqlServer(@"Server =.; Database = MyCarOffice; Trusted_Connection = True; TrustServerCertificate = true");
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

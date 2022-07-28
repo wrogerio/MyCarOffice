@@ -24,15 +24,17 @@ public class RepositoryBase<Entity> : IRepositoryBase<Entity> where Entity : cla
         return await _context.Set<Entity>().FindAsync(id);
     }
 
-    public async Task CreateAsync(Entity entity)
+    public async Task<Entity> CreateAsync(Entity entity)
     {
         await _context.Set<Entity>().AddAsync(entity);
+        return entity;
     }
 
-    public async Task UpdateAsync(Entity entity)
+    public async Task<Entity> UpdateAsync(Entity entity)
     {
         _context.ChangeTracker.Clear();
         _context.Entry(entity).State = EntityState.Modified;
+        return entity;
     }
 
     public async Task RemoveAsync(Entity entity)
