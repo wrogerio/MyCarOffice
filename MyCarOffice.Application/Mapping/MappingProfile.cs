@@ -17,6 +17,7 @@ public class MappingProfile : Profile
         CreateMap<Especializacao, EspecializacaoDto>().ReverseMap()
             .ConstructUsing(dto => new Especializacao(dto.Nome, dto.Since));
 
+
         CreateMap<Veiculo, VeiculoDto>().ReverseMap()
             .ConstructUsing(dto => new Veiculo(dto.Marca, dto.Modelo, dto.Placa, dto.Ano));
 
