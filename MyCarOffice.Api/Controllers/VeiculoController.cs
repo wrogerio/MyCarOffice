@@ -1,9 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using MyCarOffice.Api.Model;
-using MyCarOffice.Application.DTOs.Commands;
-using MyCarOffice.Application.DTOs.Commands.Create;
-using MyCarOffice.Application.DTOs.Queries;
 using MyCarOffice.Application.DTOs.Veiculos;
 using MyCarOffice.Application.Interfaces;
 using MyCarOffice.Uow;
@@ -12,6 +9,7 @@ namespace MyCarOffice.Api.Controllers;
 
 [Route("api/v1/[controller]")]
 [ApiController]
+[ApiExplorerSettings(IgnoreApi = true)]
 public class VeiculoController : ControllerBase
 {
     private readonly IMapper _mapper;

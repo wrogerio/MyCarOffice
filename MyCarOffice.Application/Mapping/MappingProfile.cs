@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
-using MyCarOffice.Application.DTOs.Commands.Create;
-using MyCarOffice.Application.DTOs.Commands.Update;
-using MyCarOffice.Application.DTOs.Queries;
-using MyCarOffice.Application.DTOs.Queries.CleanDtos;
+using MyCarOffice.Application.DTOs.Clientes;
+using MyCarOffice.Application.DTOs.Especializacao;
+using MyCarOffice.Application.DTOs.Profissional;
 using MyCarOffice.Application.DTOs.Veiculos;
 using MyCarOffice.Domain.Entities;
 
@@ -36,19 +35,59 @@ public class MappingProfile : Profile
 
         CreateMap<Veiculo, VeiculoDto>().ReverseMap()
             .ConstructUsing(dto => new Veiculo(dto.Marca, dto.Modelo, dto.Placa, dto.Ano));
-        
+
         CreateMap<Veiculo, VeiculoDtoClean>().ReverseMap()
             .ConstructUsing(dto => new Veiculo(dto.Marca, dto.Modelo, dto.Placa, dto.Ano));
-        
+
         CreateMap<Veiculo, VeiculoDtoCreate>().ReverseMap()
             .ConstructUsing(dto => new Veiculo(dto.Marca, dto.Modelo, dto.Placa, dto.Ano));
-        
+
         CreateMap<Veiculo, VeiculoDtoUpdate>().ReverseMap()
             .ConstructUsing(dto => new Veiculo(dto.Marca, dto.Modelo, dto.Placa, dto.Ano));
 
-        CreateMap<VeiculoDtoClean, VeiculoDtoUpdate>().ReverseMap();
-        
         CreateMap<VeiculoDtoClean, VeiculoDtoCreate>().ReverseMap();
+        
+        CreateMap<VeiculoDtoClean, VeiculoDtoUpdate>().ReverseMap();
+
+        #endregion
+
+        #region ProfissionalConfiguration
+
+        CreateMap<Profissional, ProfissionalDto>().ReverseMap()
+            .ConstructUsing(dto => new Profissional(dto.Nome, dto.Cpf, dto.DataNasc, dto.Area));
+        
+        CreateMap<Profissional, ProfissionalDtoClean>().ReverseMap()
+            .ConstructUsing(dto => new Profissional(dto.Nome, dto.Cpf, dto.DataNasc, dto.Area));
+        
+        CreateMap<Profissional, ProfissionalDtoCreate>().ReverseMap()
+            .ConstructUsing(dto => new Profissional(dto.Nome, dto.Cpf, dto.DataNasc, dto.Area));
+        
+        CreateMap<Profissional, ProfissionalDtoUpdate>().ReverseMap()
+            .ConstructUsing(dto => new Profissional(dto.Nome, dto.Cpf, dto.DataNasc, dto.Area));
+        
+        CreateMap<ProfissionalDtoClean, ProfissionalDtoCreate>().ReverseMap();
+        
+        CreateMap<ProfissionalDtoClean, ProfissionalDtoUpdate>().ReverseMap();
+
+        #endregion
+
+        #region EspecializacaoConfiguration
+
+        CreateMap<Especializacao, EspecializacaoDto>().ReverseMap()
+            .ConstructUsing(dto => new Especializacao(dto.Nome, dto.Since));
+        
+        CreateMap<Especializacao, EspecializacaoDtoClean>().ReverseMap()
+            .ConstructUsing(dto => new Especializacao(dto.Nome, dto.Since));
+        
+        CreateMap<Especializacao, EspecializacaoDtoCreate>().ReverseMap()
+            .ConstructUsing(dto => new Especializacao(dto.Nome, dto.Since));
+        
+        CreateMap<Especializacao, EspecializacaoDtoUpdate>().ReverseMap()
+            .ConstructUsing(dto => new Especializacao(dto.Nome, dto.Since));
+        
+        CreateMap<EspecializacaoDtoClean, EspecializacaoDtoCreate>().ReverseMap();
+        
+        CreateMap<EspecializacaoDtoClean, EspecializacaoDtoUpdate>().ReverseMap();
 
         #endregion
 

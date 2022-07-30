@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using MyCarOffice.Application.DTOs.Commands.Create;
 using MyCarOffice.Application.DTOs.Veiculos;
 using MyCarOffice.Application.Interfaces;
 using MyCarOffice.Domain.Entities;
@@ -18,7 +17,7 @@ public class VeiculoService : IVeiculoService
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }
 
-    public async Task<IEnumerable<VeiculoDto>> GetAllAsync()
+    public async Task<List<VeiculoDto>> GetAllAsync()
     {
         var veiculos = await _repository.GetAllAsync();
         return EntidadeToDtoList(veiculos.ToList());

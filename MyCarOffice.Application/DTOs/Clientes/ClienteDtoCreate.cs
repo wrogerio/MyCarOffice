@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using MyCarOffice.Helpers.Constants;
 
-namespace MyCarOffice.Application.DTOs.Commands.Create;
+namespace MyCarOffice.Application.DTOs.Clientes;
 
 public class ClienteDtoCreate
 {

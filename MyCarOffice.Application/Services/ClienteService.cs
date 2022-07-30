@@ -1,8 +1,5 @@
 ﻿using AutoMapper;
-using MyCarOffice.Application.DTOs.Commands.Create;
-using MyCarOffice.Application.DTOs.Commands.Update;
-using MyCarOffice.Application.DTOs.Queries;
-using MyCarOffice.Application.DTOs.Queries.CleanDtos;
+using MyCarOffice.Application.DTOs.Clientes;
 using MyCarOffice.Application.Interfaces;
 using MyCarOffice.Domain.Entities;
 using MyCarOffice.Infra.Interfaces;

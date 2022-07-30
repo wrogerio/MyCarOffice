@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using MyCarOffice.Application.DTOs.Queries;
+using MyCarOffice.Application.DTOs.Profissional;
 using MyCarOffice.Application.Interfaces;
 using MyCarOffice.Domain.Entities;
 using MyCarOffice.Infra.Interfaces;
@@ -17,7 +17,7 @@ public class ProfissionalService : IProfissionalService
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }
 
-    public async Task<IEnumerable<ProfissionalDto>> GetAllAsync()
+    public async Task<List<ProfissionalDto>> GetAllAsync()
     {
         var profissionais = await _repository.GetAllAsync();
         return EntidadeToDtoList(profissionais.ToList());
@@ -29,13 +29,13 @@ public class ProfissionalService : IProfissionalService
         return EntidadeToDto(profissional);
     }
 
-    public async Task CreateAsync(ProfissionalDto profissionalDto)
+    public async Task CreateAsync(ProfissionalDtoCreate profissionalDto)
     {
         var profissional = _mapper.Map<Profissional>(profissionalDto);
         await _repository.CreateAsync(profissional);
     }
 
-    public async Task UpdateAsync(ProfissionalDto profissionalDto)
+    public async Task UpdateAsync(ProfissionalDtoUpdate profissionalDto)
     {
         var profissional = _mapper.Map<Profissional>(profissionalDto);
         await _repository.UpdateAsync(profissional);

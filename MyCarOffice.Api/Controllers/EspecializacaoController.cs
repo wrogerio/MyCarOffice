@@ -1,7 +1,7 @@
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using MyCarOffice.Api.Model;
-using MyCarOffice.Application.DTOs.Clientes;
+using MyCarOffice.Application.DTOs.Especializacao;
 using MyCarOffice.Application.Interfaces;
 using MyCarOffice.Uow;
 
@@ -9,16 +9,15 @@ namespace MyCarOffice.Api.Controllers;
 
 [Route("api/v1/[controller]")]
 [ApiController]
-[ApiExplorerSettings(IgnoreApi = true)]
-public class ClienteController : ControllerBase
+public class EspecializacaoController : ControllerBase
 {
-    private readonly IClienteService _clienteService;
     private readonly IMapper _mapper;
     private readonly IUow _uow;
+    private readonly IEspecializacaoService _especializacaoService;
 
-    public ClienteController(IClienteService clienteService, IUow uow, IMapper mapper)
+    public EspecializacaoController(IEspecializacaoService especializacaoService, IUow uow, IMapper mapper)
     {
-        _clienteService = clienteService;
+        _especializacaoService = especializacaoService;
         _uow = uow;
         _mapper = mapper;
     }
@@ -26,24 +25,24 @@ public class ClienteController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> Get()
     {
-        var clientes = await _clienteService.GetAllAsync();
-        return Ok(clientes);
+        var especializacoes = await _especializacaoService.GetAllAsync();
+        return Ok(especializacoes);
     }
 
     [HttpGet("{id}")]
     public async Task<IActionResult> Get(Guid id)
     {
-        var cliente = await _clienteService.GetByIdAsync(id);
-        return Ok(cliente);
+        var especializacao = await _especializacaoService.GetByIdAsync(id);
+        return Ok(especializacao);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post([FromBody] ClienteDtoCreate clienteDtoCrate)
+    public async Task<IActionResult> Post([FromBody] EspecializacaoDtoCreate especializacaoDtoCreate)
     {
         var responseModel = new ResponseModel();
 
         // create localy
-        await _clienteService.CreateAsync(clienteDtoCrate);
+        await _especializacaoService.CreateAsync(especializacaoDtoCreate);
         try
         {
             // try to commit
@@ -51,7 +50,7 @@ public class ClienteController : ControllerBase
 
             // return response to caller
             responseModel.IsError = false;
-            responseModel.Message = "Cliente created successfully!";
+            responseModel.Message = "Especializacao created successfully!";
             return Ok(responseModel);
         }
         catch (Exception ex)
@@ -67,21 +66,23 @@ public class ClienteController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Put(Guid id, [FromBody] ClienteDtoUpdate clienteDtoUpdate)
+    public async Task<IActionResult> Put(Guid id, [FromBody] EspecializacaoDtoUpdate especializacaoDtoUpdate)
     {
         var responseModel = new ResponseModel();
-        clienteDtoUpdate.Id = id;
+        especializacaoDtoUpdate.Id = id;
 
         // create localy
-        await _clienteService.UpdateAsync(clienteDtoUpdate);
+        await _especializacaoService.UpdateAsync(especializacaoDtoUpdate);
         try
         {
             // try to commit
             await _uow.Commit();
 
+            var x = await _especializacaoService.GetByIdAsync(id);
+
             // return response to caller
             responseModel.IsError = false;
-            responseModel.Message = "Cliente updated successfully!";
+            responseModel.Message = "Especializacao updated successfully!";
             return Ok(responseModel);
         }
         catch (Exception ex)
@@ -101,11 +102,11 @@ public class ClienteController : ControllerBase
     {
         var responseModel = new ResponseModel();
 
-        var cliente = await _clienteService.GetByIdAsync(id);
-        var clienteDto = _mapper.Map<ClienteDto>(cliente);
+        var especializacao = await _especializacaoService.GetByIdAsync(id);
+        var especializacaoDto = _mapper.Map<EspecializacaoDto>(especializacao);
 
         // create localy
-        await _clienteService.RemoveAsync(clienteDto);
+        await _especializacaoService.RemoveAsync(especializacaoDto);
         try
         {
             // try to commit
@@ -113,7 +114,7 @@ public class ClienteController : ControllerBase
 
             // return response to caller
             responseModel.IsError = false;
-            responseModel.Message = "Cliente removed successfully!";
+            responseModel.Message = "Especializacao removed successfully!";
             return Ok(responseModel);
         }
         catch (Exception ex)

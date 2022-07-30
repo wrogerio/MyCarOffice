@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using MyCarOffice.Application.DTOs.Queries;
+using MyCarOffice.Application.DTOs.Especializacao;
 using MyCarOffice.Application.Interfaces;
 using MyCarOffice.Domain.Entities;
 using MyCarOffice.Infra.Interfaces;
@@ -17,7 +17,7 @@ public class EspecializacaoService : IEspecializacaoService
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }
 
-    public async Task<IEnumerable<EspecializacaoDto>> GetAllAsync()
+    public async Task<List<EspecializacaoDto>> GetAllAsync()
     {
         var especializacoes = await _repository.GetAllAsync();
         return EntidadeToDtoList(especializacoes.ToList());
@@ -29,13 +29,13 @@ public class EspecializacaoService : IEspecializacaoService
         return EntidadeToDto(especializacao);
     }
 
-    public async Task CreateAsync(EspecializacaoDto especializacaoDto)
+    public async Task CreateAsync(EspecializacaoDtoCreate especializacaoDto)
     {
         var especializacao = _mapper.Map<Especializacao>(especializacaoDto);
         await _repository.CreateAsync(especializacao);
     }
 
-    public async Task UpdateAsync(EspecializacaoDto especializacaoDto)
+    public async Task UpdateAsync(EspecializacaoDtoUpdate especializacaoDto)
     {
         var especializacao = _mapper.Map<Especializacao>(especializacaoDto);
         await _repository.UpdateAsync(especializacao);

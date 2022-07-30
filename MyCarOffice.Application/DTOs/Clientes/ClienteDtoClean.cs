@@ -1,4 +1,4 @@
-﻿namespace MyCarOffice.Application.DTOs.Queries.CleanDtos;
+﻿namespace MyCarOffice.Application.DTOs.Clientes;
 
 public class ClienteDtoClean
 {

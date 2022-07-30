@@ -1,7 +1,6 @@
-﻿using MyCarOffice.Application.DTOs.Queries.CleanDtos;
-using MyCarOffice.Application.DTOs.Veiculos;
+﻿using MyCarOffice.Application.DTOs.Veiculos;
 
-namespace MyCarOffice.Application.DTOs.Queries;
+namespace MyCarOffice.Application.DTOs.Clientes;
 
 public class ClienteDto : ClienteDtoClean
 {

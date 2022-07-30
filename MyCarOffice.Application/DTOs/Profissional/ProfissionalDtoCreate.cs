@@ -2,12 +2,10 @@
 using MyCarOffice.Domain.Enums;
 using MyCarOffice.Helpers.Constants;
 
-namespace MyCarOffice.Application.DTOs.Queries;
+namespace MyCarOffice.Application.DTOs.Profissional;
 
-public class ProfissionalDto
+public class ProfissionalDtoCreate
 {
-    [Key] public Guid Id { get; set; }
-
     [Required(ErrorMessage = Constants.ProfissionalNomeErrorRequired)]
     [MaxLength(Constants.ProfissionalNomeMaxLength, ErrorMessage = Constants.ProfissionalNomeErrorMaxLength)]
     [Display(Description = Constants.ProfissionalNomeDisplay)]
