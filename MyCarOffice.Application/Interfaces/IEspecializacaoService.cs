@@ -1,5 +1,4 @@
-﻿using MyCarOffice.Application.DTOs;
-using MyCarOffice.Domain.Entities;
+﻿using MyCarOffice.Application.DTOs.Queries;
 
 namespace MyCarOffice.Application.Interfaces;
 

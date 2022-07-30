@@ -2,7 +2,7 @@
 using MyCarOffice.Domain.Enums;
 using MyCarOffice.Helpers.Constants;
 
-namespace MyCarOffice.Application.DTOs;
+namespace MyCarOffice.Application.DTOs.Queries;
 
 public class ServicoDto
 {

@@ -1,10 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using MyCarOffice.Domain.Entities;
 using MyCarOffice.Helpers.Constants;
 
-namespace MyCarOffice.Application.DTOs;
+namespace MyCarOffice.Application.DTOs.Commands.Create;
 
-public class EspecializacaoDto
+public class EspecializacaoDtoCreateUpdate
 {
     [Key] public Guid Id { get; set; }
 
@@ -18,5 +17,4 @@ public class EspecializacaoDto
     public DateTime Since { get; set; } = DateTime.Now;
 
     public Guid ProfissionalId { get; set; }
-    public virtual Profissional? Profissional { get; set; }
 }

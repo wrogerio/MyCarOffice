@@ -15,7 +15,6 @@ public class Servico : EntityBase
 
     public Servico()
     {
-        
     }
 
     public string Nome { get; set; } = "";

@@ -1,10 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using MyCarOffice.Api.Model;
-using MyCarOffice.Application.DTOs;
+using MyCarOffice.Application.DTOs.Queries;
 using MyCarOffice.Application.Interfaces;
-using MyCarOffice.Helpers.Constants;
-using MyCarOffice.Helpers.Methods;
 using MyCarOffice.Uow;
 
 namespace MyCarOffice.Api.Controllers;
@@ -28,9 +26,7 @@ public class ProfissionalController : Controller
     public async Task<IActionResult> Get()
     {
         var profissionais = await _profissionalService.GetAllAsync();
-        var profissionaisDto = _mapper.Map<IEnumerable<ProfissionalDto>>(profissionais);
-
-        return Ok(profissionaisDto);
+        return Ok(profissionais);
     }
 
 
@@ -38,9 +34,7 @@ public class ProfissionalController : Controller
     public async Task<IActionResult> Get(Guid id)
     {
         var profissional = await _profissionalService.GetByIdAsync(id);
-        var profissionalDto = _mapper.Map<ProfissionalDto>(profissional);
-
-        return Ok(profissionalDto);
+        return Ok(profissional);
     }
 
 
@@ -48,9 +42,6 @@ public class ProfissionalController : Controller
     public async Task<IActionResult> Post([FromBody] ProfissionalDto profissionalDto)
     {
         var responseModel = new ResponseModel();
-
-        // valid requires
-        if (!MyOfficeMethods.ValidarRequeridos(profissionalDto)) return BadRequest(Constants.ErrorRequired);
 
         // create localy
         profissionalDto = await _profissionalService.CreateAsync(profissionalDto);
@@ -83,10 +74,6 @@ public class ProfissionalController : Controller
     public async Task<IActionResult> Put(Guid id, [FromBody] ProfissionalDto profissionalDto)
     {
         var responseModel = new ResponseModel();
-
-        // valid requireds
-        if (!MyOfficeMethods.ValidarRequeridos(profissionalDto)) return BadRequest(Constants.ErrorRequired);
-
         profissionalDto.Id = id;
 
         // create localy
@@ -122,9 +109,6 @@ public class ProfissionalController : Controller
 
         var profissional = await _profissionalService.GetByIdAsync(id);
         var profissionalDto = _mapper.Map<ProfissionalDto>(profissional);
-
-        // valid requireds
-        if (!MyOfficeMethods.ValidarRequeridos(profissionalDto)) return BadRequest(Constants.ErrorRequired);
 
         // create localy
         await _profissionalService.RemoveAsync(profissionalDto);

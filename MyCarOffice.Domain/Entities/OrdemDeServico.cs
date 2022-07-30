@@ -39,7 +39,6 @@ public class OrdemDeServico : EntityBase
 
     public OrdemDeServico()
     {
-        
     }
 
     public string? OficinaNomeFantasia { get; set; }

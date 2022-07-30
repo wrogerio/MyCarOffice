@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using MyCarOffice.Application.DTOs;
+using MyCarOffice.Application.DTOs.Queries;
 using MyCarOffice.Application.Interfaces;
 using MyCarOffice.Domain.Entities;
 using MyCarOffice.Infra.Interfaces;
@@ -20,32 +20,44 @@ public class ProfissionalService : IProfissionalService
     public async Task<IEnumerable<ProfissionalDto>> GetAllAsync()
     {
         var profissionais = await _repository.GetAllAsync();
-        return _mapper.Map<IEnumerable<ProfissionalDto>>(profissionais);
+        return EntidadeToDtoList(profissionais.ToList());
     }
 
     public async Task<ProfissionalDto> GetByIdAsync(Guid id)
     {
         var profissional = await _repository.GetByIdAsync(id);
-        return _mapper.Map<ProfissionalDto>(profissional);
+        return EntidadeToDto(profissional);
     }
 
     public async Task<ProfissionalDto> CreateAsync(ProfissionalDto profissionalDto)
     {
         var profissional = _mapper.Map<Profissional>(profissionalDto);
         await _repository.CreateAsync(profissional);
-        return _mapper.Map<ProfissionalDto>(profissional);
+        return EntidadeToDto(profissional);
     }
 
     public async Task<ProfissionalDto> UpdateAsync(ProfissionalDto profissionalDto)
     {
         var profissional = _mapper.Map<Profissional>(profissionalDto);
         await _repository.UpdateAsync(profissional);
-        return _mapper.Map<ProfissionalDto>(profissional);
+        return EntidadeToDto(profissional);
     }
 
     public async Task RemoveAsync(ProfissionalDto profissionalDto)
     {
         var profissional = _mapper.Map<Profissional>(profissionalDto);
         await _repository.RemoveAsync(profissional);
+    }
+
+    private ProfissionalDto EntidadeToDto(Profissional? entidade)
+    {
+        var objDto = _mapper.Map<ProfissionalDto>(entidade);
+        return objDto;
+    }
+
+    private List<ProfissionalDto> EntidadeToDtoList(List<Profissional> entidades)
+    {
+        var objDtoList = _mapper.Map<List<ProfissionalDto>>(entidades);
+        return objDtoList;
     }
 }

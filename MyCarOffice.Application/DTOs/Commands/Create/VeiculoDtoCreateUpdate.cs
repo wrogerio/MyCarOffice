@@ -1,10 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using MyCarOffice.Domain.Entities;
 using MyCarOffice.Helpers.Constants;
 
-namespace MyCarOffice.Application.DTOs;
+namespace MyCarOffice.Application.DTOs.Commands.Create;
 
-public class VeiculoDto
+public class VeiculoDtoCreateUpdate
 {
     [Key] public Guid Id { get; set; }
 
@@ -37,5 +36,4 @@ public class VeiculoDto
 
     //Relacionamentos
     public Guid ClienteId { get; set; }
-    public virtual Cliente? Cliente { get; set; }
 }

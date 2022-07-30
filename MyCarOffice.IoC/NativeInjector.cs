@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
-using MyCarOffice.Application.DTOs;
+using MyCarOffice.Application.DTOs.Queries;
+using MyCarOffice.Application.DTOs.Queries;
 using MyCarOffice.Application.Interfaces;
 using MyCarOffice.Application.Mapping;
 using MyCarOffice.Application.Services;

@@ -15,7 +15,6 @@ public class Cliente : EntityBase
 
     public Cliente()
     {
-        
     }
 
     public string Nome { get; set; } = "";

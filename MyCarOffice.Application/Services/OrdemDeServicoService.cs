@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using MyCarOffice.Application.DTOs;
+using MyCarOffice.Application.DTOs.Queries;
 using MyCarOffice.Application.Interfaces;
 using MyCarOffice.Domain.Entities;
 using MyCarOffice.Infra.Interfaces;
@@ -20,32 +20,44 @@ public class OrdemDeServicoService : IOrdemDeServicoService
     public async Task<IEnumerable<OrdemDeServicoDto>> GetAllAsync()
     {
         var ordensDeServicos = await _repository.GetAllAsync();
-        return _mapper.Map<IEnumerable<OrdemDeServicoDto>>(ordensDeServicos);
+        return EntidadeToDtoList(ordensDeServicos.ToList());
     }
 
     public async Task<OrdemDeServicoDto> GetByIdAsync(Guid id)
     {
         var ordemDeServico = await _repository.GetByIdAsync(id);
-        return _mapper.Map<OrdemDeServicoDto>(ordemDeServico);
+        return EntidadeToDto(ordemDeServico);
     }
 
     public async Task<OrdemDeServicoDto> CreateAsync(OrdemDeServicoDto ordemDeServicoDto)
     {
         var ordemDeServico = _mapper.Map<OrdemDeServico>(ordemDeServicoDto);
         await _repository.CreateAsync(ordemDeServico);
-        return _mapper.Map<OrdemDeServicoDto>(ordemDeServico);
+        return EntidadeToDto(ordemDeServico);
     }
 
     public async Task<OrdemDeServicoDto> UpdateAsync(OrdemDeServicoDto ordemDeServicoDto)
     {
         var ordemDeServico = _mapper.Map<OrdemDeServico>(ordemDeServicoDto);
         await _repository.UpdateAsync(ordemDeServico);
-        return _mapper.Map<OrdemDeServicoDto>(ordemDeServico);
+        return EntidadeToDto(ordemDeServico);
     }
 
     public async Task RemoveAsync(OrdemDeServicoDto ordemDeServicoDto)
     {
         var ordemDeServico = _mapper.Map<OrdemDeServico>(ordemDeServicoDto);
         await _repository.RemoveAsync(ordemDeServico);
+    }
+
+    private OrdemDeServicoDto EntidadeToDto(OrdemDeServico? entidade)
+    {
+        var objDto = _mapper.Map<OrdemDeServicoDto>(entidade);
+        return objDto;
+    }
+
+    private List<OrdemDeServicoDto> EntidadeToDtoList(List<OrdemDeServico> entidades)
+    {
+        var objDtoList = _mapper.Map<List<OrdemDeServicoDto>>(entidades);
+        return objDtoList;
     }
 }

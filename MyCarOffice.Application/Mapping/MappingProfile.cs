@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
-using MyCarOffice.Application.DTOs;
+using MyCarOffice.Application.DTOs.Commands.Create;
+using MyCarOffice.Application.DTOs.Commands.Update;
+using MyCarOffice.Application.DTOs.Queries;
+using MyCarOffice.Application.DTOs.Queries.CleanDtos;
 using MyCarOffice.Domain.Entities;
 
 namespace MyCarOffice.Application.Mapping;
@@ -8,8 +11,22 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
+        #region Cliente
+
         CreateMap<Cliente, ClienteDto>().ReverseMap()
             .ConstructUsing(dto => new Cliente(dto.Nome, dto.Cpf, dto.DataNasc, dto.Sexo, dto.Logradouro, dto.Telefone));
+        
+        CreateMap<Cliente, ClienteDtoClean>().ReverseMap()
+            .ConstructUsing(dto => new Cliente(dto.Nome, dto.Cpf, dto.DataNasc, dto.Sexo, dto.Logradouro, dto.Telefone));
+        
+        CreateMap<Cliente, ClienteDtoCreate>().ReverseMap()
+            .ConstructUsing(dto => new Cliente(dto.Nome, dto.Cpf, dto.DataNasc, dto.Sexo, dto.Logradouro, dto.Telefone));
+        
+        CreateMap<Cliente, ClienteDtoUpdate>().ReverseMap()
+            .ConstructUsing(dto => new Cliente(dto.Nome, dto.Cpf, dto.DataNasc, dto.Sexo, dto.Logradouro, dto.Telefone));
+
+        #endregion
+
 
         CreateMap<Oficina, OficinaDto>().ReverseMap()
             .ConstructUsing(dto => new Oficina(dto.NomeFantasia, dto.Cnpj, dto.NomeResponsavel, dto.Telefone, dto.Logradouro));
@@ -17,9 +34,21 @@ public class MappingProfile : Profile
         CreateMap<Especializacao, EspecializacaoDto>().ReverseMap()
             .ConstructUsing(dto => new Especializacao(dto.Nome, dto.Since));
 
+        #region Veiculo
 
         CreateMap<Veiculo, VeiculoDto>().ReverseMap()
             .ConstructUsing(dto => new Veiculo(dto.Marca, dto.Modelo, dto.Placa, dto.Ano));
+
+        CreateMap<Veiculo, VeiculoDtoClean>().ReverseMap()
+            .ConstructUsing(dto => new Veiculo(dto.Marca, dto.Modelo, dto.Placa, dto.Ano));
+
+        #endregion
+
+
+        CreateMap<Veiculo, VeiculoDtoCreateUpdate>().ReverseMap()
+            .ConstructUsing(dto => new Veiculo(dto.Marca, dto.Modelo, dto.Placa, dto.Ano));
+
+        CreateMap<VeiculoDto, VeiculoDtoCreateUpdate>().ReverseMap();
 
         CreateMap<Profissional, ProfissionalDto>().ReverseMap()
             .ConstructUsing(dto => new Profissional(dto.Nome, dto.Cpf, dto.DataNasc, dto.Area));

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using MyCarOffice.Helpers.Constants;
 
-namespace MyCarOffice.Application.DTOs;
+namespace MyCarOffice.Application.DTOs.Queries;
 
 public class OficinaDto
 {

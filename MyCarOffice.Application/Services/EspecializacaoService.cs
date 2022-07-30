@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using MyCarOffice.Application.DTOs;
+using MyCarOffice.Application.DTOs.Queries;
 using MyCarOffice.Application.Interfaces;
 using MyCarOffice.Domain.Entities;
 using MyCarOffice.Infra.Interfaces;
@@ -20,32 +20,44 @@ public class EspecializacaoService : IEspecializacaoService
     public async Task<IEnumerable<EspecializacaoDto>> GetAllAsync()
     {
         var especializacoes = await _repository.GetAllAsync();
-        return _mapper.Map<IEnumerable<EspecializacaoDto>>(especializacoes);
+        return EntidadeToDtoList(especializacoes.ToList());
     }
 
     public async Task<EspecializacaoDto> GetByIdAsync(Guid id)
     {
         var especializacao = await _repository.GetByIdAsync(id);
-        return _mapper.Map<EspecializacaoDto>(especializacao);
+        return EntidadeToDto(especializacao);
     }
 
     public async Task<EspecializacaoDto> CreateAsync(EspecializacaoDto especializacaoDto)
     {
         var especializacao = _mapper.Map<Especializacao>(especializacaoDto);
         await _repository.CreateAsync(especializacao);
-        return _mapper.Map<EspecializacaoDto>(especializacao);
+        return EntidadeToDto(especializacao);
     }
 
     public async Task<EspecializacaoDto> UpdateAsync(EspecializacaoDto especializacaoDto)
     {
         var especializacao = _mapper.Map<Especializacao>(especializacaoDto);
         await _repository.UpdateAsync(especializacao);
-        return _mapper.Map<EspecializacaoDto>(especializacao);
+        return EntidadeToDto(especializacao);
     }
 
     public async Task RemoveAsync(EspecializacaoDto especializacaoDto)
     {
         var especializacao = _mapper.Map<Especializacao>(especializacaoDto);
         await _repository.RemoveAsync(especializacao);
+    }
+
+    private EspecializacaoDto EntidadeToDto(Especializacao? entidade)
+    {
+        var objDto = _mapper.Map<EspecializacaoDto>(entidade);
+        return objDto;
+    }
+
+    private List<EspecializacaoDto> EntidadeToDtoList(List<Especializacao> entidades)
+    {
+        var objDtoList = _mapper.Map<List<EspecializacaoDto>>(entidades);
+        return objDtoList;
     }
 }

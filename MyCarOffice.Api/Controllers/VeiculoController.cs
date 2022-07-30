@@ -1,22 +1,21 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using MyCarOffice.Api.Model;
-using MyCarOffice.Application.DTOs;
+using MyCarOffice.Application.DTOs.Commands;
+using MyCarOffice.Application.DTOs.Commands.Create;
+using MyCarOffice.Application.DTOs.Queries;
 using MyCarOffice.Application.Interfaces;
-using MyCarOffice.Domain.Entities;
-using MyCarOffice.Helpers.Constants;
-using MyCarOffice.Helpers.Methods;
 using MyCarOffice.Uow;
 
 namespace MyCarOffice.Api.Controllers;
 
 [Route("api/v1/[controller]")]
 [ApiController]
-public class VeiculoController: ControllerBase
+public class VeiculoController : ControllerBase
 {
-    private readonly IVeiculoService _veiculoService;
-    private readonly IUow _uow;
     private readonly IMapper _mapper;
+    private readonly IUow _uow;
+    private readonly IVeiculoService _veiculoService;
 
     public VeiculoController(IVeiculoService veiculoService, IUow uow, IMapper mapper)
     {
@@ -29,35 +28,28 @@ public class VeiculoController: ControllerBase
     public async Task<IActionResult> Get()
     {
         var veiculos = await _veiculoService.GetAllAsync();
-        var veiculosDto = _mapper.Map<List<VeiculoDto>>(veiculos);
-
-        return Ok(veiculosDto);
+        return Ok(veiculos);
     }
-    
+
     [HttpGet("{id}")]
     public async Task<IActionResult> Get(Guid id)
     {
         var veiculo = await _veiculoService.GetByIdAsync(id);
-        var veiculoDto = _mapper.Map<VeiculoDto>(veiculo);
-
-        return Ok(veiculoDto);
+        return Ok(veiculo);
     }
-    
+
     [HttpPost]
-    public async Task<IActionResult> Post([FromBody] VeiculoDto veiculoDto)
+    public async Task<IActionResult> Post([FromBody] VeiculoDtoCreateUpdate veiculoDtoCreateUpdate)
     {
         var responseModel = new ResponseModel();
-            
-        // valid requireds
-        if (!MyOfficeMethods.ValidarRequeridos<VeiculoDto>(veiculoDto)) return BadRequest(Constants.ErrorRequired);
-            
+
         // create localy
-        veiculoDto = await _veiculoService.CreateAsync(veiculoDto);
+        var veiculoDto = await _veiculoService.CreateAsync(veiculoDtoCreateUpdate);
         try
         {
             // try to commit
             await _uow.Commit();
-                
+
             // return response to caller
             responseModel.IsError = false;
             responseModel.Message = "Veiculo created successfully!";
@@ -68,31 +60,27 @@ public class VeiculoController: ControllerBase
         {
             // rolback actions
             await _uow.RollBack();
-                
+
             // return response to caller
             responseModel.IsError = true;
             responseModel.Message = ex.Message;
             return BadRequest(responseModel);
         }
     }
-    
+
     [HttpPut("{id}")]
-    public async Task<IActionResult> Put(Guid id, [FromBody] VeiculoDto veiculoDto)
+    public async Task<IActionResult> Put(Guid id, [FromBody] VeiculoDtoCreateUpdate veiculoDtoCreateUpdate)
     {
         var responseModel = new ResponseModel();
-            
-        // valid requireds
-        if (!MyOfficeMethods.ValidarRequeridos<VeiculoDto>(veiculoDto)) return BadRequest(Constants.ErrorRequired);
+        veiculoDtoCreateUpdate.Id = id;
 
-        veiculoDto.Id = id;
-            
         // create localy
-        veiculoDto = await _veiculoService.UpdateAsync(veiculoDto);
+        var veiculoDto = await _veiculoService.UpdateAsync(veiculoDtoCreateUpdate);
         try
         {
             // try to commit
             await _uow.Commit();
-                
+
             // return response to caller
             responseModel.IsError = false;
             responseModel.Message = "Veiculo updated successfully!";
@@ -103,14 +91,14 @@ public class VeiculoController: ControllerBase
         {
             // rolback actions
             await _uow.RollBack();
-                
+
             // return response to caller
             responseModel.IsError = true;
             responseModel.Message = ex.Message;
             return BadRequest(responseModel);
         }
     }
-    
+
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(Guid id)
     {
@@ -118,17 +106,14 @@ public class VeiculoController: ControllerBase
 
         var veiculo = await _veiculoService.GetByIdAsync(id);
         var veiculoDto = _mapper.Map<VeiculoDto>(veiculo);
-            
-        // valid requireds
-        if (!MyOfficeMethods.ValidarRequeridos<VeiculoDto>(veiculoDto)) return BadRequest(Constants.ErrorRequired);
-            
+
         // create localy
         await _veiculoService.RemoveAsync(veiculoDto);
         try
         {
             // try to commit
             await _uow.Commit();
-                
+
             // return response to caller
             responseModel.IsError = false;
             responseModel.Message = "Veiculo removed successfully!";
@@ -138,7 +123,7 @@ public class VeiculoController: ControllerBase
         {
             // rolback actions
             await _uow.RollBack();
-                
+
             // return response to caller
             responseModel.IsError = true;
             responseModel.Message = ex.Message;

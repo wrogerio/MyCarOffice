@@ -19,7 +19,7 @@ public class RepositoryBase<Entity> : IRepositoryBase<Entity> where Entity : cla
         return await _context.Set<Entity>().ToListAsync();
     }
 
-    public async Task<Entity> GetByIdAsync(Guid id)
+    public async Task<Entity?> GetByIdAsync(Guid id)
     {
         return await _context.Set<Entity>().FindAsync(id);
     }

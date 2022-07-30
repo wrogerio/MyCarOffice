@@ -13,7 +13,6 @@ public class Veiculo : EntityBase
 
     public Veiculo()
     {
-        
     }
 
     public string Marca { get; set; } = "";
