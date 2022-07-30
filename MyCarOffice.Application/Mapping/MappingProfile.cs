@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MyCarOffice.Application.DTOs.Clientes;
 using MyCarOffice.Application.DTOs.Especializacao;
+using MyCarOffice.Application.DTOs.Oficina;
 using MyCarOffice.Application.DTOs.Profissional;
 using MyCarOffice.Application.DTOs.Veiculos;
 using MyCarOffice.Domain.Entities;
@@ -88,6 +89,26 @@ public class MappingProfile : Profile
         CreateMap<EspecializacaoDtoClean, EspecializacaoDtoCreate>().ReverseMap();
         
         CreateMap<EspecializacaoDtoClean, EspecializacaoDtoUpdate>().ReverseMap();
+
+        #endregion
+
+        #region OficinaConfiguration
+
+        CreateMap<Oficina, OficinaDto>().ReverseMap()
+            .ConstructUsing(dto => new Oficina(dto.NomeFantasia, dto.Cnpj, dto.NomeResponsavel, dto.Telefone, dto.Logradouro));
+        
+        CreateMap<Oficina, OficinaDtoClean>().ReverseMap()
+            .ConstructUsing(dto => new Oficina(dto.NomeFantasia, dto.Cnpj, dto.NomeResponsavel, dto.Telefone, dto.Logradouro));
+        
+        CreateMap<Oficina, OficinaDtoCreate>().ReverseMap()
+            .ConstructUsing(dto => new Oficina(dto.NomeFantasia, dto.Cnpj, dto.NomeResponsavel, dto.Telefone, dto.Logradouro));
+        
+        CreateMap<Oficina, OficinaDtoUpdate>().ReverseMap()
+            .ConstructUsing(dto => new Oficina(dto.NomeFantasia, dto.Cnpj, dto.NomeResponsavel, dto.Telefone, dto.Logradouro));
+        
+        CreateMap<OficinaDtoClean, OficinaDtoCreate>().ReverseMap();
+        
+        CreateMap<OficinaDtoClean, OficinaDtoUpdate>().ReverseMap();
 
         #endregion
 

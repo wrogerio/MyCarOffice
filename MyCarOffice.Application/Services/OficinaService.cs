@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using MyCarOffice.Application.DTOs.Oficina;
 using MyCarOffice.Application.DTOs.Queries;
 using MyCarOffice.Application.Interfaces;
 using MyCarOffice.Domain.Entities;
@@ -17,7 +18,7 @@ public class OficinaService : IOficinaService
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }
 
-    public async Task<IEnumerable<OficinaDto>> GetAllAsync()
+    public async Task<List<OficinaDto>> GetAllAsync()
     {
         var oficinas = await _repository.GetAllAsync();
         return EntidadeToDtoList(oficinas.ToList());
@@ -29,13 +30,13 @@ public class OficinaService : IOficinaService
         return EntidadeToDto(oficina);
     }
 
-    public async Task CreateAsync(OficinaDto oficinaDto)
+    public async Task CreateAsync(OficinaDtoCreate oficinaDto)
     {
         var oficina = _mapper.Map<Oficina>(oficinaDto);
         await _repository.CreateAsync(oficina);
     }
 
-    public async Task UpdateAsync(OficinaDto oficinaDto)
+    public async Task UpdateAsync(OficinaDtoUpdate oficinaDto)
     {
         var oficina = _mapper.Map<Oficina>(oficinaDto);
         await _repository.UpdateAsync(oficina);

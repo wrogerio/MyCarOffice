@@ -1,12 +1,12 @@
-﻿using MyCarOffice.Application.DTOs.Queries;
+﻿using MyCarOffice.Application.DTOs.Oficina;
 
 namespace MyCarOffice.Application.Interfaces;
 
 public interface IOficinaService
 {
-    Task<IEnumerable<OficinaDto>> GetAllAsync();
+    Task<List<OficinaDto>> GetAllAsync();
     Task<OficinaDto> GetByIdAsync(Guid id);
-    Task CreateAsync(OficinaDto oficinaDto);
-    Task UpdateAsync(OficinaDto oficinaDto);
+    Task CreateAsync(OficinaDtoCreate oficinaDto);
+    Task UpdateAsync(OficinaDtoUpdate oficinaDto);
     Task RemoveAsync(OficinaDto oficinaDto);
 }

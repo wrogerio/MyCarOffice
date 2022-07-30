@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using MyCarOffice.Application.DTOs.Clientes;
 using MyCarOffice.Application.DTOs.Especializacao;
+using MyCarOffice.Application.DTOs.Oficina;
 using MyCarOffice.Application.DTOs.Profissional;
 using MyCarOffice.Application.DTOs.Queries;
 using MyCarOffice.Application.DTOs.Veiculos;
