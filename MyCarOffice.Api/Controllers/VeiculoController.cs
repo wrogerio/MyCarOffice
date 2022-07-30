@@ -4,6 +4,7 @@ using MyCarOffice.Api.Model;
 using MyCarOffice.Application.DTOs.Commands;
 using MyCarOffice.Application.DTOs.Commands.Create;
 using MyCarOffice.Application.DTOs.Queries;
+using MyCarOffice.Application.DTOs.Veiculos;
 using MyCarOffice.Application.Interfaces;
 using MyCarOffice.Uow;
 
@@ -39,12 +40,12 @@ public class VeiculoController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post([FromBody] VeiculoDtoCreateUpdate veiculoDtoCreateUpdate)
+    public async Task<IActionResult> Post([FromBody] VeiculoDtoCreate veiculoDtoCreate)
     {
         var responseModel = new ResponseModel();
 
         // create localy
-        var veiculoDto = await _veiculoService.CreateAsync(veiculoDtoCreateUpdate);
+        await _veiculoService.CreateAsync(veiculoDtoCreate);
         try
         {
             // try to commit
@@ -53,7 +54,6 @@ public class VeiculoController : ControllerBase
             // return response to caller
             responseModel.IsError = false;
             responseModel.Message = "Veiculo created successfully!";
-            responseModel.Data = veiculoDto;
             return Ok(responseModel);
         }
         catch (Exception ex)
@@ -69,22 +69,23 @@ public class VeiculoController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Put(Guid id, [FromBody] VeiculoDtoCreateUpdate veiculoDtoCreateUpdate)
+    public async Task<IActionResult> Put(Guid id, [FromBody] VeiculoDtoUpdate veiculoDtoUpdate)
     {
         var responseModel = new ResponseModel();
-        veiculoDtoCreateUpdate.Id = id;
+        veiculoDtoUpdate.Id = id;
 
         // create localy
-        var veiculoDto = await _veiculoService.UpdateAsync(veiculoDtoCreateUpdate);
+        await _veiculoService.UpdateAsync(veiculoDtoUpdate);
         try
         {
             // try to commit
             await _uow.Commit();
 
+            var x = await _veiculoService.GetByIdAsync(id);
+
             // return response to caller
             responseModel.IsError = false;
             responseModel.Message = "Veiculo updated successfully!";
-            responseModel.Data = veiculoDto;
             return Ok(responseModel);
         }
         catch (Exception ex)

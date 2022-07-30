@@ -29,18 +29,16 @@ public class OrdemDeServicoService : IOrdemDeServicoService
         return EntidadeToDto(ordemDeServico);
     }
 
-    public async Task<OrdemDeServicoDto> CreateAsync(OrdemDeServicoDto ordemDeServicoDto)
+    public async Task CreateAsync(OrdemDeServicoDto ordemDeServicoDto)
     {
         var ordemDeServico = _mapper.Map<OrdemDeServico>(ordemDeServicoDto);
         await _repository.CreateAsync(ordemDeServico);
-        return EntidadeToDto(ordemDeServico);
     }
 
-    public async Task<OrdemDeServicoDto> UpdateAsync(OrdemDeServicoDto ordemDeServicoDto)
+    public async Task UpdateAsync(OrdemDeServicoDto ordemDeServicoDto)
     {
         var ordemDeServico = _mapper.Map<OrdemDeServico>(ordemDeServicoDto);
         await _repository.UpdateAsync(ordemDeServico);
-        return EntidadeToDto(ordemDeServico);
     }
 
     public async Task RemoveAsync(OrdemDeServicoDto ordemDeServicoDto)

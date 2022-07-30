@@ -1,12 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using MyCarOffice.Helpers.Constants;
 
-namespace MyCarOffice.Application.DTOs.Commands.Create;
+namespace MyCarOffice.Application.DTOs.Veiculos;
 
-public class VeiculoDtoCreateUpdate
+public class VeiculoDtoCreate
 {
-    [Key] public Guid Id { get; set; }
-
     [Required(ErrorMessage = Constants.VeiculoMarcaErrorRequired)]
     [MaxLength(Constants.VeiculoMarcaMaxLength, ErrorMessage = Constants.VeiculoMarcaErrorMaxLength)]
     [Display(Description = Constants.VeiculoMarcaDisplay)]

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MyCarOffice.Application.DTOs.Queries.CleanDtos;
+namespace MyCarOffice.Application.DTOs.Veiculos;
 
 public class VeiculoDtoClean
 {

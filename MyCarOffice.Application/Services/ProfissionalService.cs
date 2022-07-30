@@ -29,18 +29,16 @@ public class ProfissionalService : IProfissionalService
         return EntidadeToDto(profissional);
     }
 
-    public async Task<ProfissionalDto> CreateAsync(ProfissionalDto profissionalDto)
+    public async Task CreateAsync(ProfissionalDto profissionalDto)
     {
         var profissional = _mapper.Map<Profissional>(profissionalDto);
         await _repository.CreateAsync(profissional);
-        return EntidadeToDto(profissional);
     }
 
-    public async Task<ProfissionalDto> UpdateAsync(ProfissionalDto profissionalDto)
+    public async Task UpdateAsync(ProfissionalDto profissionalDto)
     {
         var profissional = _mapper.Map<Profissional>(profissionalDto);
         await _repository.UpdateAsync(profissional);
-        return EntidadeToDto(profissional);
     }
 
     public async Task RemoveAsync(ProfissionalDto profissionalDto)

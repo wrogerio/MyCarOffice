@@ -20,7 +20,7 @@ public class ClienteService : IClienteService
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }
 
-    public async Task<IEnumerable<ClienteDto>> GetAllAsync()
+    public async Task<List<ClienteDto>> GetAllAsync()
     {
         var clientes = await _repository.GetAllAsync();
         return EntidadeToDtoList(clientes.ToList());
@@ -32,18 +32,16 @@ public class ClienteService : IClienteService
         return EntidadeToDto(cliente);
     }
 
-    public async Task<ClienteDtoClean> CreateAsync(ClienteDtoCreate clienteDto)
+    public async Task CreateAsync(ClienteDtoCreate clienteDto)
     {
         var cliente = _mapper.Map<Cliente>(clienteDto);
         await _repository.CreateAsync(cliente);
-        return EntidadeToDtoClean(cliente);
     }
 
-    public async Task<ClienteDtoClean> UpdateAsync(ClienteDtoUpdate clienteDto)
+    public async Task UpdateAsync(ClienteDtoUpdate clienteDto)
     {
         var cliente = _mapper.Map<Cliente>(clienteDto);
         await _repository.UpdateAsync(cliente);
-        return EntidadeToDtoClean(cliente);
     }
 
     public async Task RemoveAsync(ClienteDto clienteDto)
@@ -57,22 +55,10 @@ public class ClienteService : IClienteService
         var objDto = _mapper.Map<ClienteDto>(entidade);
         return objDto;
     }
-    
-    private ClienteDtoClean EntidadeToDtoClean(Cliente? entidade)
-    {
-        var objDto = _mapper.Map<ClienteDtoClean>(entidade);
-        return objDto;
-    }
 
     private List<ClienteDto> EntidadeToDtoList(List<Cliente> entidades)
     {
         var objDtoList = _mapper.Map<List<ClienteDto>>(entidades);
-        return objDtoList;
-    }
-    
-    private List<ClienteDtoClean> EntidadeToDtoCleanList(List<Cliente> entidades)
-    {
-        var objDtoList = _mapper.Map<List<ClienteDtoClean>>(entidades);
         return objDtoList;
     }
 }

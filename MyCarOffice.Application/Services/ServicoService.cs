@@ -29,18 +29,16 @@ public class ServicoService : IServicoService
         return EntidadeToDto(servico);
     }
 
-    public async Task<ServicoDto> CreateAsync(ServicoDto servicoDto)
+    public async Task CreateAsync(ServicoDto servicoDto)
     {
         var servico = _mapper.Map<Servico>(servicoDto);
         await _repository.CreateAsync(servico);
-        return EntidadeToDto(servico);
     }
 
-    public async Task<ServicoDto> UpdateAsync(ServicoDto servicoDto)
+    public async Task UpdateAsync(ServicoDto servicoDto)
     {
         var servico = _mapper.Map<Servico>(servicoDto);
         await _repository.UpdateAsync(servico);
-        return EntidadeToDto(servico);
     }
 
     public async Task RemoveAsync(ServicoDto servicoDto)

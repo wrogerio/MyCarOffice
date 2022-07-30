@@ -45,7 +45,7 @@ public class ClienteController : ControllerBase
         var responseModel = new ResponseModel();
 
         // create localy
-        var clienteDto = await _clienteService.CreateAsync(clienteDtoCrate);
+        await _clienteService.CreateAsync(clienteDtoCrate);
         try
         {
             // try to commit
@@ -54,7 +54,6 @@ public class ClienteController : ControllerBase
             // return response to caller
             responseModel.IsError = false;
             responseModel.Message = "Cliente created successfully!";
-            responseModel.Data = clienteDto;
             return Ok(responseModel);
         }
         catch (Exception ex)
@@ -76,7 +75,7 @@ public class ClienteController : ControllerBase
         clienteDtoUpdate.Id = id;
 
         // create localy
-        var clienteDto = await _clienteService.UpdateAsync(clienteDtoUpdate);
+        await _clienteService.UpdateAsync(clienteDtoUpdate);
         try
         {
             // try to commit
@@ -85,7 +84,6 @@ public class ClienteController : ControllerBase
             // return response to caller
             responseModel.IsError = false;
             responseModel.Message = "Cliente updated successfully!";
-            responseModel.Data = clienteDto;
             return Ok(responseModel);
         }
         catch (Exception ex)

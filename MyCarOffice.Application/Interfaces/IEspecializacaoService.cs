@@ -6,7 +6,7 @@ public interface IEspecializacaoService
 {
     Task<IEnumerable<EspecializacaoDto>> GetAllAsync();
     Task<EspecializacaoDto> GetByIdAsync(Guid id);
-    Task<EspecializacaoDto> CreateAsync(EspecializacaoDto especializacaoDto);
-    Task<EspecializacaoDto> UpdateAsync(EspecializacaoDto especializacaoDto);
+    Task CreateAsync(EspecializacaoDto especializacaoDto);
+    Task UpdateAsync(EspecializacaoDto especializacaoDto);
     Task RemoveAsync(EspecializacaoDto especializacaoDto);
 }

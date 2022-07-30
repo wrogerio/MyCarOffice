@@ -29,18 +29,16 @@ public class EspecializacaoService : IEspecializacaoService
         return EntidadeToDto(especializacao);
     }
 
-    public async Task<EspecializacaoDto> CreateAsync(EspecializacaoDto especializacaoDto)
+    public async Task CreateAsync(EspecializacaoDto especializacaoDto)
     {
         var especializacao = _mapper.Map<Especializacao>(especializacaoDto);
         await _repository.CreateAsync(especializacao);
-        return EntidadeToDto(especializacao);
     }
 
-    public async Task<EspecializacaoDto> UpdateAsync(EspecializacaoDto especializacaoDto)
+    public async Task UpdateAsync(EspecializacaoDto especializacaoDto)
     {
         var especializacao = _mapper.Map<Especializacao>(especializacaoDto);
         await _repository.UpdateAsync(especializacao);
-        return EntidadeToDto(especializacao);
     }
 
     public async Task RemoveAsync(EspecializacaoDto especializacaoDto)

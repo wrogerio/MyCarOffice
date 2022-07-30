@@ -16,4 +16,9 @@
         <PackageReference Include="FluentValidation.AspNetCore" Version="11.1.2" />
     </ItemGroup>
 
+    <ItemGroup>
+        <Folder Include="DTOs\Commands\Update" />
+        <Folder Include="DTOs\Queries\CleanDtos" />
+    </ItemGroup>
+
 </Project>

@@ -29,18 +29,16 @@ public class OficinaService : IOficinaService
         return EntidadeToDto(oficina);
     }
 
-    public async Task<OficinaDto> CreateAsync(OficinaDto oficinaDto)
+    public async Task CreateAsync(OficinaDto oficinaDto)
     {
         var oficina = _mapper.Map<Oficina>(oficinaDto);
         await _repository.CreateAsync(oficina);
-        return EntidadeToDto(oficina);
     }
 
-    public async Task<OficinaDto> UpdateAsync(OficinaDto oficinaDto)
+    public async Task UpdateAsync(OficinaDto oficinaDto)
     {
         var oficina = _mapper.Map<Oficina>(oficinaDto);
         await _repository.UpdateAsync(oficina);
-        return EntidadeToDto(oficina);
     }
 
     public async Task RemoveAsync(OficinaDto oficinaDto)

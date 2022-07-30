@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MyCarOffice.Application.DTOs.Commands.Create;
-using MyCarOffice.Application.DTOs.Queries;
+using MyCarOffice.Application.DTOs.Veiculos;
 using MyCarOffice.Application.Interfaces;
 using MyCarOffice.Domain.Entities;
 using MyCarOffice.Infra.Interfaces;
@@ -30,18 +30,16 @@ public class VeiculoService : IVeiculoService
         return EntidadeToDto(veiculo);
     }
 
-    public async Task<VeiculoDto> CreateAsync(VeiculoDtoCreateUpdate veiculoDto)
+    public async Task CreateAsync(VeiculoDtoCreate veiculoDto)
     {
         var veiculo = _mapper.Map<Veiculo>(veiculoDto);
         await _repository.CreateAsync(veiculo);
-        return EntidadeToDto(veiculo);
     }
 
-    public async Task<VeiculoDto> UpdateAsync(VeiculoDtoCreateUpdate veiculoDto)
+    public async Task UpdateAsync(VeiculoDtoUpdate veiculoDto)
     {
         var veiculo = _mapper.Map<Veiculo>(veiculoDto);
         await _repository.UpdateAsync(veiculo);
-        return EntidadeToDto(veiculo);
     }
 
     public async Task RemoveAsync(VeiculoDto veiculoDto)
