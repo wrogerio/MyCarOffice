@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using MyCarOffice.Application.DTOs.Queries;
+using MyCarOffice.Application.DTOs.OrdemDeServico;
 using MyCarOffice.Application.Interfaces;
 using MyCarOffice.Domain.Entities;
 using MyCarOffice.Infra.Interfaces;
@@ -17,7 +17,7 @@ public class OrdemDeServicoService : IOrdemDeServicoService
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }
 
-    public async Task<IEnumerable<OrdemDeServicoDto>> GetAllAsync()
+    public async Task<List<OrdemDeServicoDto>> GetAllAsync()
     {
         var ordensDeServicos = await _repository.GetAllAsync();
         return EntidadeToDtoList(ordensDeServicos.ToList());
@@ -29,13 +29,13 @@ public class OrdemDeServicoService : IOrdemDeServicoService
         return EntidadeToDto(ordemDeServico);
     }
 
-    public async Task CreateAsync(OrdemDeServicoDto ordemDeServicoDto)
+    public async Task CreateAsync(OrdemDeServicoDtoCreate ordemDeServicoDto)
     {
         var ordemDeServico = _mapper.Map<OrdemDeServico>(ordemDeServicoDto);
         await _repository.CreateAsync(ordemDeServico);
     }
 
-    public async Task UpdateAsync(OrdemDeServicoDto ordemDeServicoDto)
+    public async Task UpdateAsync(OrdemDeServicoDtoUpdate ordemDeServicoDto)
     {
         var ordemDeServico = _mapper.Map<OrdemDeServico>(ordemDeServicoDto);
         await _repository.UpdateAsync(ordemDeServico);

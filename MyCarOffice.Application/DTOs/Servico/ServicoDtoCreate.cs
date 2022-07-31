@@ -2,12 +2,10 @@
 using MyCarOffice.Domain.Enums;
 using MyCarOffice.Helpers.Constants;
 
-namespace MyCarOffice.Application.DTOs.Queries;
+namespace MyCarOffice.Application.DTOs.Servico;
 
-public class ServicoDto
+public class ServicoDtoCreate
 {
-    [Key] public Guid Id { get; set; }
-
     [Required(ErrorMessage = Constants.ServicoNomeErrorRequired)]
     [MaxLength(Constants.ServicoNomeMaxLength, ErrorMessage = Constants.ServicoNomeErrorMaxLength)]
     [Display(Description = Constants.ServicoNomeDisplay)]

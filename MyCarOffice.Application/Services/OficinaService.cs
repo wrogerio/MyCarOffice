@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using MyCarOffice.Application.DTOs.Oficina;
-using MyCarOffice.Application.DTOs.Queries;
 using MyCarOffice.Application.Interfaces;
 using MyCarOffice.Domain.Entities;
 using MyCarOffice.Infra.Interfaces;

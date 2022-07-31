@@ -1,12 +1,12 @@
-﻿using MyCarOffice.Application.DTOs.Queries;
+﻿using MyCarOffice.Application.DTOs.OrdemDeServico;
 
 namespace MyCarOffice.Application.Interfaces;
 
 public interface IOrdemDeServicoService
 {
-    Task<IEnumerable<OrdemDeServicoDto>> GetAllAsync();
+    Task<List<OrdemDeServicoDto>> GetAllAsync();
     Task<OrdemDeServicoDto> GetByIdAsync(Guid id);
-    Task CreateAsync(OrdemDeServicoDto ordemDeServicoDto);
-    Task UpdateAsync(OrdemDeServicoDto ordemDeServicoDto);
+    Task CreateAsync(OrdemDeServicoDtoCreate ordemDeServicoDto);
+    Task UpdateAsync(OrdemDeServicoDtoUpdate ordemDeServicoDto);
     Task RemoveAsync(OrdemDeServicoDto ordemDeServicoDto);
 }

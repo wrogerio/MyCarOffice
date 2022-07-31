@@ -2,7 +2,9 @@
 using MyCarOffice.Application.DTOs.Clientes;
 using MyCarOffice.Application.DTOs.Especializacao;
 using MyCarOffice.Application.DTOs.Oficina;
+using MyCarOffice.Application.DTOs.OrdemDeServico;
 using MyCarOffice.Application.DTOs.Profissional;
+using MyCarOffice.Application.DTOs.Servico;
 using MyCarOffice.Application.DTOs.Veiculos;
 using MyCarOffice.Domain.Entities;
 
@@ -112,36 +114,63 @@ public class MappingProfile : Profile
 
         #endregion
 
+        #region ServiçoConfiguration
+        CreateMap<Servico, ServicoDto>().ReverseMap()
+            .ConstructUsing(dto => new Servico(dto.Area, dto.Nome, dto.Valor, dto.TempoMedio));
+        
+        CreateMap<Servico, ServicoDtoClean>().ReverseMap()
+            .ConstructUsing(dto => new Servico(dto.Area, dto.Nome, dto.Valor, dto.TempoMedio));
+        
+        CreateMap<Servico, ServicoDtoCreate>().ReverseMap()
+            .ConstructUsing(dto => new Servico(dto.Area, dto.Nome, dto.Valor, dto.TempoMedio));
+        
+        CreateMap<Servico, ServicoDtoUpdate>().ReverseMap()
+            .ConstructUsing(dto => new Servico(dto.Area, dto.Nome, dto.Valor, dto.TempoMedio));
+        
+        CreateMap<ServicoDtoClean, ServicoDtoCreate>().ReverseMap();
+        
+        CreateMap<ServicoDtoClean, ServicoDtoUpdate>().ReverseMap();
+        
+        #endregion
 
-        // CreateMap<Oficina, OficinaDto>().ReverseMap()
-        //     .ConstructUsing(dto => new Oficina(dto.NomeFantasia, dto.Cnpj, dto.NomeResponsavel, dto.Telefone, dto.Logradouro));
-        //
-        // CreateMap<Especializacao, EspecializacaoDto>().ReverseMap()
-        //     .ConstructUsing(dto => new Especializacao(dto.Nome, dto.Since));
-        //
-        // CreateMap<Veiculo, VeiculoDto>().ReverseMap()
-        //     .ConstructUsing(dto => new Veiculo(dto.Marca, dto.Modelo, dto.Placa, dto.Ano));
-        //
-        // CreateMap<Veiculo, VeiculoDtoClean>().ReverseMap()
-        //     .ConstructUsing(dto => new Veiculo(dto.Marca, dto.Modelo, dto.Placa, dto.Ano));
-        //
-        // CreateMap<Veiculo, VeiculoDtoCreateUpdate>().ReverseMap()
-        //     .ConstructUsing(dto => new Veiculo(dto.Marca, dto.Modelo, dto.Placa, dto.Ano));
-        //
-        // CreateMap<VeiculoDto, VeiculoDtoCreateUpdate>().ReverseMap();
-        //
-        // CreateMap<Profissional, ProfissionalDto>().ReverseMap()
-        //     .ConstructUsing(dto => new Profissional(dto.Nome, dto.Cpf, dto.DataNasc, dto.Area));
-        //
-        // CreateMap<Servico, ServicoDto>().ReverseMap()
-        //     .ConstructUsing(dto => new Servico(dto.Area, dto.Nome, dto.Valor, dto.TempoMedio));
-        //
-        // CreateMap<OrdemDeServico, OrdemDeServicoDto>().ReverseMap()
-        //     .ConstructUsing(dto => new OrdemDeServico(
-        //         dto.OficinaNomeFantasia, dto.OficinaCnpj, dto.OficinaNomeResponsavel, dto.OficinaTelefone, dto.OficinaLogradouro,
-        //         dto.ProfissionalNome, dto.ProfissionalCpf, dto.ProfissionalDataNasc, dto.ProfissionalArea, dto.ClienteNome,
-        //         dto.ClienteCpf, dto.ClienteDataNasc, dto.ClienteTelefone, dto.ClienteSexo, dto.ClienteLogradouro,
-        //         dto.VeiculoMarca, dto.VeiculoModelo, dto.VeiculoPlaca, dto.VeiculoAno, dto.ServicoArea, dto.ServicoNome,
-        //         dto.ServicoValor, dto.ServicoTempoMedio));
+        #region OrdemDeServicoConfiguration
+
+        CreateMap<OrdemDeServico, OrdemDeServicoDto>().ReverseMap()
+            .ConstructUsing(dto => new OrdemDeServico(
+                dto.OficinaNomeFantasia, dto.OficinaCnpj, dto.OficinaNomeResponsavel, dto.OficinaTelefone, dto.OficinaLogradouro,
+                dto.ProfissionalNome, dto.ProfissionalCpf, dto.ProfissionalDataNasc, dto.ProfissionalArea, dto.ClienteNome,
+                dto.ClienteCpf, dto.ClienteDataNasc, dto.ClienteTelefone, dto.ClienteSexo, dto.ClienteLogradouro,
+                dto.VeiculoMarca, dto.VeiculoModelo, dto.VeiculoPlaca, dto.VeiculoAno, dto.ServicoArea, dto.ServicoNome,
+                dto.ServicoValor, dto.ServicoTempoMedio));
+        
+        CreateMap<OrdemDeServico, OrdemDeServicoDtoClean>().ReverseMap()
+            .ConstructUsing(dto => new OrdemDeServico(
+                dto.OficinaNomeFantasia, dto.OficinaCnpj, dto.OficinaNomeResponsavel, dto.OficinaTelefone, dto.OficinaLogradouro,
+                dto.ProfissionalNome, dto.ProfissionalCpf, dto.ProfissionalDataNasc, dto.ProfissionalArea, dto.ClienteNome,
+                dto.ClienteCpf, dto.ClienteDataNasc, dto.ClienteTelefone, dto.ClienteSexo, dto.ClienteLogradouro,
+                dto.VeiculoMarca, dto.VeiculoModelo, dto.VeiculoPlaca, dto.VeiculoAno, dto.ServicoArea, dto.ServicoNome,
+                dto.ServicoValor, dto.ServicoTempoMedio));
+        
+        CreateMap<OrdemDeServico, OrdemDeServicoDtoCreate>().ReverseMap()
+            .ConstructUsing(dto => new OrdemDeServico(
+                dto.OficinaNomeFantasia, dto.OficinaCnpj, dto.OficinaNomeResponsavel, dto.OficinaTelefone, dto.OficinaLogradouro,
+                dto.ProfissionalNome, dto.ProfissionalCpf, dto.ProfissionalDataNasc, dto.ProfissionalArea, dto.ClienteNome,
+                dto.ClienteCpf, dto.ClienteDataNasc, dto.ClienteTelefone, dto.ClienteSexo, dto.ClienteLogradouro,
+                dto.VeiculoMarca, dto.VeiculoModelo, dto.VeiculoPlaca, dto.VeiculoAno, dto.ServicoArea, dto.ServicoNome,
+                dto.ServicoValor, dto.ServicoTempoMedio));
+        
+        CreateMap<OrdemDeServico, OrdemDeServicoDtoUpdate>().ReverseMap()
+            .ConstructUsing(dto => new OrdemDeServico(
+                dto.OficinaNomeFantasia, dto.OficinaCnpj, dto.OficinaNomeResponsavel, dto.OficinaTelefone, dto.OficinaLogradouro,
+                dto.ProfissionalNome, dto.ProfissionalCpf, dto.ProfissionalDataNasc, dto.ProfissionalArea, dto.ClienteNome,
+                dto.ClienteCpf, dto.ClienteDataNasc, dto.ClienteTelefone, dto.ClienteSexo, dto.ClienteLogradouro,
+                dto.VeiculoMarca, dto.VeiculoModelo, dto.VeiculoPlaca, dto.VeiculoAno, dto.ServicoArea, dto.ServicoNome,
+                dto.ServicoValor, dto.ServicoTempoMedio));
+        
+        CreateMap<OrdemDeServicoDtoClean, OrdemDeServicoDtoCreate>().ReverseMap();
+        
+        CreateMap<OrdemDeServicoDtoClean, OrdemDeServicoDtoUpdate>().ReverseMap();
+
+        #endregion
     }
 }

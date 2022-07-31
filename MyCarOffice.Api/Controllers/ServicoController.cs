@@ -1,7 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using MyCarOffice.Api.Model;
-using MyCarOffice.Application.DTOs.Oficina;
+using MyCarOffice.Application.DTOs.Servico;
 using MyCarOffice.Application.Interfaces;
 using MyCarOffice.Uow;
 
@@ -10,15 +10,15 @@ namespace MyCarOffice.Api.Controllers;
 [Route("api/v1/[controller]")]
 [ApiController]
 [ApiExplorerSettings(IgnoreApi = true)]
-public class OficinaController : ControllerBase
+public class ServicoController : ControllerBase
 {
-    private readonly IOficinaService _oficinaService;
+    private readonly IServicoService _servicoService;
     private readonly IMapper _mapper;
     private readonly IUow _uow;
 
-    public OficinaController(IOficinaService oficinaService, IUow uow, IMapper mapper)
+    public ServicoController(IServicoService servicoService, IUow uow, IMapper mapper)
     {
-        _oficinaService = oficinaService;
+        _servicoService = servicoService;
         _uow = uow;
         _mapper = mapper;
     }
@@ -26,24 +26,24 @@ public class OficinaController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> Get()
     {
-        var oficinas = await _oficinaService.GetAllAsync();
-        return Ok(oficinas);
+        var servicos = await _servicoService.GetAllAsync();
+        return Ok(servicos);
     }
 
     [HttpGet("{id}")]
     public async Task<IActionResult> Get(Guid id)
     {
-        var oficina = await _oficinaService.GetByIdAsync(id);
-        return Ok(oficina);
+        var servico = await _servicoService.GetByIdAsync(id);
+        return Ok(servico);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post([FromBody] OficinaDtoCreate oficinaDtoCrate)
+    public async Task<IActionResult> Post([FromBody] ServicoDtoCreate servicoDtoCrate)
     {
         var responseModel = new ResponseModel();
 
         // create localy
-        await _oficinaService.CreateAsync(oficinaDtoCrate);
+        await _servicoService.CreateAsync(servicoDtoCrate);
         try
         {
             // try to commit
@@ -51,7 +51,7 @@ public class OficinaController : ControllerBase
 
             // return response to caller
             responseModel.IsError = false;
-            responseModel.Message = "Oficina created successfully!";
+            responseModel.Message = "Servico created successfully!";
             return Ok(responseModel);
         }
         catch (Exception ex)
@@ -67,13 +67,13 @@ public class OficinaController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Put(Guid id, [FromBody] OficinaDtoUpdate oficinaDtoUpdate)
+    public async Task<IActionResult> Put(Guid id, [FromBody] ServicoDtoUpdate servicoDtoUpdate)
     {
         var responseModel = new ResponseModel();
-        oficinaDtoUpdate.Id = id;
+        servicoDtoUpdate.Id = id;
 
         // create localy
-        await _oficinaService.UpdateAsync(oficinaDtoUpdate);
+        await _servicoService.UpdateAsync(servicoDtoUpdate);
         try
         {
             // try to commit
@@ -81,7 +81,7 @@ public class OficinaController : ControllerBase
 
             // return response to caller
             responseModel.IsError = false;
-            responseModel.Message = "Oficina updated successfully!";
+            responseModel.Message = "Servico updated successfully!";
             return Ok(responseModel);
         }
         catch (Exception ex)
@@ -101,11 +101,11 @@ public class OficinaController : ControllerBase
     {
         var responseModel = new ResponseModel();
 
-        var oficina = await _oficinaService.GetByIdAsync(id);
-        var oficinaDto = _mapper.Map<OficinaDto>(oficina);
+        var servico = await _servicoService.GetByIdAsync(id);
+        var servicoDto = _mapper.Map<ServicoDto>(servico);
 
         // create localy
-        await _oficinaService.RemoveAsync(oficinaDto);
+        await _servicoService.RemoveAsync(servicoDto);
         try
         {
             // try to commit
@@ -113,7 +113,7 @@ public class OficinaController : ControllerBase
 
             // return response to caller
             responseModel.IsError = false;
-            responseModel.Message = "Oficina removed successfully!";
+            responseModel.Message = "Servico removed successfully!";
             return Ok(responseModel);
         }
         catch (Exception ex)
