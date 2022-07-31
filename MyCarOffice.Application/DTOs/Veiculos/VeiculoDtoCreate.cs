@@ -1,13 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using MyCarOffice.Domain.Entities;
 using MyCarOffice.Helpers.Constants;
 
-namespace MyCarOffice.Application.DTOs;
+namespace MyCarOffice.Application.DTOs.Veiculos;
 
-public class VeiculoDto
+public class VeiculoDtoCreate
 {
-    [Key] public Guid Id { get; set; }
-
     [Required(ErrorMessage = Constants.VeiculoMarcaErrorRequired)]
     [MaxLength(Constants.VeiculoMarcaMaxLength, ErrorMessage = Constants.VeiculoMarcaErrorMaxLength)]
     [Display(Description = Constants.VeiculoMarcaDisplay)]
@@ -37,5 +34,4 @@ public class VeiculoDto
 
     //Relacionamentos
     public Guid ClienteId { get; set; }
-    public virtual Cliente? Cliente { get; set; }
 }

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using MyCarOffice.Application.DTOs;
+using MyCarOffice.Application.DTOs.Servico;
 using MyCarOffice.Application.Interfaces;
 using MyCarOffice.Domain.Entities;
 using MyCarOffice.Infra.Interfaces;
@@ -17,35 +17,45 @@ public class ServicoService : IServicoService
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }
 
-    public async Task<IEnumerable<ServicoDto>> GetAllAsync()
+    public async Task<List<ServicoDto>> GetAllAsync()
     {
         var servicos = await _repository.GetAllAsync();
-        return _mapper.Map<IEnumerable<ServicoDto>>(servicos);
+        return EntidadeToDtoList(servicos.ToList());
     }
 
     public async Task<ServicoDto> GetByIdAsync(Guid id)
     {
         var servico = await _repository.GetByIdAsync(id);
-        return _mapper.Map<ServicoDto>(servico);
+        return EntidadeToDto(servico);
     }
 
-    public async Task<ServicoDto> CreateAsync(ServicoDto servicoDto)
+    public async Task CreateAsync(ServicoDtoCreate servicoDto)
     {
         var servico = _mapper.Map<Servico>(servicoDto);
         await _repository.CreateAsync(servico);
-        return _mapper.Map<ServicoDto>(servico);
     }
 
-    public async Task<ServicoDto> UpdateAsync(ServicoDto servicoDto)
+    public async Task UpdateAsync(ServicoDtoUpdate servicoDto)
     {
         var servico = _mapper.Map<Servico>(servicoDto);
         await _repository.UpdateAsync(servico);
-        return _mapper.Map<ServicoDto>(servico);
     }
 
     public async Task RemoveAsync(ServicoDto servicoDto)
     {
         var servico = _mapper.Map<Servico>(servicoDto);
         await _repository.RemoveAsync(servico);
+    }
+
+    private ServicoDto EntidadeToDto(Servico? entidade)
+    {
+        var objDto = _mapper.Map<ServicoDto>(entidade);
+        return objDto;
+    }
+
+    private List<ServicoDto> EntidadeToDtoList(List<Servico> entidades)
+    {
+        var objDtoList = _mapper.Map<List<ServicoDto>>(entidades);
+        return objDtoList;
     }
 }

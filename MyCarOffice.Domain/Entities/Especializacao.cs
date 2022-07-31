@@ -11,7 +11,6 @@ public class Especializacao : EntityBase
 
     public Especializacao()
     {
-        
     }
 
     public string Nome { get; set; } = "";

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using MyCarOffice.Application.DTOs;
+using MyCarOffice.Application.DTOs.Veiculos;
 using MyCarOffice.Application.Interfaces;
 using MyCarOffice.Domain.Entities;
 using MyCarOffice.Infra.Interfaces;
@@ -17,35 +17,45 @@ public class VeiculoService : IVeiculoService
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }
 
-    public async Task<IEnumerable<VeiculoDto>> GetAllAsync()
+    public async Task<List<VeiculoDto>> GetAllAsync()
     {
         var veiculos = await _repository.GetAllAsync();
-        return _mapper.Map<IEnumerable<VeiculoDto>>(veiculos);
+        return EntidadeToDtoList(veiculos.ToList());
     }
 
     public async Task<VeiculoDto> GetByIdAsync(Guid id)
     {
         var veiculo = await _repository.GetByIdAsync(id);
-        return _mapper.Map<VeiculoDto>(veiculo);
+        return EntidadeToDto(veiculo);
     }
 
-    public async Task<VeiculoDto> CreateAsync(VeiculoDto veiculoDto)
+    public async Task CreateAsync(VeiculoDtoCreate veiculoDto)
     {
         var veiculo = _mapper.Map<Veiculo>(veiculoDto);
         await _repository.CreateAsync(veiculo);
-        return _mapper.Map<VeiculoDto>(veiculo);
     }
 
-    public async Task<VeiculoDto> UpdateAsync(VeiculoDto veiculoDto)
+    public async Task UpdateAsync(VeiculoDtoUpdate veiculoDto)
     {
         var veiculo = _mapper.Map<Veiculo>(veiculoDto);
         await _repository.UpdateAsync(veiculo);
-        return _mapper.Map<VeiculoDto>(veiculo);
     }
 
     public async Task RemoveAsync(VeiculoDto veiculoDto)
     {
         var veiculo = _mapper.Map<Veiculo>(veiculoDto);
         await _repository.RemoveAsync(veiculo);
+    }
+
+    private VeiculoDto EntidadeToDto(Veiculo? entidade)
+    {
+        var objDto = _mapper.Map<VeiculoDto>(entidade);
+        return objDto;
+    }
+
+    private List<VeiculoDto> EntidadeToDtoList(List<Veiculo> entidades)
+    {
+        var objDtoList = _mapper.Map<List<VeiculoDto>>(entidades);
+        return objDtoList;
     }
 }

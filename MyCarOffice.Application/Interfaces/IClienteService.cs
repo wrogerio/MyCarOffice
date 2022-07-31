@@ -1,12 +1,12 @@
-﻿using MyCarOffice.Application.DTOs;
+﻿using MyCarOffice.Application.DTOs.Clientes;
 
 namespace MyCarOffice.Application.Interfaces;
 
 public interface IClienteService
 {
-    Task<IEnumerable<ClienteDto>> GetAllAsync();
+    Task<List<ClienteDto>> GetAllAsync();
     Task<ClienteDto> GetByIdAsync(Guid id);
-    Task<ClienteDto> CreateAsync(ClienteDto clienteDto);
-    Task<ClienteDto> UpdateAsync(ClienteDto clienteDto);
+    Task CreateAsync(ClienteDtoCreate clienteDto);
+    Task UpdateAsync(ClienteDtoUpdate clienteDto);
     Task RemoveAsync(ClienteDto clienteDto);
 }

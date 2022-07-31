@@ -1,154 +1,130 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MyCarOffice.Api.Model;
-using MyCarOffice.Application.DTOs;
+using MyCarOffice.Application.DTOs.Oficina;
 using MyCarOffice.Application.Interfaces;
-using MyCarOffice.Domain.Entities;
-using MyCarOffice.Helpers.Constants;
-using MyCarOffice.Helpers.Methods;
 using MyCarOffice.Uow;
 
-namespace MyCarOffice.Api.Controllers
+namespace MyCarOffice.Api.Controllers;
+
+[Route("api/v1/[controller]")]
+[ApiController]
+[ApiExplorerSettings(IgnoreApi = true)]
+public class OficinaController : ControllerBase
 {
-    [Route("api/v1/[controller]")]
-    [ApiController]
-    public class OficinaController : ControllerBase
+    private readonly IOficinaService _oficinaService;
+    private readonly IMapper _mapper;
+    private readonly IUow _uow;
+
+    public OficinaController(IOficinaService oficinaService, IUow uow, IMapper mapper)
     {
-        private readonly IOficinaService _oficinaService;
-        private readonly IUow _uow;
-        private readonly IMapper _mapper;
+        _oficinaService = oficinaService;
+        _uow = uow;
+        _mapper = mapper;
+    }
 
-        public OficinaController(IOficinaService oficina, IUow uow, IMapper mapper)
+    [HttpGet]
+    public async Task<IActionResult> Get()
+    {
+        var oficinas = await _oficinaService.GetAllAsync();
+        return Ok(oficinas);
+    }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> Get(Guid id)
+    {
+        var oficina = await _oficinaService.GetByIdAsync(id);
+        return Ok(oficina);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Post([FromBody] OficinaDtoCreate oficinaDtoCrate)
+    {
+        var responseModel = new ResponseModel();
+
+        // create localy
+        await _oficinaService.CreateAsync(oficinaDtoCrate);
+        try
         {
-            _oficinaService = oficina ?? throw new ArgumentNullException(nameof(oficina));
-            _uow = uow ?? throw new ArgumentNullException(nameof(uow));
-            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            // try to commit
+            await _uow.Commit();
+
+            // return response to caller
+            responseModel.IsError = false;
+            responseModel.Message = "Oficina created successfully!";
+            return Ok(responseModel);
         }
-
-        [HttpGet]
-        public async Task<IActionResult> Get()
+        catch (Exception ex)
         {
-            var oficinas = await _oficinaService.GetAllAsync();
-            var oficinasDto = _mapper.Map<IEnumerable<OficinaDto>>(oficinas);
+            // rolback actions
+            await _uow.RollBack();
 
-            return Ok(oficinasDto);
+            // return response to caller
+            responseModel.IsError = true;
+            responseModel.Message = ex.Message;
+            return BadRequest(responseModel);
         }
+    }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get(Guid id)
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Put(Guid id, [FromBody] OficinaDtoUpdate oficinaDtoUpdate)
+    {
+        var responseModel = new ResponseModel();
+        oficinaDtoUpdate.Id = id;
+
+        // create localy
+        await _oficinaService.UpdateAsync(oficinaDtoUpdate);
+        try
         {
-            var oficina = await _oficinaService.GetByIdAsync(id);
-            var oficinaDto = _mapper.Map<OficinaDto>(oficina);
+            // try to commit
+            await _uow.Commit();
 
-            return Ok(oficinaDto);
+            // return response to caller
+            responseModel.IsError = false;
+            responseModel.Message = "Oficina updated successfully!";
+            return Ok(responseModel);
         }
-
-        [HttpPost]
-        public async Task<IActionResult> Post([FromBody] OficinaDto oficinaDto)
+        catch (Exception ex)
         {
-            var responseModel = new ResponseModel();
-            
-            // valid requireds
-            if (!MyOfficeMethods.ValidarRequeridos<OficinaDto>(oficinaDto)) return BadRequest(Constants.ErrorRequired);
-            
-            // create localy
-            oficinaDto = await _oficinaService.CreateAsync(oficinaDto);
-            try
-            {
-                // try to commit
-                await _uow.Commit();
-                
-                // return response to caller
-                responseModel.IsError = false;
-                responseModel.Message = "Oficina created successfully!";
-                responseModel.Data = oficinaDto;
-                return Ok(responseModel);
-            }
-            catch (Exception ex)
-            {
-                // rolback actions
-                await _uow.RollBack();
-                
-                // return response to caller
-                responseModel.IsError = true;
-                responseModel.Message = ex.Message;
-                return BadRequest(responseModel);
-            }
+            // rolback actions
+            await _uow.RollBack();
+
+            // return response to caller
+            responseModel.IsError = true;
+            responseModel.Message = ex.Message;
+            return BadRequest(responseModel);
         }
+    }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Put(Guid id, [FromBody] OficinaDto oficinaDto)
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+        var responseModel = new ResponseModel();
+
+        var oficina = await _oficinaService.GetByIdAsync(id);
+        var oficinaDto = _mapper.Map<OficinaDto>(oficina);
+
+        // create localy
+        await _oficinaService.RemoveAsync(oficinaDto);
+        try
         {
-            var responseModel = new ResponseModel();
-            
-            // valid requireds
-            if (!MyOfficeMethods.ValidarRequeridos<OficinaDto>(oficinaDto)) return BadRequest(Constants.ErrorRequired);
+            // try to commit
+            await _uow.Commit();
 
-            oficinaDto.Id = id;
-            
-            // create localy
-            oficinaDto = await _oficinaService.UpdateAsync(oficinaDto);
-            try
-            {
-                // try to commit
-                await _uow.Commit();
-                
-                // return response to caller
-                responseModel.IsError = false;
-                responseModel.Message = "Oficina updated successfully!";
-                responseModel.Data = oficinaDto;
-                return Ok(responseModel);
-            }
-            catch (Exception ex)
-            {
-                // rolback actions
-                await _uow.RollBack();
-                
-                // return response to caller
-                responseModel.IsError = true;
-                responseModel.Message = ex.Message;
-                return BadRequest(responseModel);
-            }
+            // return response to caller
+            responseModel.IsError = false;
+            responseModel.Message = "Oficina removed successfully!";
+            return Ok(responseModel);
         }
-        
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(Guid id)
+        catch (Exception ex)
         {
-            var responseModel = new ResponseModel();
+            // rolback actions
+            await _uow.RollBack();
 
-            var oficina = await _oficinaService.GetByIdAsync(id);
-            var oficinaDto = _mapper.Map<OficinaDto>(oficina);
-            
-            // valid requireds
-            if (!MyOfficeMethods.ValidarRequeridos<OficinaDto>(oficinaDto)) return BadRequest(Constants.ErrorRequired);
-            
-            // create localy
-            await _oficinaService.RemoveAsync(oficinaDto);
-            try
-            {
-                // try to commit
-                await _uow.Commit();
-                
-                // return response to caller
-                responseModel.IsError = false;
-                responseModel.Message = "Oficina removed successfully!";
-                return Ok(responseModel);
-            }
-            catch (Exception ex)
-            {
-                // rolback actions
-                await _uow.RollBack();
-                
-                // return response to caller
-                responseModel.IsError = true;
-                responseModel.Message = ex.Message;
-                return BadRequest(responseModel);
-            }
+            // return response to caller
+            responseModel.IsError = true;
+            responseModel.Message = ex.Message;
+            return BadRequest(responseModel);
         }
     }
 }

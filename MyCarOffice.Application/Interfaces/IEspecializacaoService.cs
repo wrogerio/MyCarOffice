@@ -1,13 +1,12 @@
-﻿using MyCarOffice.Application.DTOs;
-using MyCarOffice.Domain.Entities;
+﻿using MyCarOffice.Application.DTOs.Especializacao;
 
 namespace MyCarOffice.Application.Interfaces;
 
 public interface IEspecializacaoService
 {
-    Task<IEnumerable<EspecializacaoDto>> GetAllAsync();
+    Task<List<EspecializacaoDto>> GetAllAsync();
     Task<EspecializacaoDto> GetByIdAsync(Guid id);
-    Task<EspecializacaoDto> CreateAsync(EspecializacaoDto especializacaoDto);
-    Task<EspecializacaoDto> UpdateAsync(EspecializacaoDto especializacaoDto);
+    Task CreateAsync(EspecializacaoDtoCreate especializacaoDto);
+    Task UpdateAsync(EspecializacaoDtoUpdate especializacaoDto);
     Task RemoveAsync(EspecializacaoDto especializacaoDto);
 }

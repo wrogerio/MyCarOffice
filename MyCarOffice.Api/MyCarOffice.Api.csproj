@@ -12,7 +12,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\MyCarOffice.IoC\MyCarOffice.IoC.csproj" />
+        <ProjectReference Include="..\MyCarOffice.IoC\MyCarOffice.IoC.csproj" />
     </ItemGroup>
 
 </Project>

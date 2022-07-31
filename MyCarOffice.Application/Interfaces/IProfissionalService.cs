@@ -1,12 +1,12 @@
-﻿using MyCarOffice.Application.DTOs;
+﻿using MyCarOffice.Application.DTOs.Profissional;
 
 namespace MyCarOffice.Application.Interfaces;
 
 public interface IProfissionalService
 {
-    Task<IEnumerable<ProfissionalDto>> GetAllAsync();
+    Task<List<ProfissionalDto>> GetAllAsync();
     Task<ProfissionalDto> GetByIdAsync(Guid id);
-    Task<ProfissionalDto> CreateAsync(ProfissionalDto profissionalDto);
-    Task<ProfissionalDto> UpdateAsync(ProfissionalDto profissionalDto);
+    Task CreateAsync(ProfissionalDtoCreate profissionalDto);
+    Task UpdateAsync(ProfissionalDtoUpdate profissionalDto);
     Task RemoveAsync(ProfissionalDto profissionalDto);
 }

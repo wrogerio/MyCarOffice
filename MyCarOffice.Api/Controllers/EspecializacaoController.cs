@@ -1,152 +1,132 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using MyCarOffice.Api.Model;
-using MyCarOffice.Application.DTOs;
+using MyCarOffice.Application.DTOs.Especializacao;
 using MyCarOffice.Application.Interfaces;
-using MyCarOffice.Helpers.Constants;
-using MyCarOffice.Helpers.Methods;
 using MyCarOffice.Uow;
 
-namespace MyCarOffice.Api.Controllers
+namespace MyCarOffice.Api.Controllers;
+
+[Route("api/v1/[controller]")]
+[ApiController]
+[ApiExplorerSettings(IgnoreApi = true)]
+public class EspecializacaoController : ControllerBase
 {
-    [Route("api/v1/[controller]")]
-    [ApiController]
-    public class EspecializacaoController : Controller
+    private readonly IMapper _mapper;
+    private readonly IUow _uow;
+    private readonly IEspecializacaoService _especializacaoService;
+
+    public EspecializacaoController(IEspecializacaoService especializacaoService, IUow uow, IMapper mapper)
     {
-        private readonly IEspecializacaoService _especializacaoService;
-        private readonly IUow _uow;
-        private readonly IMapper _mapper;
+        _especializacaoService = especializacaoService;
+        _uow = uow;
+        _mapper = mapper;
+    }
 
-        public EspecializacaoController(IEspecializacaoService especializacaoService, IUow uow, IMapper mapper)
+    [HttpGet]
+    public async Task<IActionResult> Get()
+    {
+        var especializacoes = await _especializacaoService.GetAllAsync();
+        return Ok(especializacoes);
+    }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> Get(Guid id)
+    {
+        var especializacao = await _especializacaoService.GetByIdAsync(id);
+        return Ok(especializacao);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Post([FromBody] EspecializacaoDtoCreate especializacaoDtoCreate)
+    {
+        var responseModel = new ResponseModel();
+
+        // create localy
+        await _especializacaoService.CreateAsync(especializacaoDtoCreate);
+        try
         {
-            _especializacaoService = especializacaoService;
-            _uow = uow;
-            _mapper = mapper;
+            // try to commit
+            await _uow.Commit();
+
+            // return response to caller
+            responseModel.IsError = false;
+            responseModel.Message = "Especializacao created successfully!";
+            return Ok(responseModel);
         }
-
-
-        [HttpGet]
-        public async Task<IActionResult> Get()
+        catch (Exception ex)
         {
-            var especializacoes = await _especializacaoService.GetAllAsync();
-            var especializacoesDto = _mapper.Map<IEnumerable<EspecializacaoDto>>(especializacoes);
+            // rolback actions
+            await _uow.RollBack();
 
-            return Ok(especializacoesDto);
+            // return response to caller
+            responseModel.IsError = true;
+            responseModel.Message = ex.Message;
+            return BadRequest(responseModel);
         }
+    }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get(Guid id)
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Put(Guid id, [FromBody] EspecializacaoDtoUpdate especializacaoDtoUpdate)
+    {
+        var responseModel = new ResponseModel();
+        especializacaoDtoUpdate.Id = id;
+
+        // create localy
+        await _especializacaoService.UpdateAsync(especializacaoDtoUpdate);
+        try
         {
-            var especializacao = await _especializacaoService.GetByIdAsync(id);
-            var especializacaoDto = _mapper.Map<EspecializacaoDto>(especializacao);
+            // try to commit
+            await _uow.Commit();
 
-            return Ok(especializacaoDto);
+            var x = await _especializacaoService.GetByIdAsync(id);
+
+            // return response to caller
+            responseModel.IsError = false;
+            responseModel.Message = "Especializacao updated successfully!";
+            return Ok(responseModel);
         }
-
-        [HttpPost]
-        public async Task<IActionResult> Post([FromBody] EspecializacaoDto especializacaoDto)
+        catch (Exception ex)
         {
-            var responseModel = new ResponseModel();
+            // rolback actions
+            await _uow.RollBack();
 
-            // valid requires
-            if (!MyOfficeMethods.ValidarRequeridos<EspecializacaoDto>(especializacaoDto)) return BadRequest(Constants.ErrorRequired);
-
-            // create localy
-            especializacaoDto = await _especializacaoService.CreateAsync(especializacaoDto);
-
-            try
-            {
-                // try to commit
-                await _uow.Commit();
-
-                // return response to caller
-                responseModel.IsError = false;
-                responseModel.Message = "Especialização created successfully!";
-                responseModel.Data = especializacaoDto;
-                return Ok(responseModel);
-            }
-            catch (Exception ex)
-            {
-
-                // rollback actions
-                await _uow.RollBack();
-
-                // return response to caller
-                responseModel.IsError = true;
-                responseModel.Message = ex.Message;
-                responseModel.Data = especializacaoDto;
-                return BadRequest(responseModel);
-            }
+            // return response to caller
+            responseModel.IsError = true;
+            responseModel.Message = ex.Message;
+            return BadRequest(responseModel);
         }
+    }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Put(Guid id, [FromBody] EspecializacaoDto especializacaoDto)
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+        var responseModel = new ResponseModel();
+
+        var especializacao = await _especializacaoService.GetByIdAsync(id);
+        var especializacaoDto = _mapper.Map<EspecializacaoDto>(especializacao);
+
+        // create localy
+        await _especializacaoService.RemoveAsync(especializacaoDto);
+        try
         {
-            var responseModel = new ResponseModel();
+            // try to commit
+            await _uow.Commit();
 
-            // valid requireds
-            if (!MyOfficeMethods.ValidarRequeridos<EspecializacaoDto>(especializacaoDto)) return BadRequest(Constants.ErrorRequired);
-
-            especializacaoDto.Id = id;
-
-            // create localy
-            especializacaoDto = await _especializacaoService.UpdateAsync(especializacaoDto);
-            try
-            {
-                // try to commit
-                await _uow.Commit();
-
-                // return response to caller
-                responseModel.IsError = false;
-                responseModel.Message = "Especialização updated successfully!";
-                responseModel.Data = especializacaoDto;
-                return Ok(responseModel);
-            }
-            catch (Exception ex)
-            {
-                // rollback actions
-                await _uow.RollBack();
-
-                // return response to caller
-                responseModel.IsError = true;
-                responseModel.Message = ex.Message;
-                return BadRequest(responseModel);
-            }
+            // return response to caller
+            responseModel.IsError = false;
+            responseModel.Message = "Especializacao removed successfully!";
+            return Ok(responseModel);
         }
-
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(Guid id)
+        catch (Exception ex)
         {
-            var responseModel = new ResponseModel();
+            // rolback actions
+            await _uow.RollBack();
 
-            var especializacao = await _especializacaoService.GetByIdAsync(id);
-            var especializacaoDto = _mapper.Map<EspecializacaoDto>(especializacao);
-
-            // valid requireds
-            if (!MyOfficeMethods.ValidarRequeridos<EspecializacaoDto>(especializacaoDto)) return BadRequest(Constants.ErrorRequired);
-
-            // create localy
-            await _especializacaoService.RemoveAsync(especializacaoDto);
-            try
-            {
-                // try to commit
-                await _uow.Commit();
-
-                // return response to caller
-                responseModel.IsError = false;
-                responseModel.Message = "Especialização removed successfully!";
-                return Ok(responseModel);
-            }
-            catch (Exception ex)
-            {
-                // rollback actions
-                await _uow.RollBack();
-
-                // return response to caller
-                responseModel.IsError = true;
-                responseModel.Message = ex.Message;
-                return BadRequest(responseModel);
-            }
+            // return response to caller
+            responseModel.IsError = true;
+            responseModel.Message = ex.Message;
+            return BadRequest(responseModel);
         }
     }
 }

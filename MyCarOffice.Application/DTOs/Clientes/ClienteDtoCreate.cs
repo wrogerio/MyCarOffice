@@ -1,13 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using MyCarOffice.Domain.Entities;
 using MyCarOffice.Helpers.Constants;
 
-namespace MyCarOffice.Application.DTOs;
+namespace MyCarOffice.Application.DTOs.Clientes;
 
-public class ClienteDto
+public class ClienteDtoCreate
 {
-    [Key] public Guid Id { get; set; }
-
     [Required(ErrorMessage = Constants.ClienteNomeErrorRequired)]
     [MaxLength(Constants.ClienteNomeMaxLength, ErrorMessage = Constants.ClienteNomeErrorMaxLength)]
     [Display(Description = Constants.ClienteNomeDisplay)]
@@ -56,6 +53,4 @@ public class ClienteDto
     [MaxLength(Constants.ClienteTelefoneMaxLength, ErrorMessage = Constants.ClienteTelefoneErrorMaxLength)]
     [Display(Description = Constants.ClienteTelefoneDisplay)]
     public string Telefone { get; set; } = "";
-
-    public virtual IEnumerable<Veiculo>? Veiculos { get; set; }
 }

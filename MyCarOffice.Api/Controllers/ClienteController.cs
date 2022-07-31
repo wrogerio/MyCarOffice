@@ -1,153 +1,130 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MyCarOffice.Api.Model;
-using MyCarOffice.Application.DTOs;
+using MyCarOffice.Application.DTOs.Clientes;
 using MyCarOffice.Application.Interfaces;
-using MyCarOffice.Helpers.Constants;
-using MyCarOffice.Helpers.Methods;
 using MyCarOffice.Uow;
 
-namespace MyCarOffice.Api.Controllers
+namespace MyCarOffice.Api.Controllers;
+
+[Route("api/v1/[controller]")]
+[ApiController]
+[ApiExplorerSettings(IgnoreApi = true)]
+public class ClienteController : ControllerBase
 {
-    [Route("api/v1/[controller]")]
-    [ApiController]
-    public class ClienteController : ControllerBase
+    private readonly IClienteService _clienteService;
+    private readonly IMapper _mapper;
+    private readonly IUow _uow;
+
+    public ClienteController(IClienteService clienteService, IUow uow, IMapper mapper)
     {
-        private readonly IClienteService _clienteService;
-        private readonly IUow _uow;
-        private readonly IMapper _mapper;
+        _clienteService = clienteService;
+        _uow = uow;
+        _mapper = mapper;
+    }
 
-        public ClienteController(IClienteService clienteService, IUow uow, IMapper mapper)
+    [HttpGet]
+    public async Task<IActionResult> Get()
+    {
+        var clientes = await _clienteService.GetAllAsync();
+        return Ok(clientes);
+    }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> Get(Guid id)
+    {
+        var cliente = await _clienteService.GetByIdAsync(id);
+        return Ok(cliente);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Post([FromBody] ClienteDtoCreate clienteDtoCrate)
+    {
+        var responseModel = new ResponseModel();
+
+        // create localy
+        await _clienteService.CreateAsync(clienteDtoCrate);
+        try
         {
-            _clienteService = clienteService;
-            _uow = uow;
-            _mapper = mapper;
+            // try to commit
+            await _uow.Commit();
+
+            // return response to caller
+            responseModel.IsError = false;
+            responseModel.Message = "Cliente created successfully!";
+            return Ok(responseModel);
         }
-
-        [HttpGet]
-        public async Task<IActionResult> Get()
+        catch (Exception ex)
         {
-            var clientes = await _clienteService.GetAllAsync();
-            var clienteDto = _mapper.Map<IEnumerable<ClienteDto>>(clientes);
+            // rolback actions
+            await _uow.RollBack();
 
-            return Ok(clienteDto);
+            // return response to caller
+            responseModel.IsError = true;
+            responseModel.Message = ex.Message;
+            return BadRequest(responseModel);
         }
+    }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get(Guid id)
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Put(Guid id, [FromBody] ClienteDtoUpdate clienteDtoUpdate)
+    {
+        var responseModel = new ResponseModel();
+        clienteDtoUpdate.Id = id;
+
+        // create localy
+        await _clienteService.UpdateAsync(clienteDtoUpdate);
+        try
         {
-            var cliente = await _clienteService.GetByIdAsync(id);
-            var clienteDto = _mapper.Map<ClienteDto>(cliente);
+            // try to commit
+            await _uow.Commit();
 
-            return Ok(clienteDto);
+            // return response to caller
+            responseModel.IsError = false;
+            responseModel.Message = "Cliente updated successfully!";
+            return Ok(responseModel);
         }
-
-        [HttpPost]
-        public async Task<IActionResult> Post([FromBody] ClienteDto clienteDto)
+        catch (Exception ex)
         {
-            var responseModel = new ResponseModel();
-            
-            // valid requireds
-            if (!MyOfficeMethods.ValidarRequeridos<ClienteDto>(clienteDto)) return BadRequest(Constants.ErrorRequired);
-            
-            // create localy
-            clienteDto =  await _clienteService.CreateAsync(clienteDto);
-            try
-            {
-                // try to commit
-                await _uow.Commit();
-                
-                // return response to caller
-                responseModel.IsError = false;
-                responseModel.Message = "Cliente created successfully!";
-                responseModel.Data = clienteDto;
-                return Ok(responseModel);
-            }
-            catch (Exception ex)
-            {
-                // rolback actions
-                await _uow.RollBack();
-                
-                // return response to caller
-                responseModel.IsError = true;
-                responseModel.Message = ex.Message;
-                return BadRequest(responseModel);
-            }
+            // rolback actions
+            await _uow.RollBack();
+
+            // return response to caller
+            responseModel.IsError = true;
+            responseModel.Message = ex.Message;
+            return BadRequest(responseModel);
         }
+    }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Put(Guid id, [FromBody] ClienteDto clienteDto)
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+        var responseModel = new ResponseModel();
+
+        var cliente = await _clienteService.GetByIdAsync(id);
+        var clienteDto = _mapper.Map<ClienteDto>(cliente);
+
+        // create localy
+        await _clienteService.RemoveAsync(clienteDto);
+        try
         {
-            var responseModel = new ResponseModel();
-            
-            // valid requireds
-            if (!MyOfficeMethods.ValidarRequeridos<ClienteDto>(clienteDto)) return BadRequest(Constants.ErrorRequired);
+            // try to commit
+            await _uow.Commit();
 
-            clienteDto.Id = id;
-            
-            // create localy
-            clienteDto =  await _clienteService.UpdateAsync(clienteDto);
-            try
-            {
-                // try to commit
-                await _uow.Commit();
-                
-                // return response to caller
-                responseModel.IsError = false;
-                responseModel.Message = "Cliente updated successfully!";
-                responseModel.Data = clienteDto;
-                return Ok(responseModel);
-            }
-            catch (Exception ex)
-            {
-                // rolback actions
-                await _uow.RollBack();
-                
-                // return response to caller
-                responseModel.IsError = true;
-                responseModel.Message = ex.Message;
-                return BadRequest(responseModel);
-            }
+            // return response to caller
+            responseModel.IsError = false;
+            responseModel.Message = "Cliente removed successfully!";
+            return Ok(responseModel);
         }
-
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(Guid id)
+        catch (Exception ex)
         {
-            var responseModel = new ResponseModel();
+            // rolback actions
+            await _uow.RollBack();
 
-            var cliente = await _clienteService.GetByIdAsync(id);
-            var clienteDto = _mapper.Map<ClienteDto>(cliente);
-            
-            // valid requireds
-            if (!MyOfficeMethods.ValidarRequeridos<ClienteDto>(clienteDto)) return BadRequest(Constants.ErrorRequired);
-            
-            // create localy
-            await _clienteService.RemoveAsync(clienteDto);
-            try
-            {
-                // try to commit
-                await _uow.Commit();
-                
-                // return response to caller
-                responseModel.IsError = false;
-                responseModel.Message = "Cliente removed successfully!";
-                return Ok(responseModel);
-            }
-            catch (Exception ex)
-            {
-                // rolback actions
-                await _uow.RollBack();
-                
-                // return response to caller
-                responseModel.IsError = true;
-                responseModel.Message = ex.Message;
-                return BadRequest(responseModel);
-            }
+            // return response to caller
+            responseModel.IsError = true;
+            responseModel.Message = ex.Message;
+            return BadRequest(responseModel);
         }
     }
 }

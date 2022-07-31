@@ -2,12 +2,10 @@
 using MyCarOffice.Domain.Enums;
 using MyCarOffice.Helpers.Constants;
 
-namespace MyCarOffice.Application.DTOs;
+namespace MyCarOffice.Application.DTOs.OrdemDeServico;
 
-public class OrdemDeServicoDto
+public class OrdemDeServicoDtoCreate
 {
-    [Key] public Guid Id { get; set; }
-
     [Required(ErrorMessage = Constants.OrdemDeServicoDataHoraInicioErrorRequired)]
     [Display(Description = Constants.OrdemDeServicoDataHoraInicioDisplay)]
     public DateTime DataHoraInicio { get; set; } = DateTime.Now;

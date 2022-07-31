@@ -1,21 +1,20 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using MyCarOffice.Api.Model;
-using MyCarOffice.Application.DTOs;
+using MyCarOffice.Application.DTOs.Profissional;
 using MyCarOffice.Application.Interfaces;
-using MyCarOffice.Helpers.Constants;
-using MyCarOffice.Helpers.Methods;
 using MyCarOffice.Uow;
 
 namespace MyCarOffice.Api.Controllers;
 
 [Route("api/v1/[controller]")]
 [ApiController]
-public class ProfissionalController : Controller
+[ApiExplorerSettings(IgnoreApi = true)]
+public class ProfissionalController : ControllerBase
 {
     private readonly IMapper _mapper;
-    private readonly IProfissionalService _profissionalService;
     private readonly IUow _uow;
+    private readonly IProfissionalService _profissionalService;
 
     public ProfissionalController(IProfissionalService profissionalService, IUow uow, IMapper mapper)
     {
@@ -28,33 +27,23 @@ public class ProfissionalController : Controller
     public async Task<IActionResult> Get()
     {
         var profissionais = await _profissionalService.GetAllAsync();
-        var profissionaisDto = _mapper.Map<IEnumerable<ProfissionalDto>>(profissionais);
-
-        return Ok(profissionaisDto);
+        return Ok(profissionais);
     }
-
 
     [HttpGet("{id}")]
     public async Task<IActionResult> Get(Guid id)
     {
         var profissional = await _profissionalService.GetByIdAsync(id);
-        var profissionalDto = _mapper.Map<ProfissionalDto>(profissional);
-
-        return Ok(profissionalDto);
+        return Ok(profissional);
     }
 
-
     [HttpPost]
-    public async Task<IActionResult> Post([FromBody] ProfissionalDto profissionalDto)
+    public async Task<IActionResult> Post([FromBody] ProfissionalDtoCreate profissionalDtoCreate)
     {
         var responseModel = new ResponseModel();
 
-        // valid requires
-        if (!MyOfficeMethods.ValidarRequeridos(profissionalDto)) return BadRequest(Constants.ErrorRequired);
-
         // create localy
-        profissionalDto = await _profissionalService.CreateAsync(profissionalDto);
-
+        await _profissionalService.CreateAsync(profissionalDtoCreate);
         try
         {
             // try to commit
@@ -63,48 +52,43 @@ public class ProfissionalController : Controller
             // return response to caller
             responseModel.IsError = false;
             responseModel.Message = "Profissional created successfully!";
-            responseModel.Data = profissionalDto;
             return Ok(responseModel);
         }
         catch (Exception ex)
         {
-            // rollback actions
+            // rolback actions
             await _uow.RollBack();
 
             // return response to caller
             responseModel.IsError = true;
             responseModel.Message = ex.Message;
-            responseModel.Data = profissionalDto;
             return BadRequest(responseModel);
         }
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Put(Guid id, [FromBody] ProfissionalDto profissionalDto)
+    public async Task<IActionResult> Put(Guid id, [FromBody] ProfissionalDtoUpdate profissionalDtoUpdate)
     {
         var responseModel = new ResponseModel();
-
-        // valid requireds
-        if (!MyOfficeMethods.ValidarRequeridos(profissionalDto)) return BadRequest(Constants.ErrorRequired);
-
-        profissionalDto.Id = id;
+        profissionalDtoUpdate.Id = id;
 
         // create localy
-        profissionalDto = await _profissionalService.UpdateAsync(profissionalDto);
+        await _profissionalService.UpdateAsync(profissionalDtoUpdate);
         try
         {
             // try to commit
             await _uow.Commit();
 
+            var x = await _profissionalService.GetByIdAsync(id);
+
             // return response to caller
             responseModel.IsError = false;
             responseModel.Message = "Profissional updated successfully!";
-            responseModel.Data = profissionalDto;
             return Ok(responseModel);
         }
         catch (Exception ex)
         {
-            // rollback actions
+            // rolback actions
             await _uow.RollBack();
 
             // return response to caller
@@ -113,7 +97,6 @@ public class ProfissionalController : Controller
             return BadRequest(responseModel);
         }
     }
-
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(Guid id)
@@ -122,9 +105,6 @@ public class ProfissionalController : Controller
 
         var profissional = await _profissionalService.GetByIdAsync(id);
         var profissionalDto = _mapper.Map<ProfissionalDto>(profissional);
-
-        // valid requireds
-        if (!MyOfficeMethods.ValidarRequeridos(profissionalDto)) return BadRequest(Constants.ErrorRequired);
 
         // create localy
         await _profissionalService.RemoveAsync(profissionalDto);
@@ -140,7 +120,7 @@ public class ProfissionalController : Controller
         }
         catch (Exception ex)
         {
-            // rollback actions
+            // rolback actions
             await _uow.RollBack();
 
             // return response to caller

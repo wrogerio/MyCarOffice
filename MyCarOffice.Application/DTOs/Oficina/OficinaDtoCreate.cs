@@ -1,12 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using MyCarOffice.Helpers.Constants;
 
-namespace MyCarOffice.Application.DTOs;
+namespace MyCarOffice.Application.DTOs.Oficina;
 
-public class OficinaDto
+public class OficinaDtoCreate
 {
-    [Key] public Guid Id { get; set; }
-
     [Required(ErrorMessage = Constants.OficinaNomeFantasiaErrorRequired)]
     [MaxLength(Constants.OficinaNomeFantasiaMaxLength, ErrorMessage = Constants.OficinaNomeFantasiaErrorMaxLength)]
     [Display(Description = Constants.OficinaNomeFantasiaDisplay)]
@@ -18,8 +16,7 @@ public class OficinaDto
     public string Cnpj { get; set; } = "";
 
     [Required(ErrorMessage = Constants.OficinaNomeResponsavelErrorRequired)]
-    [MaxLength(Constants.OficinaNomeResponsavelMaxLength,
-        ErrorMessage = Constants.OficinaNomeResponsavelErrorMaxLength)]
+    [MaxLength(Constants.OficinaNomeResponsavelMaxLength, ErrorMessage = Constants.OficinaNomeResponsavelErrorMaxLength)]
     [Display(Description = Constants.OficinaNomeResponsavelDisplay)]
     public string NomeResponsavel { get; set; } = "";
 

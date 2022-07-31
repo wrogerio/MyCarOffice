@@ -14,7 +14,6 @@ public class Oficina : EntityBase
 
     public Oficina()
     {
-        
     }
 
     public string NomeFantasia { get; set; } = "";

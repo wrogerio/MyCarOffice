@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using MyCarOffice.Application.DTOs;
+using MyCarOffice.Application.DTOs.Oficina;
 using MyCarOffice.Helpers.Constants;
 
 namespace MyCarOffice.Application.Validations;
